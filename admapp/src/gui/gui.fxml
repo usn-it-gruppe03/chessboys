@@ -15,7 +15,7 @@
          <center>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
-                <Tab text="Start">
+                <Tab text="Turnering">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -58,6 +58,7 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </TextField>
+                                                <Button mnemonicParsing="false" text="Lag turnering" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -79,6 +80,84 @@
                                                    </children>
                                                 </StackPane>
                                                 <Label text="Tilgjengelige turneringer:" />
+                                                <ListView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </ListView>
+                                                <Button mnemonicParsing="false" text="Velg turnering" />
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Rediger turnering">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <StackPane prefHeight="80.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til spillere" StackPane.alignment="CENTER">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </StackPane>
+                                                <Label layoutX="30.0" layoutY="157.0" text="Valgt turnering:" />
+                                                <TextField disable="true" editable="false" text="Turneringsnavn">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                                <Label text="Fornavn:" />
+                                                <TextField>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                                <Label text="Etternavn:" />
+                                                <TextField>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                                <Button mnemonicParsing="false" text="Legg til deltaker" />
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <StackPane prefHeight="80.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deltakere" StackPane.alignment="CENTER">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </StackPane>
+                                                <Label text="Liste over deltakere i turneringen:" />
                                                 <ListView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                                              </children>
                                              <padding>
@@ -93,9 +172,9 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="Turnering">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <Tab text="Parti">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
@@ -118,20 +197,31 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </ChoiceBox>
-                                                <Label text="Spiller 1:" />
+                                                <Label layoutX="30.0" layoutY="115.0" text="Dato:" />
                                                 <TextField>
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </TextField>
-                                                <Label text="Spiller 2:" />
-                                                <TextField>
+                                                <Label layoutX="30.0" layoutY="179.0" text="Klokkeslett:" />
+                                                <TextField layoutX="30.0" layoutY="201.0">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </TextField>
-                                                <Label text="Søk etter spiller:" />
-                                                <Button mnemonicParsing="false" text="Søk" />
+                                                <Label text="Spiller hvit:" />
+                                                <ChoiceBox layoutX="30.0" layoutY="137.0" prefWidth="410.0">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                                <Label text="Spiller sort:" />
+                                                <ChoiceBox layoutX="30.0" layoutY="137.0" prefWidth="410.0">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                                <Button mnemonicParsing="false" text="Lag parti" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -152,7 +242,91 @@
                                                       </Text>
                                                    </children>
                                                 </StackPane>
-                                                <Label text="Turneringer:" />
+                                                <Label text="Partier:" />
+                                                <ListView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </ListView>
+                                                <Button mnemonicParsing="false" text="Velg parti" />
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Rediger parti">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <StackPane prefHeight="80.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til trekk" StackPane.alignment="CENTER">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </StackPane>
+                                                <Label layoutX="30.0" layoutY="157.0" text="Valgt parti:" />
+                                                <TextField disable="true" editable="false" text="Partinavn">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                                <Label layoutX="30.0" layoutY="179.0" text="Brikketype:" />
+                                                <ChoiceBox layoutX="30.0" layoutY="201.0" prefWidth="410.0">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                                <Label layoutX="30.0" layoutY="233.0" text="Fra rute:" />
+                                                <ChoiceBox layoutX="30.0" layoutY="255.0" prefWidth="410.0">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                                <Label layoutX="30.0" layoutY="287.0" text="Til rute:" />
+                                                <ChoiceBox layoutX="30.0" layoutY="309.0" prefWidth="410.0">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                                <Button mnemonicParsing="false" text="Legg til trekk" />
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <StackPane prefHeight="80.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Registrerte trekk" StackPane.alignment="CENTER">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </StackPane>
+                                                <Label text="Liste over registrerte trekk:" />
                                                 <ListView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                                              </children>
                                              <padding>
@@ -165,16 +339,6 @@
                               </HBox>
                            </children>
                         </AnchorPane>
-                  </content>
-                </Tab>
-                  <Tab text="Partier">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                     </content>
-                  </Tab>
-                  <Tab text="Rediger">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                      </content>
                   </Tab>
               </tabs>
