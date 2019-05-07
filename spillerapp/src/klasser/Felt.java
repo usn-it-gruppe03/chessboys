@@ -8,7 +8,14 @@ import javafx.scene.shape.Rectangle;
  * */
 public class Felt extends Rectangle {
 
+
+    /**
+     * Objektattributter
+     * */
     Posisjon posisjon;
+
+
+
 
     /**
      * Konstruktør
@@ -81,6 +88,17 @@ public class Felt extends Rectangle {
      * */
     public void setSenterY(double y){
         this.setY( y - (this.getDeltaY()/2) );
+    }
+
+
+
+
+    /**
+     * Get Posisjon
+     * @return posisjon
+     * */
+    public Posisjon getPosisjon() {
+        return posisjon;
     }
 
 }
