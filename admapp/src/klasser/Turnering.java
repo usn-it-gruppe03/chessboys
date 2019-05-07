@@ -33,10 +33,10 @@ public class Turnering {
     //sjekk om mappe allerede eksisterer
     
     public void lagMappe(){
-        if(mappeFinnes()){
-            return;
-        }else{
+        if(!mappeFinnes()){
             new File(this.fil).mkdirs();
+        }else{
+            System.out.println("Mappe finnes");
         }
     }
     
