@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import klasser.Sjakkbrett;
 
@@ -32,7 +33,7 @@ public class Controller implements Initializable {
     // * TAB: Se parti
     @FXML private Tab tab_sp;
     @FXML private ListView<?> sp_liste_trekk;
-    @FXML private Pane sp_sjakkbrett;
+    @FXML private AnchorPane sp_sjakkbrett;
     @FXML private Button sp_knapp_velg_trekk;
 
     // * TAB: Poengtabell
@@ -43,8 +44,10 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        Sjakkbrett.populerSjakkbrett(sp_sjakkbrett);
-        sp_sjakkbrett.getStyleClass().add("bg-sort");
+        double width = sp_sjakkbrett.getWidth();
+        double height = sp_sjakkbrett.getHeight();
+        Sjakkbrett.populerSjakkbrett(sp_sjakkbrett, 500, 500);
+        System.out.println(sp_sjakkbrett.getLayoutX());
 
     }
 
