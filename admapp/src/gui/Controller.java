@@ -128,44 +128,7 @@ public class Controller implements Initializable {
 
     }
 
-    public void opprettTurnering(){
-        System.out.print("lol2");
-        /*
-        //Fjern klammer: (?<=\[{1})(.+)(?=\]{1})
-        //Hent ut tekst: [a-zæøåA-ZÆØÅ]+
-        //Skill datoer: ([0-9-]){10}
 
-        //s.split("regex")
-        //s.matches("regex")
-
-        String nyTurn = ""+t_liste_turnering.getSelectionModel().getSelectedItems();
-
-
-        Pattern pattern = Pattern.compile("(?<=\\[{1})(.+)(?=\\]{1})");
-        Matcher matcher = pattern.matcher(nyTurn);
-        nyTurn = matcher.group();
-
-        pattern = Pattern.compile("[a-zæøåA-ZÆØÅ]");
-        matcher = pattern.matcher(nyTurn);
-
-        nyTurn = matcher.group();
-
-
-        while(matcher.find()){
-
-            System.out.println(nyTurn);
-        }
-
-
-
-
-
-
-
-        //Turnering turn = new Turnering();
-
-         */
-    }
 
     //Populer listView t_liste_turnering
     private void visTurneringer() {
