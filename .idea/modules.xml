@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/admapp/admapp.iml" filepath="$PROJECT_DIR$/admapp/admapp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/chessboys.iml" filepath="$PROJECT_DIR$/.idea/chessboys.iml" />
       <module fileurl="file://$PROJECT_DIR$/spillerapp/spillerapp.iml" filepath="$PROJECT_DIR$/spillerapp/spillerapp.iml" />
     </modules>
   </component>

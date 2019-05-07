@@ -7,9 +7,13 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+/**
+ * Controller: Admin App
+ * */
 public class Controller implements Initializable {
 
-
+    // * TAB: Turnering
     @FXML private Tab tab_t;
     @FXML private TextField t_tekstfelt_startdato;
     @FXML private TextField t_tekstfelt_sted;
@@ -18,12 +22,16 @@ public class Controller implements Initializable {
     @FXML private Button t_knapp_lag_turnering;
     @FXML private TextField t_tekstfelt_sluttdato;
     @FXML private TextField t_tekstfelt_turneringsnavn;
+
+    // * TAB: Rediger turnering
     @FXML private Tab tab_rt;
     @FXML private ListView<?> rt_liste_turnering;
     @FXML private Button rt_knapp_legg_til_deltaker;
     @FXML private TextField rt_tekstfelt_fornavn;
     @FXML private TextField rt_tekstfelt_etternavn;
     @FXML private TextField rt_tekstfelt_turneringsnavn;
+
+    // * TAB: Parti
     @FXML private Tab tab_p;
     @FXML private Button p_knapp_velg_parti;
     @FXML private TextField p_tekstfelt_dato;
@@ -33,6 +41,8 @@ public class Controller implements Initializable {
     @FXML private ChoiceBox<?> p_kombo_turnering;
     @FXML private ChoiceBox<?> p_kombo_spiller_hvit;
     @FXML private ListView<?> p_liste_parti;
+
+    // * TAB: Rediger parti
     @FXML private Tab tab_rp;
     @FXML private TextField rp_tekstfelt_partinavn;
     @FXML private ListView<?> rp_liste_trekk;
