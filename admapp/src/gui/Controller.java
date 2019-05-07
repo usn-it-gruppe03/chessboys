@@ -1,4 +1,49 @@
 package gui;
 
-public class Controller {
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Controller implements Initializable {
+
+
+    @FXML private Tab tab_t;
+    @FXML private TextField t_tekstfelt_startdato;
+    @FXML private TextField t_tekstfelt_sted;
+    @FXML private ListView<?> t_liste_turnering;
+    @FXML private Button t_knapp_velg_turnering;
+    @FXML private Button t_knapp_lag_turnering;
+    @FXML private TextField t_tekstfelt_sluttdato;
+    @FXML private TextField t_tekstfelt_turneringsnavn;
+    @FXML private Tab tab_rt;
+    @FXML private ListView<?> rt_liste_turnering;
+    @FXML private Button rt_knapp_legg_til_deltaker;
+    @FXML private TextField rt_tekstfelt_fornavn;
+    @FXML private TextField rt_tekstfelt_etternavn;
+    @FXML private TextField rt_tekstfelt_turneringsnavn;
+    @FXML private Tab tab_p;
+    @FXML private Button p_knapp_velg_parti;
+    @FXML private TextField p_tekstfelt_dato;
+    @FXML private ChoiceBox<?> p_kombo_spiller_sort;
+    @FXML private Button p_knapp_lag_parti;
+    @FXML private TextField p_tekstfelt_klokkeslett;
+    @FXML private ChoiceBox<?> p_kombo_turnering;
+    @FXML private ChoiceBox<?> p_kombo_spiller_hvit;
+    @FXML private ListView<?> p_liste_parti;
+    @FXML private Tab tab_rp;
+    @FXML private TextField rp_tekstfelt_partinavn;
+    @FXML private ListView<?> rp_liste_trekk;
+    @FXML private Button rp_knapp_legg_til_trekk;
+    @FXML private ChoiceBox<?> rp_tekstfelt_brikketype;
+    @FXML private ChoiceBox<?> rp_tekstfelt_til_rute;
+    @FXML private ChoiceBox<?> rp_tekstfelt_fra_rute;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
 }
