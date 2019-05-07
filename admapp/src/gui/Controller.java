@@ -1,5 +1,7 @@
 package gui;
 
+import java.io.File;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -62,6 +64,38 @@ public class Controller implements Initializable {
 
 
 
+    }
+    
+    
+    public void opprettTurnering(){
+        String tempNavn = t_tekstfelt_turneringsnavn.getText();
+        String tempStartDato = t_tekstfelt_startdato.getText();
+        String tempSluttDato = t_tekstfelt_sluttdato.getText();
+        String tempSted = t_tekstfelt_sted.getText();
+                
+        Turnering nyTurn = new Turnering(
+            tempNavn, 
+            tempStartDato, 
+            tempSluttDato, 
+            tempSted);
+        
+        //Oppretter en resultat.txt fil i hver turneringsmappe
+        try{
+            File resultatFil = new File(nyTurn.getFil()+"/"+tempNavn+"RESULTATER.txt");
+            resultatFil.createNewFile();
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+        
+        
+        //Tømmer feltene for informasjon
+        t_tekstfelt_turneringsnavn.clear(); 
+        t_tekstfelt_startdato.clear(); 
+        t_tekstfelt_sluttdato.clear(); 
+        t_tekstfelt_sted.clear();
+        
+        //opprette resultat.txt
+    
     }
 
 }
