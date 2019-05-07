@@ -5,6 +5,8 @@
  */
 package klasser;
 
+import java.io.File;
+
 /**
  *
  * @author andersbaero
@@ -21,14 +23,30 @@ public class Turnering {
         this.fraDato = fraDato;
         this.tilDato = tilDato;
         this.sted = sted;
-        this.fil = "turneringer/"+navn;
+        this.fil = "../turneringer/"+navn;
         //Eks /turneringer/bøsjakkmesterskap
     }
     
     
     //lag mappe
-    //new File("/path/directory").mkdirs();
+    //
     //sjekk om mappe allerede eksisterer
+    
+    public void lagMappe(){
+        if(mappeFinnes()){
+            return;
+        }else{
+            new File(this.fil).mkdirs();
+        }
+    }
+    
+    public boolean mappeFinnes(){
+        if (new File(this.fil).exists()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     public String getNavn() {
         return navn;
