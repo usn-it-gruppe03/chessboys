@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import klasser.Fil;
 import klasser.Parti;
 import klasser.Turnering;
 
@@ -25,7 +26,7 @@ public class Controller implements Initializable {
     @FXML private Tab tab_t;
     @FXML private TextField t_tekstfelt_startdato;
     @FXML private TextField t_tekstfelt_sted;
-    @FXML private ListView<?> t_liste_turnering;
+    @FXML private ListView<String> t_liste_turnering;
     @FXML private Button t_knapp_velg_turnering;
     @FXML private Button t_knapp_lag_turnering;
     @FXML private TextField t_tekstfelt_sluttdato;
@@ -58,11 +59,12 @@ public class Controller implements Initializable {
     @FXML private ChoiceBox<?> rp_tekstfelt_brikketype;
     @FXML private ChoiceBox<?> rp_tekstfelt_til_rute;
     @FXML private ChoiceBox<?> rp_tekstfelt_fra_rute;
+    @FXML private ChoiceBox<?> rp_kombo_utfall;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
+        visTurneringer();
 
     }
     
@@ -98,4 +100,14 @@ public class Controller implements Initializable {
     
     }
 
+    //Populer listView t_liste_turnering
+    public void visTurneringer() {
+        Fil test = new Fil();
+        ArrayList<String> liste = new ArrayList<>();
+        String [] lol = test.søkTurneringer();
+        for (int i = 0; i<lol.length; i++){
+            liste.add(lol[i]);
+        }
+        t_liste_turnering.getItems().addAll(liste);
+    }
 }
