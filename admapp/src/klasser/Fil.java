@@ -57,8 +57,15 @@ public class Fil implements Serializable {
         System.out.println(Arrays.toString(directories));
     }
 
-    public void søkTurneringer() {
-
-    }
+    public String[] søkTurneringer() {
+        File fil = new File("admapp/src/turneringer");
+        String[] mapper = fil.list(new FilenameFilter() {
+            @Override
+            public boolean accept(File current, String name) {
+                return new File(current, name).isDirectory();
+            }
+        });
+        return mapper;
+    }//FERDIG ?
 
 }//SLUTT PÅ KLASSE
