@@ -28,9 +28,7 @@ public class Spillerapp extends Application {
 
         stage.setScene(this.scene);
         stage.show();
-
-        System.out.println("It works!");
-        System.out.println("It works!");
+        
 
     }
 
