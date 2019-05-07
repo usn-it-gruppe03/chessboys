@@ -23,10 +23,10 @@ public class Controller implements Initializable {
 
     private ArrayList<Parti> partier;
     private ArrayList<String> turnListe;
-    private ArrayList<Turnering> turneringer;
+    private ArrayList<Turnering> turneringer = new ArrayList<>();
     private ObservableList<Spiller> spillere;
     private ArrayList<String> liste;
-    private Turnering turnering;
+    private Turnering nyTurnering;
 
 
     // * TAB: Turnering
@@ -79,6 +79,8 @@ public class Controller implements Initializable {
 
 
     public void lagMappe() {
+
+
         String tempNavn = t_tekstfelt_turneringsnavn.getText();
         String tempStartDato = t_tekstfelt_startdato.getText();
         String tempSluttDato = t_tekstfelt_sluttdato.getText();
@@ -107,7 +109,7 @@ public class Controller implements Initializable {
             t_tekstfelt_sluttdato.clear();
             t_tekstfelt_sted.clear();
 
-            Turnering nyTurnering = new Turnering(
+            nyTurnering = new Turnering(
                     tempNavn,
                     tempStartDato,
                     tempSluttDato,
@@ -115,7 +117,10 @@ public class Controller implements Initializable {
             nyTurnering.setFil(finalPath);
 
             //Skriv til .json her fremfor system.out.
-            System.out.println(nyTurnering.toString());
+
+
+            turneringer.add(nyTurnering);
+            System.out.println(turneringer);
         }
 
 
@@ -178,7 +183,7 @@ public class Controller implements Initializable {
         String etternavn = this.rt_tekstfelt_etternavn.getText();
         int poeng = 0;
         Spiller spiller = new Spiller(fornavn, etternavn, poeng);
-        turnering.leggTilSpiller(spiller);
+        nyTurnering.leggTilSpiller(spiller);
 
         this.rt_tekstfelt_fornavn.setText("");
         this.rt_tekstfelt_etternavn.setText("");
