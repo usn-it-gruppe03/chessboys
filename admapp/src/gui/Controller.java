@@ -10,13 +10,12 @@ import klasser.Parti;
 import klasser.Spiller;
 import klasser.Turnering;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -79,30 +78,95 @@ public class Controller implements Initializable {
         setKomboSpillere();
 
     }
-    
-    
-    public void opprettTurnering(){
+
+
+    public void lagMappe() {
         String tempNavn = t_tekstfelt_turneringsnavn.getText();
         String tempStartDato = t_tekstfelt_startdato.getText();
         String tempSluttDato = t_tekstfelt_sluttdato.getText();
         String tempSted = t_tekstfelt_sted.getText();
-                
-        Turnering nyTurn = new Turnering(
-            tempNavn, 
-            tempStartDato, 
-            tempSluttDato, 
-            tempSted);
-        
-        //Tømmer feltene for informasjon
-        t_tekstfelt_turneringsnavn.clear(); 
-        t_tekstfelt_startdato.clear(); 
-        t_tekstfelt_sluttdato.clear(); 
-        t_tekstfelt_sted.clear();
-        
+        String finalPath = "admapp/src/turneringer/"+tempNavn+tempStartDato+tempSluttDato+tempSted+"/";
+
+
+        if(new File(finalPath).isDirectory()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Informasjonsmelding!");
+            alert.setHeaderText("Feilmelding:");
+            alert.setContentText("Turneringen du forsøker å opprette eksisterer allerede!");
+            alert.showAndWait();
+        }else{
+            //Oppretter en resultat.txt fil i hver turneringsmappe
+            try{
+                new File(finalPath).mkdirs();
+                File resultatFil = new File(finalPath+tempNavn+"RESULTATER.txt");
+                resultatFil.createNewFile();
+            }catch(IOException e){
+                System.out.println(e.getMessage());
+            }
+            //Tømmer feltene for informasjon
+            t_tekstfelt_turneringsnavn.clear();
+            t_tekstfelt_startdato.clear();
+            t_tekstfelt_sluttdato.clear();
+            t_tekstfelt_sted.clear();
+
+            Turnering nyTurnering = new Turnering(
+                    tempNavn,
+                    tempStartDato,
+                    tempSluttDato,
+                    tempSted);
+            nyTurnering.setFil(finalPath);
+
+            //Skriv til .json her fremfor system.out.
+            System.out.println(nyTurnering.toString());
+        }
+
+
+
         //Tømmer lista, og oppdaterer med nye verdier
         t_liste_turnering.getItems().clear();
         visTurneringer();
-        
+
+
+
+    }
+
+    public void opprettTurnering(){
+        System.out.print("lol2");
+        /*
+        //Fjern klammer: (?<=\[{1})(.+)(?=\]{1})
+        //Hent ut tekst: [a-zæøåA-ZÆØÅ]+
+        //Skill datoer: ([0-9-]){10}
+
+        //s.split("regex")
+        //s.matches("regex")
+
+        String nyTurn = ""+t_liste_turnering.getSelectionModel().getSelectedItems();
+
+
+        Pattern pattern = Pattern.compile("(?<=\\[{1})(.+)(?=\\]{1})");
+        Matcher matcher = pattern.matcher(nyTurn);
+        nyTurn = matcher.group();
+
+        pattern = Pattern.compile("[a-zæøåA-ZÆØÅ]");
+        matcher = pattern.matcher(nyTurn);
+
+        nyTurn = matcher.group();
+
+
+        while(matcher.find()){
+
+            System.out.println(nyTurn);
+        }
+
+
+
+
+
+
+
+        //Turnering turn = new Turnering();
+
+         */
     }
 
     //Populer listView t_liste_turnering
