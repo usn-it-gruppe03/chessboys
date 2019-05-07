@@ -14,8 +14,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 /**
@@ -53,10 +51,10 @@ public class Controller implements Initializable {
     @FXML private Tab tab_p;
     @FXML private Button p_knapp_velg_parti;
     @FXML private TextField p_tekstfelt_dato;
-    @FXML private ChoiceBox<?> p_kombo_spiller_sort;
     @FXML private Button p_knapp_lag_parti;
     @FXML private TextField p_tekstfelt_klokkeslett;
     @FXML private ChoiceBox<String> p_kombo_turnering = new ChoiceBox<>();
+    @FXML private ChoiceBox<String> p_kombo_spiller_sort = new ChoiceBox<>();
     @FXML private ChoiceBox<String> p_kombo_spiller_hvit = new ChoiceBox<>();
     @FXML private ListView<String> p_liste_parti;
 
@@ -226,15 +224,18 @@ public class Controller implements Initializable {
 
     private void lagParti(){
         String spillerHvit = p_kombo_spiller_hvit.getValue().toLowerCase();
+        String spillerSort = p_kombo_spiller_sort.getValue().toLowerCase();
         Spiller spillerHvitObjekt;
         for(Turnering turnering: turneringer ) {
             for(Spiller spiller: turnering.hentSpillerArray()) {
                 if(spiller.getFornavn()+spiller.getEtternavn() == spillerHvit){
                     spillerHvitObjekt = new Spiller(spiller.getFornavn(), spiller.getEtternavn(), spiller.getPoeng());
-                } else if(spiller.getFornavn()+spiller.getEtternavn() == )
+                } else if(spiller.getFornavn()+spiller.getEtternavn() == spillerSort ){
+
+                }
             }
         }
-        Parti parti = new Parti(spillerHvitObjekt, );
+        //Parti parti = new Parti(spillerHvitObjekt, );
     }
 
 
