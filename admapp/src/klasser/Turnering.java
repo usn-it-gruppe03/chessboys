@@ -6,7 +6,9 @@
 package klasser;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -21,6 +23,8 @@ public class Turnering implements Serializable{
     private String sted;
     private String fil;
     private final String CONST_PATH = "admapp/src/turneringer/";
+    private ArrayList<Spiller> spillerListe = new ArrayList<>();
+    private ArrayList<Parti> partiListe = new ArrayList<>();
 
     public Turnering(String navn, String fraDato, String tilDato, String sted){
         if(!mappeFinnes(CONST_PATH+navn)){
@@ -30,7 +34,18 @@ public class Turnering implements Serializable{
             this.sted = sted;
             this.fil = CONST_PATH+navn;
             
+            System.out.println(""+fil+"/");
+            
             lagMappe();
+            
+            //Oppretter en resultat.txt fil i hver turneringsmappe
+            try{
+                File resultatFil = new File(this.getFil()+this.navn+"RESULTATER.txt");
+                resultatFil.createNewFile();
+            }catch(IOException e){
+                System.out.println(e.getMessage());
+            }
+        
         }else{
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Informasjonsmelding!");
@@ -43,6 +58,13 @@ public class Turnering implements Serializable{
         //skrive til info.txt
     }
     
+    public void leggTilTspiller(Spiller s){
+        spillerListe.add(s);
+    }
+    
+    public void leggTilParti(Parti p){
+        partiListe.add(p);
+    }
     
     public void lagMappe(){    
         new File(this.fil).mkdirs();

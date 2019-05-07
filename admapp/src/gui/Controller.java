@@ -81,23 +81,16 @@ public class Controller implements Initializable {
             tempSluttDato, 
             tempSted);
         
-        //Oppretter en resultat.txt fil i hver turneringsmappe
-        try{
-            File resultatFil = new File(nyTurn.getFil()+"/"+tempNavn+"RESULTATER.txt");
-            resultatFil.createNewFile();
-        }catch(IOException e){
-            System.out.println(e.getMessage());
-        }
-        
-        
         //Tømmer feltene for informasjon
         t_tekstfelt_turneringsnavn.clear(); 
         t_tekstfelt_startdato.clear(); 
         t_tekstfelt_sluttdato.clear(); 
         t_tekstfelt_sted.clear();
         
-        //opprette resultat.txt
-    
+        //Tømmer lista, og oppdaterer med nye verdier
+        t_liste_turnering.getItems().clear();
+        visTurneringer();
+        
     }
 
     //Populer listView t_liste_turnering
