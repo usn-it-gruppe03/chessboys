@@ -18,7 +18,7 @@ public class Spillerapp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
+        // Comment here
         stage.setTitle(TITLE);
         stage.setResizable(false);
         stage.centerOnScreen();
