@@ -2,7 +2,7 @@ package klasser;
 
 public class Parti {
     private Spiller spillerHvit, spillerSort;
-    String dato, tid;
+    private String dato, tid;
 
     public Parti(Spiller spillerHvit, Spiller spillerSort, String dato, String tid) {
         this.spillerHvit = spillerHvit;

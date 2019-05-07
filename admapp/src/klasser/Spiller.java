@@ -1,6 +1,7 @@
 package klasser;
 
 public class Spiller {
+
     private String fornavn, etternavn;
 
     public Spiller(String fornavn, String etternavn) {
