@@ -30,6 +30,7 @@ public class Spillerapp extends Application {
         stage.show();
 
         System.out.println("It works!");
+        System.out.println("It works!");
 
     }
 
