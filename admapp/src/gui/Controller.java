@@ -1,7 +1,5 @@
 package gui;
 
-import java.io.File;
-import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,7 +10,10 @@ import klasser.Parti;
 import klasser.Spiller;
 import klasser.Turnering;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -74,7 +75,7 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         visTurneringer();
-        opprettTurneringer();
+        opprettTurnering();
         opprettSpillere();
         setKomboSpillere();
 
@@ -156,7 +157,7 @@ public class Controller implements Initializable {
     private void setKomboSpillere() {
 
 
-        p_kombo_turnering.setItems(liste);
+        p_kombo_turnering.getItems().add(liste);
     }
 
 }
