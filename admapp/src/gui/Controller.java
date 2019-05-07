@@ -2,13 +2,17 @@ package gui;
 
 import java.io.File;
 import java.io.IOException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import klasser.Fil;
 import klasser.Parti;
+import klasser.Spiller;
 import klasser.Turnering;
 
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -19,8 +23,13 @@ import java.util.ResourceBundle;
  * */
 public class Controller implements Initializable {
 
-    private ArrayList<Turnering> turneringer;
+    //private ArrayList<Turnering> turneringer;
+    //private ArrayList<Spiller> spillere;
     private ArrayList<Parti> partier;
+    private ObservableList<Turnering> turneringer;
+    private ObservableList<Spiller> spillere;
+    private ObservableList<String> liste;
+
 
     // * TAB: Turnering
     @FXML private Tab tab_t;
@@ -47,8 +56,8 @@ public class Controller implements Initializable {
     @FXML private ChoiceBox<?> p_kombo_spiller_sort;
     @FXML private Button p_knapp_lag_parti;
     @FXML private TextField p_tekstfelt_klokkeslett;
-    @FXML private ChoiceBox<?> p_kombo_turnering;
-    @FXML private ChoiceBox<?> p_kombo_spiller_hvit;
+    @FXML private ChoiceBox<ObservableList> p_kombo_turnering = new ChoiceBox<>();
+    @FXML private ChoiceBox<ObservableList> p_kombo_spiller_hvit = new ChoiceBox<>();
     @FXML private ListView<?> p_liste_parti;
 
     // * TAB: Rediger parti
@@ -65,6 +74,9 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         visTurneringer();
+        opprettTurneringer();
+        opprettSpillere();
+        setKomboSpillere();
 
     }
     
@@ -103,4 +115,48 @@ public class Controller implements Initializable {
         }
         t_liste_turnering.getItems().addAll(liste);
     }
+
+    private void opprettSpillere() {
+        String fileName = "admapp/src/turneringer/Bøsjakkmesterskap20190102/spillere.txt";
+        String line = null;
+        try {
+            // FileReader reads text files in the default encoding.
+            FileReader fileReader =
+                    new FileReader(fileName);
+
+            // Always wrap FileReader in BufferedReader.
+            BufferedReader bufferedReader =
+                    new BufferedReader(fileReader);
+
+            while((line = bufferedReader.readLine()) != null) {
+                liste = FXCollections.observableArrayList(line);
+                System.out.println(line);
+            }
+
+            // Always close files.
+            bufferedReader.close();
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println(
+                    "Unable to open file '" +
+                            fileName + "'");
+        }
+        catch(IOException ex) {
+            System.out.println(
+                    "Error reading file '"
+                            + fileName + "'");
+            // Or we could just do this:
+            // ex.printStackTrace();
+        }
+
+
+
+    }
+
+    private void setKomboSpillere() {
+
+
+        p_kombo_turnering.setItems(liste);
+    }
+
 }
