@@ -1,6 +1,9 @@
 package klasser;
 
-public class Parti {
+import java.io.Serializable;
+
+public class Parti implements Serializable {
+
     private Spiller spillerHvit, spillerSort;
     private String dato, tid;
 

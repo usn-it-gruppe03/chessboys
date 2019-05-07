@@ -91,6 +91,7 @@ public class Sjakkbrett {
                 // * Instansier et nytt felt:
                 Felt felt = new Felt(posisjoner.get(i).get(j),x,y,getFeltBredde(pane),getFeltHøyde(pane));
                 felt.getStyleClass().add(fargeCSS);
+                felt.setStyle("-fx-background-color: red");
 
                 // * Legg til node i pane.
                 pane.getChildren().add(felt);
