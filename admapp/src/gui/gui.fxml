@@ -24,7 +24,7 @@
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <StackPane prefHeight="80.0" prefWidth="200.0">
+                                                <StackPane prefHeight="30.0" prefWidth="200.0">
                                                    <children>
                                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lag ny turnering" StackPane.alignment="CENTER">
                                                          <font>
@@ -39,13 +39,13 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </TextField>
-                                                <Label text="Startdato (DD.MM.YYYY):" />
+                                                <Label text="Startdato (YYYY-MM-DD):" />
                                                 <TextField fx:id="t_tekstfelt_startdato">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </TextField>
-                                                <Label text="Sluttdato (DD.MM.YYYY):" />
+                                                <Label text="Sluttdato (YYYY-MM-DD):" />
                                                 <TextField fx:id="t_tekstfelt_sluttdato">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
@@ -69,7 +69,7 @@
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <StackPane prefHeight="80.0" prefWidth="200.0">
+                                                <StackPane prefHeight="30.0" prefWidth="200.0">
                                                    <children>
                                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Velg en turnering" StackPane.alignment="CENTER">
                                                          <font>
@@ -98,7 +98,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab fx:id="tab_rt" text="Rediger turnering">
+                <Tab fx:id="tab_rt" text="Legg til deltakere i turnering">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -108,9 +108,9 @@
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <StackPane prefHeight="80.0" prefWidth="200.0">
+                                                <StackPane prefHeight="30.0" prefWidth="200.0">
                                                    <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til spillere" StackPane.alignment="CENTER">
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltakere" StackPane.alignment="CENTER">
                                                          <font>
                                                             <Font size="18.0" />
                                                          </font>
@@ -147,7 +147,7 @@
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <StackPane prefHeight="80.0" prefWidth="200.0">
+                                                <StackPane prefHeight="30.0" prefWidth="200.0">
                                                    <children>
                                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deltakere" StackPane.alignment="CENTER">
                                                          <font>
@@ -171,7 +171,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab fx:id="tab_p" text="Parti">
+                  <Tab fx:id="tab_p" text="Legg til parti i turnering">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -181,9 +181,9 @@
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <StackPane prefHeight="80.0" prefWidth="200.0">
+                                                <StackPane prefHeight="30.0" prefWidth="200.0">
                                                    <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Finn parti" StackPane.alignment="CENTER">
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lag parti" StackPane.alignment="CENTER">
                                                          <font>
                                                             <Font size="18.0" />
                                                          </font>
@@ -232,9 +232,9 @@
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <StackPane prefHeight="80.0" prefWidth="200.0">
+                                                <StackPane prefHeight="30.0" prefWidth="200.0">
                                                    <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Søkeresultater" StackPane.alignment="CENTER">
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Liste over partier" StackPane.alignment="CENTER">
                                                          <font>
                                                             <Font size="18.0" />
                                                          </font>
@@ -261,7 +261,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab fx:id="tab_rp" text="Rediger parti">
+                  <Tab fx:id="tab_rp" text="Legg til trekk i parti">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -271,7 +271,7 @@
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <StackPane prefHeight="80.0" prefWidth="200.0">
+                                                <StackPane prefHeight="30.0" prefWidth="200.0">
                                                    <children>
                                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til trekk" StackPane.alignment="CENTER">
                                                          <font>
@@ -280,31 +280,64 @@
                                                       </Text>
                                                    </children>
                                                 </StackPane>
-                                                <Label layoutX="30.0" layoutY="157.0" text="Valgt parti:" />
+                                                <Label text="Valgt parti:" />
                                                 <TextField fx:id="rp_tekstfelt_partinavn" disable="true" editable="false" text="Partinavn">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </TextField>
-                                                <Label layoutX="30.0" layoutY="179.0" text="Brikketype:" />
-                                                <ChoiceBox fx:id="rp_tekstfelt_brikketype" layoutX="30.0" layoutY="201.0" prefWidth="410.0">
+                                                <TitledPane animated="false" collapsible="false" prefHeight="274.0" text="Legg til trekk" VBox.vgrow="ALWAYS">
+                                                  <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <Label text="Brikketype:" />
+                                                                  <ChoiceBox fx:id="rp_tekstfelt_brikketype" prefWidth="410.0">
+                                                                     <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                     </VBox.margin>
+                                                                  </ChoiceBox>
+                                                                  <Label text="Fra rute:" />
+                                                                  <ChoiceBox fx:id="rp_tekstfelt_fra_rute" prefWidth="410.0">
+                                                                     <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                     </VBox.margin>
+                                                                  </ChoiceBox>
+                                                                  <Label text="Til rute:" />
+                                                                  <ChoiceBox fx:id="rp_tekstfelt_til_rute" prefWidth="410.0">
+                                                                     <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                     </VBox.margin>
+                                                                  </ChoiceBox>
+                                                                  <Button fx:id="rp_knapp_legg_til_trekk" mnemonicParsing="false" text="Legg til trekk" />
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </content>
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
-                                                </ChoiceBox>
-                                                <Label layoutX="30.0" layoutY="233.0" text="Fra rute:" />
-                                                <ChoiceBox fx:id="rp_tekstfelt_fra_rute" layoutX="30.0" layoutY="255.0" prefWidth="410.0">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </ChoiceBox>
-                                                <Label layoutX="30.0" layoutY="287.0" text="Til rute:" />
-                                                <ChoiceBox fx:id="rp_tekstfelt_til_rute" layoutX="30.0" layoutY="309.0" prefWidth="410.0">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </ChoiceBox>
-                                                <Button fx:id="rp_knapp_legg_til_trekk" mnemonicParsing="false" text="Legg til trekk" />
+                                                </TitledPane>
+                                                <TitledPane animated="false" collapsible="false" prefHeight="102.0" text="Registrer resultat">
+                                                  <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <Label text="Utfall:">
+                                                                     <VBox.margin>
+                                                                        <Insets />
+                                                                     </VBox.margin>
+                                                                  </Label>
+                                                                  <ChoiceBox fx:id="rp_kombo_utfall" prefWidth="410.0" />
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </content>
+                                                </TitledPane>
                                              </children>
                                              <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -316,7 +349,7 @@
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <StackPane prefHeight="80.0" prefWidth="200.0">
+                                                <StackPane prefHeight="30.0" prefWidth="200.0">
                                                    <children>
                                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Registrerte trekk" StackPane.alignment="CENTER">
                                                          <font>
@@ -326,7 +359,12 @@
                                                    </children>
                                                 </StackPane>
                                                 <Label text="Liste over registrerte trekk:" />
-                                                <ListView fx:id="rp_liste_trekk" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                                <ListView fx:id="rp_liste_trekk" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </ListView>
+                                                <Button mnemonicParsing="false" text="Lagre endringer" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

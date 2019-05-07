@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -9,11 +10,14 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 
 /**
  * Controller: Spiller App
  * */
-public class Controller {
+public class Controller implements Initializable {
 
     // * TAB: Finn parti
     @FXML private Tab tab_fp;
@@ -34,5 +38,10 @@ public class Controller {
     @FXML private Tab tab_pt;
     @FXML private ListView<?> pt_poengtabell;
     @FXML private ChoiceBox<?> pt_kombo_turnering;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 
 }
