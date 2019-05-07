@@ -3,6 +3,7 @@ package gui;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import klasser.Fil;
 import klasser.Parti;
 import klasser.Turnering;
 
@@ -23,7 +24,7 @@ public class Controller implements Initializable {
     @FXML private Tab tab_t;
     @FXML private TextField t_tekstfelt_startdato;
     @FXML private TextField t_tekstfelt_sted;
-    @FXML private ListView<?> t_liste_turnering;
+    @FXML private ListView<String> t_liste_turnering;
     @FXML private Button t_knapp_velg_turnering;
     @FXML private Button t_knapp_lag_turnering;
     @FXML private TextField t_tekstfelt_sluttdato;
@@ -60,8 +61,18 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
+        visTurneringer();
 
     }
 
+    //Populer listView t_liste_turnering
+    public void visTurneringer() {
+        Fil test = new Fil();
+        ArrayList<String> liste = new ArrayList<>();
+        String [] lol = test.søkTurneringer();
+        for (int i = 0; i<lol.length; i++){
+            liste.add(lol[i]);
+        }
+        t_liste_turnering.getItems().addAll(liste);
+    }
 }
