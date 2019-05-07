@@ -3,8 +3,11 @@ package gui;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import klasser.Parti;
+import klasser.Turnering;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -12,6 +15,9 @@ import java.util.ResourceBundle;
  * Controller: Admin App
  * */
 public class Controller implements Initializable {
+
+    private ArrayList<Turnering> turneringer;
+    private ArrayList<Parti> partier;
 
     // * TAB: Turnering
     @FXML private Tab tab_t;
@@ -53,6 +59,8 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
 
     }
 
