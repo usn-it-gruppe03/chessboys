@@ -1,6 +1,5 @@
 package gui;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,12 +9,10 @@ import klasser.Parti;
 import klasser.Spiller;
 import klasser.Turnering;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 
@@ -24,12 +21,12 @@ import java.util.ResourceBundle;
  * */
 public class Controller implements Initializable {
 
-    //private ArrayList<Turnering> turneringer;
-    //private ArrayList<Spiller> spillere;
     private ArrayList<Parti> partier;
-    private ObservableList<Turnering> turneringer;
+    private ArrayList<String> turnListe;
+    private ArrayList<Turnering> turneringer;
     private ObservableList<Spiller> spillere;
-    private ObservableList<String> liste;
+    private ArrayList<String> liste;
+    private Turnering turnering;
 
 
     // * TAB: Turnering
@@ -42,7 +39,7 @@ public class Controller implements Initializable {
     @FXML private TextField t_tekstfelt_sluttdato;
     @FXML private TextField t_tekstfelt_turneringsnavn;
 
-    // * TAB: Rediger turnering
+    // * TAB: Legg til spiller
     @FXML private Tab tab_rt;
     @FXML private ListView<?> rt_liste_turnering;
     @FXML private Button rt_knapp_legg_til_deltaker;
@@ -54,12 +51,12 @@ public class Controller implements Initializable {
     @FXML private Tab tab_p;
     @FXML private Button p_knapp_velg_parti;
     @FXML private TextField p_tekstfelt_dato;
-    @FXML private ChoiceBox<?> p_kombo_spiller_sort;
     @FXML private Button p_knapp_lag_parti;
     @FXML private TextField p_tekstfelt_klokkeslett;
-    @FXML private ChoiceBox<ObservableList> p_kombo_turnering = new ChoiceBox<>();
-    @FXML private ChoiceBox<ObservableList> p_kombo_spiller_hvit = new ChoiceBox<>();
-    @FXML private ListView<?> p_liste_parti;
+    @FXML private ChoiceBox<String> p_kombo_turnering = new ChoiceBox<>();
+    @FXML private ChoiceBox<String> p_kombo_spiller_sort = new ChoiceBox<>();
+    @FXML private ChoiceBox<String> p_kombo_spiller_hvit = new ChoiceBox<>();
+    @FXML private ListView<String> p_liste_parti;
 
     // * TAB: Rediger parti
     @FXML private Tab tab_rp;
@@ -79,74 +76,86 @@ public class Controller implements Initializable {
         setKomboSpillere();
 
     }
-    
-    
-    public void opprettTurnering(){
+
+
+    public void lagMappe() {
         String tempNavn = t_tekstfelt_turneringsnavn.getText();
         String tempStartDato = t_tekstfelt_startdato.getText();
         String tempSluttDato = t_tekstfelt_sluttdato.getText();
         String tempSted = t_tekstfelt_sted.getText();
-                
-        Turnering nyTurn = new Turnering(
-            tempNavn, 
-            tempStartDato, 
-            tempSluttDato, 
-            tempSted);
-        
-        //Tømmer feltene for informasjon
-        t_tekstfelt_turneringsnavn.clear(); 
-        t_tekstfelt_startdato.clear(); 
-        t_tekstfelt_sluttdato.clear(); 
-        t_tekstfelt_sted.clear();
-        
+        String finalPath = "admapp/src/turneringer/"+tempNavn+tempStartDato+tempSluttDato+tempSted+"/";
+
+
+        if(new File(finalPath).isDirectory()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Informasjonsmelding!");
+            alert.setHeaderText("Feilmelding:");
+            alert.setContentText("Turneringen du forsøker å opprette eksisterer allerede!");
+            alert.showAndWait();
+        }else{
+            //Oppretter en resultat.txt fil i hver turneringsmappe
+            try{
+                new File(finalPath).mkdirs();
+                File resultatFil = new File(finalPath+tempNavn+"RESULTATER.txt");
+                resultatFil.createNewFile();
+            }catch(IOException e){
+                System.out.println(e.getMessage());
+            }
+            //Tømmer feltene for informasjon
+            t_tekstfelt_turneringsnavn.clear();
+            t_tekstfelt_startdato.clear();
+            t_tekstfelt_sluttdato.clear();
+            t_tekstfelt_sted.clear();
+
+            Turnering nyTurnering = new Turnering(
+                    tempNavn,
+                    tempStartDato,
+                    tempSluttDato,
+                    tempSted);
+            nyTurnering.setFil(finalPath);
+
+            //Skriv til .json her fremfor system.out.
+            System.out.println(nyTurnering.toString());
+        }
+
+
+
         //Tømmer lista, og oppdaterer med nye verdier
         t_liste_turnering.getItems().clear();
         visTurneringer();
-        
+
+
+
     }
 
+
+
     //Populer listView t_liste_turnering
-    public void visTurneringer() {
-        Fil test = new Fil();
-        ArrayList<String> liste = new ArrayList<>();
-        String [] lol = test.søkTurneringer();
-        for (int i = 0; i<lol.length; i++){
-            liste.add(lol[i]);
-        }
-        t_liste_turnering.getItems().addAll(liste);
+    private void visTurneringer() {
+        Fil turneringer = new Fil();
+        turnListe = new ArrayList<>();
+        String [] søkListe = turneringer.søkTurneringer();
+        turnListe.addAll(Arrays.asList(søkListe));
+        t_liste_turnering.getItems().addAll(turnListe);
     }
 
     private void opprettSpillere() {
         String fileName = "admapp/src/turneringer/Bøsjakkmesterskap20190102/spillere.txt";
         String line = null;
-        try {
-            // FileReader reads text files in the default encoding.
-            FileReader fileReader =
-                    new FileReader(fileName);
-
-            // Always wrap FileReader in BufferedReader.
-            BufferedReader bufferedReader =
-                    new BufferedReader(fileReader);
-
-            while((line = bufferedReader.readLine()) != null) {
-                liste = FXCollections.observableArrayList(line);
-                System.out.println(line);
+        liste = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))){
+            while(br.ready()) {
+                liste.add(br.readLine());
             }
 
-            // Always close files.
-            bufferedReader.close();
+
         }
         catch(FileNotFoundException ex) {
             System.out.println(
                     "Unable to open file '" +
                             fileName + "'");
-        }
-        catch(IOException ex) {
-            System.out.println(
-                    "Error reading file '"
-                            + fileName + "'");
-            // Or we could just do this:
-            // ex.printStackTrace();
+        }catch(IOException ei) {
+            System.out.println("IO fault");
         }
 
 
@@ -155,8 +164,42 @@ public class Controller implements Initializable {
 
     private void setKomboSpillere() {
 
-
-        p_kombo_turnering.getItems().add(liste);
+        p_kombo_turnering.getItems().addAll(turnListe);
+        p_kombo_spiller_hvit.getItems().addAll(liste);
+        p_liste_parti.getItems().addAll(turnListe);
     }
+
+    private void lagreTurnering() {
+
+    }
+
+    private void leggTilSpiller() {
+        String fornavn = this.rt_tekstfelt_fornavn.getText();
+        String etternavn = this.rt_tekstfelt_etternavn.getText();
+        int poeng = 0;
+        Spiller spiller = new Spiller(fornavn, etternavn, poeng);
+        turnering.leggTilSpiller(spiller);
+
+        this.rt_tekstfelt_fornavn.setText("");
+        this.rt_tekstfelt_etternavn.setText("");
+
+    }
+
+    private void lagParti(){
+        String spillerHvit = p_kombo_spiller_hvit.getValue().toLowerCase();
+        String spillerSort = p_kombo_spiller_sort.getValue().toLowerCase();
+        Spiller spillerHvitObjekt;
+        for(Turnering turnering: turneringer ) {
+            for(Spiller spiller: turnering.hentSpillerArray()) {
+                if(spiller.getFornavn()+spiller.getEtternavn() == spillerHvit){
+                    spillerHvitObjekt = new Spiller(spiller.getFornavn(), spiller.getEtternavn(), spiller.getPoeng());
+                } else if(spiller.getFornavn()+spiller.getEtternavn() == spillerSort ){
+
+                }
+            }
+        }
+        //Parti parti = new Parti(spillerHvitObjekt, );
+    }
+
 
 }

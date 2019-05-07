@@ -27,43 +27,31 @@ public class Turnering implements Serializable{
     private ArrayList<Parti> partiListe = new ArrayList<>();
 
     public Turnering(String navn, String fraDato, String tilDato, String sted){
-        if(!mappeFinnes(CONST_PATH+navn)){
-            this.navn = navn;
-            this.fraDato = fraDato;
-            this.tilDato = tilDato;
-            this.sted = sted;
-            this.fil = CONST_PATH+navn;
-            
-            System.out.println(""+fil+"/");
-            
-            lagMappe();
-            
-            //Oppretter en resultat.txt fil i hver turneringsmappe
-            try{
-                File resultatFil = new File(this.getFil()+this.navn+"RESULTATER.txt");
-                resultatFil.createNewFile();
-            }catch(IOException e){
-                System.out.println(e.getMessage());
-            }
-        
-        }else{
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Informasjonsmelding!");
-            alert.setHeaderText("Feilmelding:");
-            alert.setContentText("Turneringen du forsøker å opprette eksisterer allerede!");
+        this.navn = navn;
+        this.fraDato = fraDato;
+        this.tilDato = tilDato;
+        this.sted = sted;
 
-            alert.showAndWait();
-        }
+
+
         
         //skrive til info.txt
     }
     
-    public void leggTilTspiller(Spiller s){
+    public void leggTilSpiller(Spiller s){
         spillerListe.add(s);
+    }
+
+    public ArrayList<Spiller> hentSpillerArray(){
+        return spillerListe;
     }
     
     public void leggTilParti(Parti p){
         partiListe.add(p);
+    }
+
+    public ArrayList<Parti> hentParti(){
+        return partiListe;
     }
     
     public void lagMappe(){    
@@ -96,6 +84,15 @@ public class Turnering implements Serializable{
 
     public String getFil() {
         return fil;
+    }
+
+    public void setFil(String fil){
+        this.fil = fil;
+    }
+
+    @Override
+    public String toString(){
+        return this.navn+"%"+this.fraDato+"%"+this.tilDato+"%"+this.sted;
     }
     
     
