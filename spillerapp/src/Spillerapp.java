@@ -28,7 +28,6 @@ public class Spillerapp extends Application {
 
         stage.setScene(this.scene);
         stage.show();
-        
 
     }
 

@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import klasser.Sjakkbrett;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,6 +42,9 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        Sjakkbrett.populerSjakkbrett(sp_sjakkbrett);
+        sp_sjakkbrett.getStyleClass().add("bg-sort");
 
     }
 
