@@ -1,12 +1,16 @@
 package klasser;
 
 import java.io.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
-public class Fil implements Serializable {
-    FileOutputStream filUt;
-    FileInputStream filInn;
-    ObjectOutputStream ut;
-    ObjectInputStream inn;
+public class Fil {
+    private static FileOutputStream filUt;
+    private static FileInputStream filInn;
+    private static ObjectOutputStream ut;
+    private static ObjectInputStream inn;
 
     /** TODO
      * List opp Turnerings mapper / return valgt turnerings mappe?
@@ -19,45 +23,51 @@ public class Fil implements Serializable {
      *
      *
      * */
-    public void skrivTilFil(String filInn, Object objekt) {
+    public static void leggTilObjekt(Object objekt) {
         try {
-            filUt = new FileOutputStream("admapp/src/turneringer/" + filInn);
+            filUt = new FileOutputStream("admapp/src/turneringer/info.dat");
             ut = new ObjectOutputStream(filUt);
+
             ut.writeObject(objekt);
+
             ut.close();
             filUt.close();
-            System.out.println("Serialized data is now saved in admapp/src/turneringer/" + filInn);
         }catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void skrivTilFil(String filInn, Object objekt, String turneringsNavn) {
+    public static ArrayList hentObjekt() {
         try {
-            filUt = new FileOutputStream("admapp/src/turneringer/" + /*turneringsNavn +*/ "/" + filInn);
-            ut = new ObjectOutputStream(filUt);
-            ut.writeObject(objekt);
-            ut.close();
-            filUt.close();
-            System.out.println("Serialized data is now saved in admapp/src/turneringer/" + /*turneringsNavn +*/ "/" + filInn);
+            filInn = new FileInputStream("admapp/src/turneringer/info.dat");
+            inn = new ObjectInputStream(filInn);
+            ArrayList<Object> objectList = new ArrayList<>();
+
+            Object objekt1 = (Object) inn.readObject();
+
+            objectList.addAll((Collection<?>) objekt1);
+
+            inn.close();
+            filInn.close();
+
+            return objectList;
         }catch (IOException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
-    }
-
-    public void lesFraFil(String filInn, String turneringsNavn) {
-
+        return null;
     }
 
     /*METODE deSerialization er for EKSEMEPEL*/
-    public static Object deSerialization(String file) throws IOException, ClassNotFoundException {
+    /*public static Object deSerialization(String file) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(file);
         BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
         ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
         Object object = objectInputStream.readObject();
         objectInputStream.close();
         return object;
-    }
+    }*/
 
     public Object søk(String spesifikkTurnering, String filNavn) {
         try {
