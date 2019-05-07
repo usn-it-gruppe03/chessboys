@@ -131,7 +131,7 @@ public class Controller implements Initializable {
     }
 
     public void opprettTurnering(){
-        System.out.print("lol2");
+        System.out.print("lol2BARE EN TEST I OPPRETTTURNERING");
         /*
         //Fjern klammer: (?<=\[{1})(.+)(?=\]{1})
         //Hent ut tekst: [a-zæøåA-ZÆØÅ]+
