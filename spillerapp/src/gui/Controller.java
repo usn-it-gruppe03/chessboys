@@ -44,10 +44,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        double width = sp_sjakkbrett.getWidth();
-        double height = sp_sjakkbrett.getHeight();
-        Sjakkbrett.populerSjakkbrett(sp_sjakkbrett, 500, 500);
-        System.out.println(sp_sjakkbrett.getLayoutX());
+        Sjakkbrett.populerSjakkbrett(sp_sjakkbrett);
 
     }
 

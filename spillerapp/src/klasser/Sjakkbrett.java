@@ -29,7 +29,7 @@ public class Sjakkbrett {
      * Get Brikkebredde.
      * */
     public static double getFeltBredde(Pane pane){
-        return (pane.getBoundsInParent().getMinX() - pane.getBoundsInParent().getMaxX()) / ANTALL_RUTER_BREDDE;
+        return pane.getPrefWidth() / ANTALL_RUTER_BREDDE;
     }
 
 
@@ -39,7 +39,7 @@ public class Sjakkbrett {
      * Get Brikkehøyde.
      * */
     public static double getFeltHøyde(Pane pane){
-        return (pane.getBoundsInParent().getMinY() - pane.getBoundsInParent().getMaxY()) / ANTALL_RUTER_HØYDE;
+        return pane.getPrefHeight() / ANTALL_RUTER_HØYDE;
     }
 
 
@@ -48,7 +48,7 @@ public class Sjakkbrett {
     /**
      * Populer sjakkbrett i pane
      * */
-    public static void populerSjakkbrett(AnchorPane pane, double width, double height){
+    public static void populerSjakkbrett(AnchorPane pane){
 
 
         // * Posisjoner:
@@ -80,13 +80,19 @@ public class Sjakkbrett {
         ));
 
 
-        Farge startFarge = Farge.SORT, feltFarge = Farge.SORT;
+        // Init. startverdier:
+        Farge startFarge = null, feltFarge = null;
+        String fargeCSS = "";
+
+        // * Itererer gjennom rader:
         for (int i=0; i<ANTALL_RUTER_HØYDE; i++){
 
-            for (int j=0; j<ANTALL_RUTER_BREDDE; j++){
+            if (i % 2 == 0){
+                startFarge = Farge.SORT;
+            } else startFarge = Farge.HVIT;
 
-                // * Definer korresponderende CSS-klasse til feltfargen.
-                String fargeCSS = (feltFarge == Farge.SORT) ? "bg-black" : "bg-white";
+            // * Itererer gjennom kolonner:
+            for (int j=0; j<ANTALL_RUTER_BREDDE; j++){
 
                 // * Kalkuler nye koordinater for hver iterasjon:
                 double x = getFeltBredde(pane) * j;
@@ -95,7 +101,6 @@ public class Sjakkbrett {
                 // * Instansier et nytt felt:
                 Felt felt = new Felt(posisjoner.get(i).get(j),x,y,getFeltBredde(pane),getFeltHøyde(pane));
                 felt.getStyleClass().add(fargeCSS);
-                felt.setStyle("-fx-background-color: red");
 
                 // * Legg til node i pane.
                 pane.getChildren().add(felt);
@@ -103,19 +108,7 @@ public class Sjakkbrett {
                 // * Oppdater farge. Velg motsatt:
                 feltFarge = (feltFarge == Farge.SORT) ? Farge.HVIT : Farge.SORT;
 
-                System.out.println(
-                        "Feltfarge: " + fargeCSS +
-                        "\nX: " + x +
-                        "\nY: " + y +
-                        "\nChildren: " + pane.getChildren().size() +
-                        "\nPane: " + getFeltBredde(pane) + " x " + getFeltHøyde(pane)
-                );
-
             }
-
-            // * Bytt startfarge og feltfarge for hver linje.
-            startFarge = (startFarge == Farge.SORT) ? Farge.HVIT : Farge.SORT;
-            feltFarge = (startFarge == Farge.SORT) ? Farge.HVIT : Farge.SORT;
 
         }
 

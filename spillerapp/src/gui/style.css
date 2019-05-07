@@ -1,7 +1,7 @@
 .bg-sort{
-    -fx-background-color: black;
+    -fx-fill: black;
 }
 
 .bg-hvit{
-    -fx-background-color: white;
+    -fx-fill: white;
 }
