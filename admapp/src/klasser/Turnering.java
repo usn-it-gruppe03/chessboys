@@ -27,13 +27,11 @@ public class Turnering implements Serializable{
     private ArrayList<Parti> partiListe = new ArrayList<>();
 
     public Turnering(String navn, String fraDato, String tilDato, String sted){
-        if(mappeFinnes(CONST_PATH+navn)){
-            this.navn = navn;
-            this.fraDato = fraDato;
-            this.tilDato = tilDato;
-            this.sted = sted;
-            this.fil = CONST_PATH+navn;
-        }
+        this.navn = navn;
+        this.fraDato = fraDato;
+        this.tilDato = tilDato;
+        this.sted = sted;
+
 
 
         

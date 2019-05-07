@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +13,6 @@ import klasser.Turnering;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,12 +23,15 @@ import java.util.regex.Pattern;
  * */
 public class Controller implements Initializable {
 
+    //private ArrayList<Turnering> turneringer;
+    //private ArrayList<Spiller> spillere;
     private ArrayList<Parti> partier;
+    private ArrayList<Turnering> turneringer;
     private ArrayList<String> turnListe;
     private ArrayList<Turnering> turneringer;
     private ObservableList<Spiller> spillere;
     private ArrayList<String> liste;
-    private Turnering turnering;
+    private Turnering nyTurnering;
 
 
     // * TAB: Turnering
@@ -41,7 +44,7 @@ public class Controller implements Initializable {
     @FXML private TextField t_tekstfelt_sluttdato;
     @FXML private TextField t_tekstfelt_turneringsnavn;
 
-    // * TAB: Legg til spiller
+    // * TAB: Rediger turnering
     @FXML private Tab tab_rt;
     @FXML private ListView<?> rt_liste_turnering;
     @FXML private Button rt_knapp_legg_til_deltaker;
@@ -56,9 +59,9 @@ public class Controller implements Initializable {
     @FXML private ChoiceBox<?> p_kombo_spiller_sort;
     @FXML private Button p_knapp_lag_parti;
     @FXML private TextField p_tekstfelt_klokkeslett;
-    @FXML private ChoiceBox<String> p_kombo_turnering = new ChoiceBox<>();
-    @FXML private ChoiceBox<String> p_kombo_spiller_hvit = new ChoiceBox<>();
-    @FXML private ListView<String> p_liste_parti;
+    @FXML private ChoiceBox<ObservableList> p_kombo_turnering = new ChoiceBox<>();
+    @FXML private ChoiceBox<ObservableList> p_kombo_spiller_hvit = new ChoiceBox<>();
+    @FXML private ListView<?> p_liste_parti;
 
     // * TAB: Rediger parti
     @FXML private Tab tab_rp;
@@ -170,31 +173,47 @@ public class Controller implements Initializable {
     }
 
     //Populer listView t_liste_turnering
-    private void visTurneringer() {
-        Fil turneringer = new Fil();
-        turnListe = new ArrayList<>();
-        String [] søkListe = turneringer.søkTurneringer();
-        turnListe.addAll(Arrays.asList(søkListe));
-        t_liste_turnering.getItems().addAll(turnListe);
+    public void visTurneringer() {
+        Fil test = new Fil();
+        ArrayList<String> liste = new ArrayList<>();
+        String [] lol = test.søkTurneringer();
+        for (int i = 0; i<lol.length; i++){
+            liste.add(lol[i]);
+        }
+        t_liste_turnering.getItems().addAll(liste);
     }
 
     private void opprettSpillere() {
         String fileName = "admapp/src/turneringer/Bøsjakkmesterskap20190102/spillere.txt";
         String line = null;
-        liste = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))){
-            while(br.ready()) {
-                liste.add(br.readLine());
+        try {
+            // FileReader reads text files in the default encoding.
+            FileReader fileReader =
+                    new FileReader(fileName);
+
+            // Always wrap FileReader in BufferedReader.
+            BufferedReader bufferedReader =
+                    new BufferedReader(fileReader);
+
+            while((line = bufferedReader.readLine()) != null) {
+                liste = FXCollections.observableArrayList(line);
+                System.out.println(line);
             }
 
-
+            // Always close files.
+            bufferedReader.close();
         }
         catch(FileNotFoundException ex) {
             System.out.println(
                     "Unable to open file '" +
                             fileName + "'");
-        }catch(IOException ei) {
-            System.out.println("IO fault");
+        }
+        catch(IOException ex) {
+            System.out.println(
+                    "Error reading file '"
+                            + fileName + "'");
+            // Or we could just do this:
+            // ex.printStackTrace();
         }
 
 
@@ -203,38 +222,8 @@ public class Controller implements Initializable {
 
     private void setKomboSpillere() {
 
-        p_kombo_turnering.getItems().addAll(turnListe);
-        p_kombo_spiller_hvit.getItems().addAll(liste);
-        p_liste_parti.getItems().addAll(turnListe);
-    }
 
-    private void lagreTurnering() {
-        
-    }
-
-    private void leggTilSpiller() {
-        String fornavn = this.rt_tekstfelt_fornavn.getText();
-        String etternavn = this.rt_tekstfelt_etternavn.getText();
-        int poeng = 0;
-        Spiller spiller = new Spiller(fornavn, etternavn, poeng);
-        turnering.leggTilSpiller(spiller);
-
-        this.rt_tekstfelt_fornavn.setText("");
-        this.rt_tekstfelt_etternavn.setText("");
-
-    }
-
-    private void lagParti(){
-        String spillerHvit = p_kombo_spiller_hvit.getValue().toLowerCase();
-        Spiller spillerHvitObjekt;
-        for(Turnering turnering: turneringer ) {
-            for(Spiller spiller: turnering.hentSpillerArray()) {
-                if(spiller.getFornavn()+spiller.getEtternavn() == spillerHvit){
-                    spillerHvitObjekt = new Spiller(spiller.getFornavn(), spiller.getEtternavn(), spiller.getPoeng());
-                } else if(spiller.getFornavn()+spiller.getEtternavn() == )
-            }
-        }
-        Parti parti = new Parti(spillerHvitObjekt, );
+        p_kombo_turnering.getItems().add(liste);
     }
 
 }
