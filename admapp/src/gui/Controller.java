@@ -57,6 +57,7 @@ public class Controller implements Initializable {
     @FXML private ChoiceBox<?> rp_tekstfelt_brikketype;
     @FXML private ChoiceBox<?> rp_tekstfelt_til_rute;
     @FXML private ChoiceBox<?> rp_tekstfelt_fra_rute;
+    @FXML private ChoiceBox<?> rp_kombo_utfall;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

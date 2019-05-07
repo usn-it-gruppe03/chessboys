@@ -95,7 +95,8 @@ public class Sjakkbrett {
                 // * Legg til node i pane.
                 pane.getChildren().add(felt);
 
-                // * Oppdater:
+                // * Oppdater farge. Velg motsatt:
+                feltFarge = (feltFarge == Farge.SORT) ? Farge.HVIT : Farge.SORT;
 
             }
 
