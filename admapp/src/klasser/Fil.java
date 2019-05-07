@@ -15,37 +15,41 @@ public class Fil implements Serializable {
      *
      * */
 
+    /**
+     *
+     *
+     * */
     public void skrivTilFil(String filInn, Object objekt) {
-
         try {
-
-            /*IF Spørring TODO... bruk søk metode for og finne ut om filInn eksisterer i "Turneringer" mappen*/
-            if (true) {
-                filUt = new FileOutputStream("/turneringer/" + filInn);
-                ut = new ObjectOutputStream(filUt);
-                ut.writeObject(objekt);
-                ut.close();
-                filUt.close();
-                System.out.println("Serialized data is now saved in ../turneringer/" + filInn);
-                /*filInn ikke eksisterer i turnering*/
-            }else {
-                filUt = new FileOutputStream("/turneringer/" + /*turneringsNavn +*/ "/" + filInn);
-                ut = new ObjectOutputStream(filUt);
-                ut.writeObject(objekt);
-                ut.close();
-                filUt.close();
-                System.out.println("Serialized data is now saved in ../turneringer/" + /*turneringsNavn +*/ "/" + filInn);
-            }
-
+            filUt = new FileOutputStream("admapp/src/turneringer/" + filInn);
+            ut = new ObjectOutputStream(filUt);
+            ut.writeObject(objekt);
+            ut.close();
+            filUt.close();
+            System.out.println("Serialized data is now saved in admapp/src/turneringer/" + filInn);
         }catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void lesFraFil() {
+    public void skrivTilFil(String filInn, Object objekt, String turneringsNavn) {
+        try {
+            filUt = new FileOutputStream("admapp/src/turneringer/" + /*turneringsNavn +*/ "/" + filInn);
+            ut = new ObjectOutputStream(filUt);
+            ut.writeObject(objekt);
+            ut.close();
+            filUt.close();
+            System.out.println("Serialized data is now saved in admapp/src/turneringer/" + /*turneringsNavn +*/ "/" + filInn);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void lesFraFil(String filInn, String turneringsNavn) {
 
     }
 
+    /*METODE deSerialization er for EKSEMEPEL*/
     public static Object deSerialization(String file) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(file);
         BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
@@ -55,17 +59,19 @@ public class Fil implements Serializable {
         return object;
     }
 
-    public void søk(String spesifikkTurnering, String filNavn) {
+    public Object søk(String spesifikkTurnering, String filNavn) {
         try {
-            filInn = new FileInputStream("admapp/src/turneringer/" + spesifikkTurnering + "/" + filNavn );
+            filInn = new FileInputStream("admapp/src/turneringer/" + spesifikkTurnering + "/" + filNavn);
             BufferedInputStream bis = new BufferedInputStream(filInn);
             inn = new ObjectInputStream(bis);
             Object object = inn.readObject();
+            return object;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     public String[] søkTurneringer() {
