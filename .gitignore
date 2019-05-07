@@ -3,6 +3,7 @@
 ### Example user template
 
 # IntelliJ project files
+
 .idea
 *.iml
 out
@@ -15,3 +16,4 @@ gen
 .idea/vcs.xml
 build.xml
 /nbproject/private/
+build
