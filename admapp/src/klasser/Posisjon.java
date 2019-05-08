@@ -14,7 +14,7 @@ public enum Posisjon {
 
     public static ArrayList<String> getPosisjoner(){
         Posisjon[] posisjoner = Posisjon.values();
-        ArrayList<String> posisjonerString = new ArrayList<>(Sjakkbrett.ANTALL_RUTER);
+        ArrayList<String> posisjonerString = new ArrayList<>(64);
         for (int i=0; i<posisjoner.length; i++){
             posisjonerString.add(posisjoner[i].toString());
         }
