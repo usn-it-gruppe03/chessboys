@@ -79,7 +79,7 @@ public class Controller implements Initializable {
         visTurneringer();
         setKomboBokser();
 
-        //System.out.println(turneringer.get(0));
+
 
     }
 
@@ -123,7 +123,6 @@ public class Controller implements Initializable {
             nyTurnering.setFil(finalPath);
 
             turneringer.add(nyTurnering);
-            System.out.println(turneringer);
         }
 
 
@@ -256,7 +255,9 @@ public class Controller implements Initializable {
     }
 
     /**
+     *
      * Metode for å legge til spillere fra Turnerings-objektet inn i ChoiceBox
+     *
      * */
 
     private void setKomboBokser() {
