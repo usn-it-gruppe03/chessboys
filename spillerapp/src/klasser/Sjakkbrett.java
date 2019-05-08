@@ -1,5 +1,6 @@
 package klasser;
 
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -80,19 +81,14 @@ public class Sjakkbrett {
         ));
 
 
-        // Init. startverdier:
-        Farge startFarge = null, feltFarge = null;
-        String fargeCSS = "";
-
         // * Itererer gjennom rader:
         for (int i=0; i<ANTALL_RUTER_HØYDE; i++){
 
-            if (i % 2 == 0){
-                startFarge = Farge.SORT;
-            } else startFarge = Farge.HVIT;
-
             // * Itererer gjennom kolonner:
             for (int j=0; j<ANTALL_RUTER_BREDDE; j++){
+
+                // * Kontroller farge:
+                boolean erHvit = (i%2) == (j%2);
 
                 // * Kalkuler nye koordinater for hver iterasjon:
                 double x = getFeltBredde(pane) * j;
@@ -100,18 +96,78 @@ public class Sjakkbrett {
 
                 // * Instansier et nytt felt:
                 Felt felt = new Felt(posisjoner.get(i).get(j),x,y,getFeltBredde(pane),getFeltHøyde(pane));
-                felt.getStyleClass().add(fargeCSS);
+
+                if (erHvit){
+                    felt.getStyleClass().add("bg-hvit");
+                } else {
+                    felt.getStyleClass().add("bg-sort");
+                }
+
+                System.out.println(felt.getPosisjon().toString());
 
                 // * Legg til node i pane.
                 pane.getChildren().add(felt);
-
-                // * Oppdater farge. Velg motsatt:
-                feltFarge = (feltFarge == Farge.SORT) ? Farge.HVIT : Farge.SORT;
 
             }
 
         }
 
+    }
+
+
+
+
+    /**
+     * Fra String til Posisjon
+     * */
+    public static Posisjon tilPosisjon(String posisjon){
+
+        for (Posisjon p : Posisjon.values()){
+            if (p.toString().equals(posisjon.toUpperCase()))
+                return p;
+        }
+
+        return null;
+
+    }
+
+
+
+
+    /**
+     * Hent Felt
+     * */
+    public static Felt hentFelt(AnchorPane sjakkbrett, Posisjon posisjon){
+
+        // Iterer gjennom sjakkbrettets noder.
+        for (Node node : sjakkbrett.getChildren()){
+
+            // ? Dersom noden er av typen Felt.
+            if (node instanceof Felt){
+
+                // Typetving noden til Felt.
+                Felt felt = ((Felt) node);
+
+                // ? Dersom feltets posisjon er lik den gitte posisjon.
+                if (felt.getPosisjon() == posisjon)
+
+                    // Returner feltet.
+                    return felt;
+            }
+        }
+
+        return null;
+
+    }
+
+
+
+
+    /**
+     * Hent Felt
+     * */
+    public static Felt hentFelt(AnchorPane sjakkbrett, String posisjon){
+        return hentFelt(sjakkbrett, tilPosisjon(posisjon));
     }
 
 }
