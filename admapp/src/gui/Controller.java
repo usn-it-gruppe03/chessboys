@@ -306,7 +306,7 @@ public class Controller implements Initializable {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Partifeil");
             alert.setHeaderText("Ops! Noe gikk galt");
-            alert.setContentText("Du har satt" + p_kombo_spiller_hvit.getValue().getFornavn() + " til å spille mot seg selv!");
+            alert.setContentText("Du har satt " + p_kombo_spiller_hvit.getValue().getFornavn() + " til å spille mot seg selv!");
             alert.showAndWait();
         } else {
             Parti p = new Parti(p_kombo_spiller_hvit.getValue(), p_kombo_spiller_sort.getValue(),p_tekstfelt_dato.getText(),p_tekstfelt_klokkeslett.getText());
@@ -320,8 +320,7 @@ public class Controller implements Initializable {
                         aktivTurnering.leggTilParti(p);
 
                     }
-                }
-                else {
+                } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Parti eksisterer allerede!");
                     alert.setHeaderText("Du prøver å lage et allerede eksisterende parti!");
