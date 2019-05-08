@@ -24,7 +24,11 @@ import java.util.ResourceBundle;
  * Controller: Spiller App
  * */
 public class Controller implements Initializable {
-    ArrayList<Turnering> turneringer = new ArrayList<>();
+
+    // * Generelle attributter:
+    private ArrayList<Turnering> turneringer = new ArrayList<>();
+    private Parti valgtParti;
+
     // * TAB: Finn parti
     @FXML private Tab tab_fp;
     @FXML private ComboBox<Turnering> fp_kombo_turnering;
@@ -39,6 +43,10 @@ public class Controller implements Initializable {
     @FXML private ListView<?> sp_liste_trekk;
     @FXML private AnchorPane sp_sjakkbrett;
     @FXML private Button sp_knapp_velg_trekk;
+    @FXML private Button sp_knapp_forrige_trekk;
+    @FXML private Button sp_knapp_spill_av_pause;
+    @FXML private Button sp_knapp_neste_trekk;
+    @FXML private ComboBox<?> sp_kombo_hastighet;
 
     // * TAB: Poengtabell
     @FXML private Tab tab_pt;

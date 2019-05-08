@@ -302,7 +302,7 @@ public class Sjakkbrett {
 
             if (brikke.getBrikkeType() == brikkeType){
 
-                if (validerTrekk(sjakkbrett,brikkeType,fra,til)){
+                if (validerTrekk(brikkeType,fra,til)){
 
                     brikke.setPosisjon(sjakkbrett, til);
 
@@ -324,7 +324,7 @@ public class Sjakkbrett {
     /**
      * Valider Trekk
      * */
-    public static boolean validerTrekk(AnchorPane sjakkbrett, BrikkeType brikkeType, Posisjon fra, Posisjon til){
+    public static boolean validerTrekk(BrikkeType brikkeType, Posisjon fra, Posisjon til){
 
         char fra_bokstav = atomiserPosisjon(fra)[0].charAt(0);
         int fra_tall = Integer.parseInt(atomiserPosisjon(fra)[1]);
@@ -336,8 +336,6 @@ public class Sjakkbrett {
         int diffTall = Math.abs(fra_tall - til_tall);
 
         int maksFlytt = 0;
-
-        boolean tomDestinasjon = (Sjakkbrett.hentBrikke(sjakkbrett, til) == null);
 
 
         // ? Konge:
@@ -386,29 +384,7 @@ public class Sjakkbrett {
                 maksFlytt = 2;
             else maksFlytt = 1;
 
-
-            // ? Dersom destinasjonsfeltet er tomt.
-            if (tomDestinasjon){
-
-                return (diffBokstav == 0 && diffTall == maksFlytt);
-
-            }
-
-
-            // ? Dersom destinasjonsfeltet ikke er tomt.
-            else {
-
-                // ? Dersom brikken går ett steg på skrå.
-                if (diffBokstav == 1 && diffTall == 1){
-                    return true;
-                }
-
-                // ? Dersom brikken går på vertikal akse.
-                else if (diffBokstav == 0 && diffTall <= maksFlytt){
-                    return true;
-                }
-
-            }
+            return (diffBokstav == 0 && diffTall == maksFlytt);
 
         }
 
