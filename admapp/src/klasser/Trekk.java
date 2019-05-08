@@ -34,4 +34,9 @@ public class Trekk {
     public void setBrikkeType(BrikkeType brikkeType) {
         this.brikkeType = brikkeType;
     }
+
+    @Override
+    public String toString() {
+        return "" + this.getFraTrekk() + " - " + this.getTilTrekk();
+    }
 }

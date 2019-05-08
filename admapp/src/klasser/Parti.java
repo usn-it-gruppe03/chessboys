@@ -72,7 +72,7 @@ public class Parti implements Serializable {
     }
 
     public void setTrekk(Trekk t) {
-        this.trekkListe.a;
+        this.trekkListe.add(t);
     }
 
     @Override
