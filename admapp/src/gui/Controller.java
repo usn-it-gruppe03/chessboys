@@ -170,6 +170,7 @@ public class Controller implements Initializable {
                 aktivTurnering = new Turnering(tempNavn, tempFraDato, tempTilDato, tempSted);
                 aktivTurnering.setSpillerArray(t.hentSpillerArray());
                 aktivTurnering.setPartiArray(t.hentParti());
+                aktivTurnering.setFil("turnering/" + x);
                 System.out.println(aktivTurnering.toString());
                 break;
             }
@@ -289,6 +290,7 @@ public class Controller implements Initializable {
                 aktivTurnering = new Turnering(p_kombo_turnering.getValue().getNavn(), p_kombo_turnering.getValue().getFraDato(), p_kombo_turnering.getValue().getTilDato(), p_kombo_turnering.getValue().getSted());
                 aktivTurnering.setSpillerArray(t.hentSpillerArray());
                 aktivTurnering.setPartiArray(t.hentParti());
+                aktivTurnering.setFil("turneringer/" + t.toString() + "/");
                 visParti();
                 for(Spiller s: t.hentSpillerArray()) {
 
@@ -308,10 +310,28 @@ public class Controller implements Initializable {
             alert.showAndWait();
         } else {
             Parti p = new Parti(p_kombo_spiller_hvit.getValue(), p_kombo_spiller_sort.getValue(),p_tekstfelt_dato.getText(),p_tekstfelt_klokkeslett.getText());
-            aktivTurnering.leggTilParti(p);
+            try {
+                String filSti = aktivTurnering.getFil();
+                System.out.println(filSti + p.getFil());
+                File file = new File(filSti + p.getFil());
+                if(file.createNewFile() && !file.exists()) {
+                    System.out.println("File created!");
+                    aktivTurnering.leggTilParti(p);
+
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Parti eksisterer allerede!");
+                    alert.setHeaderText("Du prøver å lage et allerede eksisterende parti!");
+                    alert.setContentText("Partiet " + p.getFil() + " eksisterer allerede!");
+                    alert.showAndWait();
+                }
+            }catch (Exception e) {
+                System.out.println("File not created!" + e.toString());
+            }
             lagreInformasjon();
             visParti();
         }
+
 
     }
 

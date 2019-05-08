@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Parti implements Serializable {
 
     private Spiller spillerHvit, spillerSort;
-    private String dato, tid;
+    private String dato, tid, fil;
 
     public Parti(Spiller spillerHvit, Spiller spillerSort, String dato, String tid) {
         this.spillerHvit = spillerHvit;
@@ -44,6 +44,21 @@ public class Parti implements Serializable {
 
     public void setTid(String tid) {
         this.tid = tid;
+    }
+
+    public String fulltNavnHvit() {
+        String fulltNavn = this.spillerHvit.getFornavn() + " " + this.getSpillerHvit().getEtternavn();
+        return fulltNavn;
+    }
+    public String fulltNavnSort() {
+        String fulltNavn = this.spillerSort.getFornavn() + " " + this.getSpillerSort().getEtternavn();
+        return fulltNavn;
+
+    }
+
+    public String getFil() {
+        String filSti = this.fulltNavnHvit()+this.fulltNavnSort()+".dat";
+        return filSti;
     }
 
     @Override
