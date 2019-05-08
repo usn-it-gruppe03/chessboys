@@ -140,7 +140,12 @@ public class Controller implements Initializable {
         System.out.println("LAGRET TIL .dat");
     }
 
-    //* Populer listView t_liste_turnering
+    /**
+     *
+     * Henter turneringer fra en .dat fil, deserialiserer informasjonen
+     * og legger de til i en ArrayList<>'
+     *
+     * */
     private void hentTurneringern() {
         turneringer.addAll(Fil.hentObjekt());
         System.out.println("Turneringer hentet!");
@@ -149,31 +154,13 @@ public class Controller implements Initializable {
     private void visTurneringer() {
 
             for(Turnering turnObject: turneringer) {
-                String listeInfo = turnObject.getNavn() + turnObject.getFraDato() + turnObject.getTilDato() + turnObject.getSted();
+                String listeInfo = turnObject.getNavn() + "_" +turnObject.getFraDato() + "_" + turnObject.getTilDato()+ "_" +turnObject.getSted();
                 t_liste_turnering.getItems().addAll(listeInfo);
             }
     }
 
     private void opprettSpillere() {
-        String fileName = "admapp/src/turneringer/Bøsjakkmesterskap20190102/spillere.txt";
-        String line = null;
-        liste = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))){
-            while(br.ready()) {
-                liste.add(br.readLine());
-            }
-
-
-        }
-        catch(FileNotFoundException ex) {
-            System.out.println(
-                    "Unable to open file '" +
-                            fileName + "'");
-        }catch(IOException ei) {
-            System.out.println("IO fault");
-        }
-
-
+        
 
     }
 
