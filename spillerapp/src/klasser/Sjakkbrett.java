@@ -368,7 +368,7 @@ public class Sjakkbrett {
         else if (brikkeType == BrikkeType.SPRINGER_HVIT || brikkeType == BrikkeType.SPRINGER_SORT) {
 
             if ((diffBokstav + diffTall) <= 3)
-                return (diffBokstav != 0 && diffTall != 0);
+                return (diffBokstav == 2 && diffTall == 1 || diffBokstav == 1 && diffTall == 2);
 
         }
 
