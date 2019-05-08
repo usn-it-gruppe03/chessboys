@@ -32,6 +32,8 @@ public class Controller implements Initializable {
     private Turnering nyTurnering;
     private Turnering aktivTurnering;
 
+    // * TAB PANE:
+    @FXML private TabPane tab_pane;
 
     // * TAB: Turnering
     @FXML private Tab tab_t;
