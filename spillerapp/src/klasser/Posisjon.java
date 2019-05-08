@@ -12,11 +12,11 @@ public enum Posisjon {
     G1,G2,G3,G4,G5,G6,G7,G8,
     H1,H2,H3,H4,H5,H6,H7,H8;
 
-    public static ArrayList<String> getPosisjoner(){
+    public static ArrayList<Posisjon> getPosisjoner(){
         Posisjon[] posisjoner = Posisjon.values();
-        ArrayList<String> posisjonerString = new ArrayList<>(Sjakkbrett.ANTALL_RUTER);
+        ArrayList<Posisjon> posisjonerString = new ArrayList<>(64);
         for (int i=0; i<posisjoner.length; i++){
-            posisjonerString.add(posisjoner[i].toString());
+            posisjonerString.add(posisjoner[i]);
         }
         return posisjonerString;
     }

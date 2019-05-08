@@ -2,6 +2,7 @@ package klasser;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -286,6 +287,13 @@ public class Sjakkbrett {
 
     /**
      * Trekk
+     *
+     * Denne metoden vil forsøke å utføre et sjakktrekk
+     *
+     * @param sjakkbrett Sjakkbrett-Pane som holder på Felt- og Brikke-objekter.
+     * @param brikkeType Brikkens type.
+     * @param fra Brikkens fraposisjon.
+     * @param til Brikkens destinasjon.
      * */
     public static void trekk(AnchorPane sjakkbrett, BrikkeType brikkeType, Posisjon fra, Posisjon til){
 
@@ -294,8 +302,15 @@ public class Sjakkbrett {
 
             if (brikke.getBrikkeType() == brikkeType){
 
-                // TODO: Legg til valdator.
-                brikke.setPosisjon(sjakkbrett, til);
+                if (validerTrekk(sjakkbrett,brikkeType,fra,til)){
+
+                    brikke.setPosisjon(sjakkbrett, til);
+
+                } else visFeil(
+                        "Ulovlig trekk",
+                        "Du har utført et ulovlig trekk",
+                        "Brikken " + brikkeType.toString() + " kan ikke flyttes fra " + fra.toString() + " til " + til.toString()
+                );
 
             }
 
@@ -412,6 +427,21 @@ public class Sjakkbrett {
         String bokstav = posisjon.toString().substring(0,1);
         String tall = posisjon.toString().substring(1,2);
         return new String[]{bokstav, tall};
+
+    }
+
+
+
+
+    /**
+     * Advarsel
+     * */
+    public static void visFeil(String tittel, String uthevet, String melding){
+
+        Alert advarsel = new Alert(Alert.AlertType.ERROR, melding);
+        advarsel.setTitle(tittel);
+        advarsel.setHeaderText(uthevet);
+        advarsel.showAndWait();
 
     }
 
