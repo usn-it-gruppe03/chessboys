@@ -314,11 +314,14 @@ public class Controller implements Initializable {
                 String filSti = aktivTurnering.getFil();
                 System.out.println(filSti + p.getFil());
                 File file = new File(filSti + p.getFil());
-                if(file.createNewFile() && !file.exists()) {
-                    System.out.println("File created!");
-                    aktivTurnering.leggTilParti(p);
+                if(!file.exists()) {
+                    if(file.createNewFile()) {
+                        System.out.println("File created!");
+                        aktivTurnering.leggTilParti(p);
 
-                } else {
+                    }
+                }
+                else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Parti eksisterer allerede!");
                     alert.setHeaderText("Du prøver å lage et allerede eksisterende parti!");
