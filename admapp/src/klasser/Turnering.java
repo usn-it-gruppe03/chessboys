@@ -35,7 +35,7 @@ public class Turnering implements Serializable{
 
 
         
-        //skrive til info.txt
+
     }
     
     public void leggTilSpiller(Spiller s){
