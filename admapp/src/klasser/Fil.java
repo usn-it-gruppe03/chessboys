@@ -39,18 +39,27 @@ public class Fil {
 
     public static ArrayList hentObjekt() {
         try {
-            filInn = new FileInputStream("admapp/src/turneringer/info.dat");
-            inn = new ObjectInputStream(filInn);
-            ArrayList<Object> objectList = new ArrayList<>();
+            File sjekkFil = new File("admapp/src/turneringer/info.dat");
+            if(sjekkFil.length() > 0){
+                filInn = new FileInputStream(sjekkFil);
+                inn = new ObjectInputStream(filInn);
+                ArrayList<Object> objectList = new ArrayList<>();
 
-            Object objekt1 = (Object) inn.readObject();
+                Object objekt1 = (Object) inn.readObject();
 
-            objectList.addAll((Collection<?>) objekt1);
+                objectList.addAll((Collection<?>) objekt1);
 
-            inn.close();
-            filInn.close();
+                if(objectList.size() != 0){
+                    return objectList;
+                }
+                inn.close();
+                filInn.close();
 
-            return objectList;
+            }else{
+                System.out.println(".dat er fuckings tom!");
+            }
+
+
         }catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

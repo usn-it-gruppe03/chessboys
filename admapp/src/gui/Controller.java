@@ -13,6 +13,8 @@ import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -71,8 +73,10 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         hentTurneringern();
-       visTurneringer();
+        visTurneringer();
         setKomboSpillere();
+
+        //System.out.println(turneringer.get(0));
 
     }
 
@@ -128,6 +132,60 @@ public class Controller implements Initializable {
 
 
     }
+
+    public void velgTurnering(){
+
+        //Henter stringen av objektet som er lagret i listview.
+        String innString = ""+t_liste_turnering.getSelectionModel().getSelectedItems();
+
+        //Stringen returnerer med "[TEST]" så vi må fjerne klammene
+        //ved hjelp av regex
+        String regex = "(?<=\\[{1})(.+)(?=\\]{1})";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(innString);
+
+        matcher.find();
+        String valgtTurnering = matcher.group();
+
+        //Splitter den nye stringen på skilletegnet "_" for å
+        //plukke ut de individuelle verdiene.
+        String [] splitTab = valgtTurnering.split("_");
+
+        String tempNavn = splitTab[0];
+        String tempFraDato = splitTab[1];
+        String tempTilDato = splitTab[2];
+        String tempSted = splitTab[3];
+
+        System.out.println(tempNavn+"%"+tempFraDato+"%"+tempTilDato+"%"+tempSted);
+        for(Turnering t : turneringer){
+            if(t.getNavn() == tempNavn
+                    && t.getFraDato() == tempFraDato
+                    && t.getTilDato() == tempTilDato
+                    && t.getSted() == tempSted){
+
+                aktivTurnering = new Turnering(tempNavn, tempFraDato, tempTilDato, tempSted);
+
+                System.out.println(aktivTurnering.toString());
+            }else{
+                System.out.println("FEIL: Fant ikke valgt turnering fra ViewList i intern ArrayList.");
+            }
+        }
+
+
+
+
+        //hent ut valgt element i listview
+        //deretter split stringen i de forskjellige elementene
+        //deretter søk i arraylist etter den turneringen
+        //Henter ut gitt turnering fra arraylist
+        //instansierer turneringen
+
+        //aktivTurnering = den aktive instansen av turneringen.
+
+
+
+    }
+
     /**
      *
      *  Lagrer arrayen med serialisering i en .dat fil
@@ -147,8 +205,11 @@ public class Controller implements Initializable {
      *
      * */
     private void hentTurneringern() {
-        turneringer.addAll(Fil.hentObjekt());
-        System.out.println("Turneringer hentet!");
+        if(Fil.hentObjekt() != null){
+            turneringer.addAll(Fil.hentObjekt());
+            System.out.println("Turneringer hentet!");
+        }
+
     }
 
     private void visTurneringer() {
@@ -197,7 +258,7 @@ public class Controller implements Initializable {
     private void setKomboSpillere() {
 
     }
-    
+
     private void lagParti(){
         String spillerHvit = p_kombo_spiller_hvit.getValue().toLowerCase();
         String spillerSort = p_kombo_spiller_sort.getValue().toLowerCase();
