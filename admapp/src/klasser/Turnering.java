@@ -93,7 +93,7 @@ public class Turnering implements Serializable{
 
     @Override
     public String toString(){
-        return this.navn+"%"+this.fraDato+"%"+this.tilDato+"%"+this.sted;
+        return this.navn+this.fraDato+this.tilDato+this.sted;
     }
     
     

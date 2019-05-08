@@ -164,8 +164,7 @@ public class Controller implements Initializable {
         String tempTilDato = splitTab[2];
         String tempSted = splitTab[3];
 
-        String x = ""+tempNavn+"%"+tempFraDato+"%"+tempTilDato+"%"+tempSted;
-
+        String x = ""+tempNavn+tempFraDato+tempTilDato+tempSted;
 
         for(Turnering t : turneringer) {
             if (t.toString().equals(x)) {
