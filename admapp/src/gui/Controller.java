@@ -74,7 +74,7 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         hentTurneringern();
         visTurneringer();
-        setKomboSpillere();
+        setKomboBokser();
 
         //System.out.println(turneringer.get(0));
 
@@ -253,10 +253,15 @@ public class Controller implements Initializable {
 
     }
 
+    /**
+     * Metode for å legge til spillere fra Turnerings-objektet inn i ChoiceBox
+     * */
 
+    private void setKomboBokser() {
+       // for(Turnering )
+        for(Spiller spiller: aktivTurnering.hentSpillerArray()) {
 
-    private void setKomboSpillere() {
-
+        }
     }
 
     private void lagParti(){
