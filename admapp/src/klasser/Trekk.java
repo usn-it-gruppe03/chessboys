@@ -1,6 +1,8 @@
 package klasser;
 
-public class Trekk {
+import java.io.Serializable;
+
+public class Trekk implements Serializable{
 
     private Posisjon fraTrekk, tilTrekk;
     private BrikkeType brikkeType;

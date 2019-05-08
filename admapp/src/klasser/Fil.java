@@ -37,6 +37,20 @@ public class Fil {
         }
     }
 
+    public static void leggTilTrekk(Object objekt, String filSti) {
+        try {
+            filUt = new FileOutputStream(filSti);
+            ut = new ObjectOutputStream(filUt);
+
+            ut.writeObject(objekt);
+
+            ut.close();
+            filUt.close();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static ArrayList hentObjekt() {
         try {
             File sjekkFil = new File(FILE_PATH_TO_INFO);

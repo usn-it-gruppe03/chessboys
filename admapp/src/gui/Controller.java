@@ -62,7 +62,7 @@ public class Controller implements Initializable {
     // * TAB: Rediger parti
     @FXML private Tab tab_rp;
     @FXML private TextField rp_tekstfelt_partinavn;
-    @FXML private ListView<?> rp_liste_trekk;
+    @FXML private ListView<Trekk> rp_liste_trekk;
     @FXML private Button rp_knapp_legg_til_trekk;
     @FXML private ComboBox<BrikkeType> rp_tekstfelt_brikketype;
     @FXML private ComboBox<Posisjon> rp_tekstfelt_til_rute;
@@ -377,28 +377,33 @@ public class Controller implements Initializable {
         rp_tekstfelt_til_rute.getItems().addAll(Posisjon.values());
         rp_tekstfelt_brikketype.getItems().addAll(BrikkeType.values());
         rp_kombo_utfall.getItems().addAll(valgtParti.getSpillerHvit(), valgtParti.getSpillerSort());
+        visTrekk();
     }
 
     public void redigerParti() {
         System.out.println("Legg til trekk");
-
+        rp_liste_trekk.getItems().clear();
                 for(Parti p: aktivTurnering.hentParti()) {
                     if (p.toString().equals(valgtParti.toString())) {
 
-                        Trekk trekk = new Trekk(rp_tekstfelt_fra_rute.getValue(), rp_tekstfelt_til_rute.getValue(), rp_tekstfelt_brikketype.getValue());
+                            p.setTrekk(new Trekk(rp_tekstfelt_fra_rute.getValue(), rp_tekstfelt_til_rute.getValue(), rp_tekstfelt_brikketype.getValue()));
+                            visTrekk();
 
-                        if(trekk != null) {
+                            Fil.leggTilTrekk(p.getTrekkListe(), aktivTurnering.getFil()+p.getFil());
 
-                            p.setTrekk(trekk);
-                        } else {
-                            System.out.println("Trekk er tom");
-                        }
-
-                        for (Trekk tr : p.getTrekkListe()) {
-                            System.out.println(tr + "Yes");
-                        }
+                            for(Trekk t: p.getTrekkListe()) {
+                                System.out.println(t.toString());
+                            }
                     }
                 }
+    }
+
+    private void visTrekk() {
+        for(Parti p: aktivTurnering.hentParti()) {
+            if(p.toString().equals(valgtParti.toString())) {
+                rp_liste_trekk.getItems().addAll(p.getTrekkListe());
+            }
+        }
     }
 
 

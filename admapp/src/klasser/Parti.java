@@ -7,7 +7,7 @@ public class Parti implements Serializable {
 
     private Spiller spillerHvit, spillerSort;
     private String dato, tid, fil;
-    private ArrayList<Trekk> trekkListe;
+    private ArrayList<Trekk> trekkListe = new ArrayList<>();
 
     public Parti(Spiller spillerHvit, Spiller spillerSort, String dato, String tid) {
         this.spillerHvit = spillerHvit;
@@ -48,11 +48,11 @@ public class Parti implements Serializable {
         this.tid = tid;
     }
 
-    public String fulltNavnHvit() {
+    private String fulltNavnHvit() {
         String fulltNavn = this.spillerHvit.getFornavn() + " " + this.getSpillerHvit().getEtternavn();
         return fulltNavn;
     }
-    public String fulltNavnSort() {
+    private String fulltNavnSort() {
         String fulltNavn = this.spillerSort.getFornavn() + " " + this.getSpillerSort().getEtternavn();
         return fulltNavn;
 
@@ -72,7 +72,7 @@ public class Parti implements Serializable {
     }
 
     public void setTrekk(Trekk t) {
-        this.trekkListe.add(t);
+        trekkListe.add(t);
     }
 
     @Override
