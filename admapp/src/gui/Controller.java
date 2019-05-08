@@ -127,6 +127,7 @@ public class Controller implements Initializable {
 
         //Tømmer lista, og oppdaterer med nye verdier
         t_liste_turnering.getItems().clear();
+        lagreInformasjon();
         visTurneringer();
 
 
@@ -158,6 +159,7 @@ public class Controller implements Initializable {
 
         System.out.println(tempNavn+"%"+tempFraDato+"%"+tempTilDato+"%"+tempSted);
         for(Turnering t : turneringer){
+            System.out.println(t.getNavn()+"%"+t.getFraDato()+"%"+t.getTilDato()+"%"+t.getSted());
             if(t.getNavn() == tempNavn
                     && t.getFraDato() == tempFraDato
                     && t.getTilDato() == tempTilDato
@@ -259,9 +261,9 @@ public class Controller implements Initializable {
 
     private void setKomboBokser() {
        // for(Turnering )
-        for(Spiller spiller: aktivTurnering.hentSpillerArray()) {
+        /*for(Spiller spiller: aktivTurnering.hentSpillerArray()) {
 
-        }
+        }*/
     }
 
     private void lagParti(){
