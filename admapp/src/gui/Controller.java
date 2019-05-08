@@ -78,9 +78,6 @@ public class Controller implements Initializable {
         hentTurneringern();
         visTurneringer();
         setKomboBokser();
-
-
-
     }
 
 
@@ -192,7 +189,8 @@ public class Controller implements Initializable {
             for (Turnering t: turneringer) {
                 if(t.toString().equals(aktivTurnering.toString())) {
                     t.setSpillerArray(aktivTurnering.hentSpillerArray());
-                    System.out.println("Spillere lagt til i Array!");
+                    String array = t.hentSpillerArray().toString();
+                    System.out.println(array);
                 }
             }
         }
@@ -230,9 +228,14 @@ public class Controller implements Initializable {
     private void visSpillere() {
 
         rt_liste_turnering.getItems().clear();
-        for(Spiller spillere: aktivTurnering.hentSpillerArray()) {
-            rt_liste_turnering.getItems().add(spillere.getFornavn() + " " + spillere.getFornavn() + " | Poeng: " + spillere.getPoeng());
+        for(Turnering t: turneringer) {
+            if(t.toString().equals(aktivTurnering.toString())) {
+                for(Spiller spillere: t.hentSpillerArray()) {
+                    rt_liste_turnering.getItems().add(spillere.getFornavn() + " " + spillere.getEtternavn()+ " | Poeng: " + spillere.getPoeng());
+                }
+            }
         }
+
 
     }
 
