@@ -58,7 +58,7 @@ public class Controller implements Initializable {
     @FXML private TextField p_tekstfelt_dato;
     @FXML private Button p_knapp_lag_parti;
     @FXML private TextField p_tekstfelt_klokkeslett;
-    @FXML private ChoiceBox<String> p_kombo_turnering = new ChoiceBox<>();
+    @FXML private ChoiceBox<Turnering> p_kombo_turnering = new ChoiceBox<>();
     @FXML private ChoiceBox<String> p_kombo_spiller_sort = new ChoiceBox<>();
     @FXML private ChoiceBox<String> p_kombo_spiller_hvit = new ChoiceBox<>();
     @FXML private ListView<String> p_liste_parti;
@@ -77,7 +77,7 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         hentTurneringern();
         visTurneringer();
-        setKomboBokser();
+        setTurneringKomboBox();
     }
 
 
@@ -188,8 +188,6 @@ public class Controller implements Initializable {
             for (Turnering t: turneringer) {
                 if(t.toString().equals(aktivTurnering.toString())) {
                     t.setSpillerArray(aktivTurnering.hentSpillerArray());
-                    String array = t.hentSpillerArray().toString();
-                    System.out.println(array);
                 }
             }
         }
@@ -251,9 +249,6 @@ public class Controller implements Initializable {
         Spiller spiller = new Spiller(fornavn, etternavn, poeng);
         aktivTurnering.leggTilSpiller(spiller);
 
-        for(Spiller s: aktivTurnering.hentSpillerArray()) {
-            System.out.println(s.getFornavn());
-        }
         lagreInformasjon();
 
         visSpillere();
@@ -269,11 +264,18 @@ public class Controller implements Initializable {
      *
      * */
 
-    private void setKomboBokser() {
-       // for(Turnering )
-        /*for(Spiller spiller: aktivTurnering.hentSpillerArray()) {
+    private void setTurneringKomboBox() {
 
-        }*/
+        for (Turnering t: turneringer) {
+            p_kombo_turnering.getItems().add(t);
+        }
+
+    }
+
+    public void setSpillerKomboBox() {
+
+
+
     }
 
     private void lagParti(){
