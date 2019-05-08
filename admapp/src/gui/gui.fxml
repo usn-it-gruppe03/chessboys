@@ -105,7 +105,7 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </ListView>
-                                                <Button fx:id="t_knapp_velg_turnering" mnemonicParsing="false" onAction="#velgTurnering" text="Velg turnering" />
+                                                <Button fx:id="t_knapp_velg_turnering" mnemonicParsing="false" onAction="#velgTurnKnapp" text="Velg turnering" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

@@ -9,14 +9,13 @@ import klasser.Parti;
 import klasser.Spiller;
 import klasser.Turnering;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static javax.swing.JOptionPane.showMessageDialog;
 
 
 /**
@@ -136,6 +135,13 @@ public class Controller implements Initializable {
 
 
 
+    }
+
+    public void velgTurnKnapp() {
+        velgTurnering();
+        tab_pane.getSelectionModel().select(tab_rt);
+        rt_tekstfelt_turneringsnavn.setText(aktivTurnering.getNavn());
+        visSpillere();
     }
 
         //FIKS IFFEN
