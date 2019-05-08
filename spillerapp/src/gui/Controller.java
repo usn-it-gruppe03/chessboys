@@ -68,28 +68,50 @@ public class Controller implements Initializable {
 
     }
 
-    @FXML
+    /**
+     *
+     * */
     public void populerListView() {
         Turnering valgtTurnering;
         valgtTurnering = fp_kombo_turnering.getSelectionModel().getSelectedItem();
         valgtTurnering.hentParti();
-        System.out.println(valgtTurnering.hentParti());
-        //if () {
         for (Parti p: valgtTurnering.hentParti()) {
             fp_liste_parti.getItems().add(p);
         }
-        //}
     }
 
+    /**
+     *
+     * */
+    public void søkSpiller() {
+        Turnering valgtTurnering;
+        valgtTurnering = fp_kombo_turnering.getSelectionModel().getSelectedItem();
+        String spiller1 = fp_tekstfelt_spiller1.getText();
+        String spiller2 = fp_tekstfelt_spiller2.getText();
+        fp_liste_parti.getItems().clear();
+        System.out.println();
+
+        for (Parti p: valgtTurnering.hentParti()) {
+            if (p.toString().contains(spiller1) && p.toString().contains(spiller2)) {
+                fp_liste_parti.getItems().add(p);
+            }
+        }
+    }
+
+    /**
+     *
+     * */
     private void hentTurneringern() {
         if(Fil.hentObjekt() != null){
             System.out.println("hent");
             turneringer.addAll(Fil.hentObjekt());
             System.out.println("Turneringer hentet!");
         }
-
     }
 
+    /**
+     *
+     * */
     private void populerComboBox() {
         for(Turnering t: turneringer) {
             fp_kombo_turnering.getItems().addAll(t);
