@@ -34,7 +34,10 @@ public class Turnering implements Serializable{
     public void setSpillerArray(ArrayList<Spiller> spillerListe) {
         this.spillerListe = spillerListe;
     }
-    
+    public void setPartiArray(ArrayList<Parti> pListe) {
+        this.partiListe = pListe;
+    }
+
     public void leggTilSpiller(Spiller s){
         spillerListe.add(s);
     }

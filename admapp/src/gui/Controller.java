@@ -61,7 +61,7 @@ public class Controller implements Initializable {
     @FXML private ChoiceBox<Turnering> p_kombo_turnering = new ChoiceBox<>();
     @FXML private ChoiceBox<Spiller> p_kombo_spiller_sort = new ChoiceBox<>();
     @FXML private ChoiceBox<Spiller> p_kombo_spiller_hvit = new ChoiceBox<>();
-    @FXML private ListView<String> p_liste_parti;
+    @FXML private ListView<Parti> p_liste_parti;
 
     // * TAB: Rediger parti
     @FXML private Tab tab_rp;
@@ -168,6 +168,8 @@ public class Controller implements Initializable {
         for(Turnering t : turneringer) {
             if (t.toString().equals(x)) {
                 aktivTurnering = new Turnering(tempNavn, tempFraDato, tempTilDato, tempSted);
+                aktivTurnering.setSpillerArray(t.hentSpillerArray());
+                aktivTurnering.setPartiArray(t.hentParti());
                 System.out.println(aktivTurnering.toString());
                 break;
             }
@@ -189,6 +191,7 @@ public class Controller implements Initializable {
             for (Turnering t: turneringer) {
                 if(t.toString().equals(aktivTurnering.toString())) {
                     t.setSpillerArray(aktivTurnering.hentSpillerArray());
+                    t.setPartiArray(aktivTurnering.hentParti());
                 }
             }
         }
@@ -247,9 +250,11 @@ public class Controller implements Initializable {
         String fornavn = this.rt_tekstfelt_fornavn.getText();
         String etternavn = this.rt_tekstfelt_etternavn.getText();
         int poeng = 0;
-        Spiller spiller = new Spiller(fornavn, etternavn, poeng);
-        aktivTurnering.leggTilSpiller(spiller);
 
+        Spiller spiller = new Spiller(fornavn, etternavn, poeng);
+
+        aktivTurnering.leggTilSpiller(spiller);
+        System.out.println(aktivTurnering.hentSpillerArray());
         lagreInformasjon();
 
         visSpillere();
@@ -275,6 +280,7 @@ public class Controller implements Initializable {
 
     public void setSpillerKomboBox() {
         aktivTurnering = new Turnering(p_kombo_turnering.getValue().getNavn(), p_kombo_turnering.getValue().getFraDato(), p_kombo_turnering.getValue().getTilDato(), p_kombo_turnering.getValue().getSted());
+        visParti();
         for(Turnering t: turneringer) {
             if(t.toString().equals(aktivTurnering.toString())) {
                 for(Spiller s: t.hentSpillerArray()) {
@@ -285,12 +291,33 @@ public class Controller implements Initializable {
         }
     }
 
-    private void lagParti(){
-        Spiller spillerHvit = p_kombo_spiller_hvit.getValue();
-        Spiller spillerSort = p_kombo_spiller_sort.getValue();
-        Spiller spillerHvitObjekt;
+    public void lagParti(){
+        if(p_kombo_spiller_hvit.equals(p_kombo_spiller_sort)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Partifeil");
+            alert.setHeaderText("Ops! Noe gikk galt");
+            alert.setContentText("Du har satt" + p_kombo_spiller_hvit.getValue().getFornavn() + " til å spille mot seg selv!");
+        } else {
+            Parti p = new Parti(p_kombo_spiller_hvit.getValue(), p_kombo_spiller_sort.getValue(),p_tekstfelt_dato.getText(),p_tekstfelt_klokkeslett.getText());
+            aktivTurnering.leggTilParti(p);
+            lagreInformasjon();
+            visParti();
+        }
 
-        //Parti parti = new Parti(spillerHvitObjekt, );
+    }
+
+    private void visParti() {
+        p_liste_parti.getItems().clear();
+
+        for(Turnering t: turneringer) {
+            if(t.toString().equals(aktivTurnering.toString())) {
+                for(Parti p: t.hentParti()) {
+                    p_liste_parti.getItems().add(p);
+                }
+            }
+        }
+
+
     }
 
 

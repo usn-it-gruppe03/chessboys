@@ -45,4 +45,14 @@ public class Parti implements Serializable {
     public void setTid(String tid) {
         this.tid = tid;
     }
+
+    @Override
+    public String toString() {
+        return "Parti{" +
+                "spillerHvit=" + spillerHvit +
+                ", spillerSort=" + spillerSort +
+                ", dato='" + dato + '\'' +
+                ", tid='" + tid + '\'' +
+                '}';
+    }
 }
