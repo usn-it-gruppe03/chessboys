@@ -9,6 +9,8 @@ public class Fil {
     private static FileInputStream filInn;
     private static ObjectOutputStream ut;
     private static ObjectInputStream inn;
+    private final static String FILE_PATH_TO_INFO = "turneringer/info.dat";
+    private final static String FILE_PATH_TO_FOLDER = "turneringer";
 
     /** TODO
      * List opp Turnerings mapper / return valgt turnerings mappe?
@@ -23,7 +25,7 @@ public class Fil {
      * */
     public static void leggTilObjekt(Object objekt) {
         try {
-            filUt = new FileOutputStream("admapp/src/turneringer/info.dat");
+            filUt = new FileOutputStream(FILE_PATH_TO_INFO);
             ut = new ObjectOutputStream(filUt);
 
             ut.writeObject(objekt);
@@ -37,7 +39,7 @@ public class Fil {
 
     public static ArrayList hentObjekt() {
         try {
-            File sjekkFil = new File("admapp/src/turneringer/info.dat");
+            File sjekkFil = new File(FILE_PATH_TO_INFO);
             if(sjekkFil.length() > 0){
                 filInn = new FileInputStream(sjekkFil);
                 inn = new ObjectInputStream(filInn);
@@ -78,7 +80,7 @@ public class Fil {
 
     public Object søk(String spesifikkTurnering, String filNavn) {
         try {
-            filInn = new FileInputStream("admapp/src/turneringer/" + spesifikkTurnering + "/" + filNavn);
+            filInn = new FileInputStream(FILE_PATH_TO_FOLDER + "/" + spesifikkTurnering + "/" + filNavn);
             BufferedInputStream bis = new BufferedInputStream(filInn);
             inn = new ObjectInputStream(bis);
             Object object = inn.readObject();
@@ -92,7 +94,7 @@ public class Fil {
     }
 
     public String[] søkTurneringer() {
-        File fil = new File("admapp/src/turneringer");
+        File fil = new File(FILE_PATH_TO_FOLDER);
         String[] mapper = fil.list(new FilenameFilter() {
             @Override
             public boolean accept(File current, String name) {

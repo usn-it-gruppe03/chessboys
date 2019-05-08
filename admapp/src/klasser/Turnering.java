@@ -6,11 +6,8 @@
 package klasser;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 /**
  *
@@ -36,6 +33,10 @@ public class Turnering implements Serializable{
 
         
 
+    }
+
+    public void setSpillerArray(ArrayList<Spiller> spillerListe) {
+        this.spillerListe = spillerListe;
     }
     
     public void leggTilSpiller(Spiller s){

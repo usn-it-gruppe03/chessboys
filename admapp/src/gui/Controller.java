@@ -170,20 +170,13 @@ public class Controller implements Initializable {
         String x = ""+tempNavn+"%"+tempFraDato+"%"+tempTilDato+"%"+tempSted;
 
 
-        for(Turnering t : turneringer){
-            if(t.toString().equals(x)){
+        for(Turnering t : turneringer) {
+            if (t.toString().equals(x)) {
                 aktivTurnering = new Turnering(tempNavn, tempFraDato, tempTilDato, tempSted);
                 System.out.println(aktivTurnering.toString());
                 break;
             }
         }
-
-
-
-
-
-
-
     }
 
     /**
@@ -194,6 +187,15 @@ public class Controller implements Initializable {
      * */
 
     public void lagreInformasjon() {
+
+        if(aktivTurnering != null) {
+            for (Turnering t: turneringer) {
+                if(t.toString().equals(aktivTurnering.toString())) {
+                    t.setSpillerArray(aktivTurnering.hentSpillerArray());
+                    System.out.println("Spillere lagt til i Array!");
+                }
+            }
+        }
         Fil.leggTilObjekt(turneringer);
         System.out.println("LAGRET TIL .dat");
     }
@@ -246,6 +248,11 @@ public class Controller implements Initializable {
         int poeng = 0;
         Spiller spiller = new Spiller(fornavn, etternavn, poeng);
         aktivTurnering.leggTilSpiller(spiller);
+
+        for(Spiller s: aktivTurnering.hentSpillerArray()) {
+            System.out.println(s.getFornavn());
+        }
+        lagreInformasjon();
 
         visSpillere();
 
