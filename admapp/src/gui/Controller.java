@@ -279,11 +279,19 @@ public class Controller implements Initializable {
     }
 
     public void setSpillerKomboBox() {
-        aktivTurnering = new Turnering(p_kombo_turnering.getValue().getNavn(), p_kombo_turnering.getValue().getFraDato(), p_kombo_turnering.getValue().getTilDato(), p_kombo_turnering.getValue().getSted());
-        visParti();
+
+        p_kombo_spiller_hvit.getItems().clear();
+        p_kombo_spiller_sort.getItems().clear();
+
         for(Turnering t: turneringer) {
-            if(t.toString().equals(aktivTurnering.toString())) {
+            if(t.toString().equals(p_kombo_turnering.getValue().toString())) {
+
+                aktivTurnering = new Turnering(p_kombo_turnering.getValue().getNavn(), p_kombo_turnering.getValue().getFraDato(), p_kombo_turnering.getValue().getTilDato(), p_kombo_turnering.getValue().getSted());
+                aktivTurnering.setSpillerArray(t.hentSpillerArray());
+                aktivTurnering.setPartiArray(t.hentParti());
+                visParti();
                 for(Spiller s: t.hentSpillerArray()) {
+
                     p_kombo_spiller_sort.getItems().add(s);
                     p_kombo_spiller_hvit.getItems().add(s);
                 }
@@ -292,11 +300,12 @@ public class Controller implements Initializable {
     }
 
     public void lagParti(){
-        if(p_kombo_spiller_hvit.equals(p_kombo_spiller_sort)) {
+        if(p_kombo_spiller_hvit.getValue().equals(p_kombo_spiller_sort.getValue())) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Partifeil");
             alert.setHeaderText("Ops! Noe gikk galt");
             alert.setContentText("Du har satt" + p_kombo_spiller_hvit.getValue().getFornavn() + " til å spille mot seg selv!");
+            alert.showAndWait();
         } else {
             Parti p = new Parti(p_kombo_spiller_hvit.getValue(), p_kombo_spiller_sort.getValue(),p_tekstfelt_dato.getText(),p_tekstfelt_klokkeslett.getText());
             aktivTurnering.leggTilParti(p);

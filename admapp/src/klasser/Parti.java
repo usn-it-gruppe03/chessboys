@@ -48,11 +48,6 @@ public class Parti implements Serializable {
 
     @Override
     public String toString() {
-        return "Parti{" +
-                "spillerHvit=" + spillerHvit +
-                ", spillerSort=" + spillerSort +
-                ", dato='" + dato + '\'' +
-                ", tid='" + tid + '\'' +
-                '}';
+        return this.getSpillerHvit().getFornavn() + " " + this.getSpillerHvit().getEtternavn() +" vs " + this.getSpillerSort().getFornavn() + " " + this.getSpillerSort().getEtternavn();
     }
 }
