@@ -137,6 +137,7 @@ public class Controller implements Initializable {
 
     public void lagreInformasjon() {
         Fil.leggTilObjekt(turneringer);
+        System.out.println("LAGRET TIL .dat");
     }
 
     //* Populer listView t_liste_turnering
