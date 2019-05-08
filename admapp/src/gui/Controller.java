@@ -69,7 +69,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        hentTurneringern();
        visTurneringer();
         opprettSpillere();
         setKomboSpillere();
@@ -115,9 +115,6 @@ public class Controller implements Initializable {
                     tempSted);
             nyTurnering.setFil(finalPath);
 
-            //Skriv til .json her fremfor system.out.
-
-
             turneringer.add(nyTurnering);
             System.out.println(turneringer);
         }
@@ -143,18 +140,17 @@ public class Controller implements Initializable {
     }
 
     //* Populer listView t_liste_turnering
+    private void hentTurneringern() {
+        turneringer.addAll(Fil.hentObjekt());
+        System.out.println("Turneringer hentet!");
+    }
+
     private void visTurneringer() {
 
-        turneringer.addAll(Fil.hentObjekt());
-        if(!turneringer.isEmpty()) {
             for(Turnering turnObject: turneringer) {
                 String listeInfo = turnObject.getNavn() + turnObject.getFraDato() + turnObject.getTilDato() + turnObject.getSted();
                 t_liste_turnering.getItems().addAll(listeInfo);
-
             }
-        }
-
-
     }
 
     private void opprettSpillere() {
