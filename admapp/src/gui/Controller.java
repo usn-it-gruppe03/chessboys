@@ -82,13 +82,11 @@ public class Controller implements Initializable {
 
 
     public void lagMappe() {
-
-
         String tempNavn = t_tekstfelt_turneringsnavn.getText();
         String tempStartDato = t_tekstfelt_startdato.getText();
         String tempSluttDato = t_tekstfelt_sluttdato.getText();
         String tempSted = t_tekstfelt_sted.getText();
-        String finalPath = "admapp/src/turneringer/"+tempNavn+tempStartDato+tempSluttDato+tempSted+"/";
+        String finalPath = "turneringer/"+tempNavn+tempStartDato+tempSluttDato+tempSted+"/";
 
 
         if(new File(finalPath).isDirectory()){

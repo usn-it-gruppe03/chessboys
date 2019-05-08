@@ -19,7 +19,7 @@ public class Turnering implements Serializable{
     private String tilDato;
     private String sted;
     private String fil;
-    private final String CONST_PATH = "admapp/src/turneringer/";
+    private final String CONST_PATH = "turneringer/";
     private ArrayList<Spiller> spillerListe = new ArrayList<>();
     private ArrayList<Parti> partiListe = new ArrayList<>();
 
@@ -28,10 +28,6 @@ public class Turnering implements Serializable{
         this.fraDato = fraDato;
         this.tilDato = tilDato;
         this.sted = sted;
-
-
-
-        
 
     }
 
@@ -46,7 +42,7 @@ public class Turnering implements Serializable{
     public ArrayList<Spiller> hentSpillerArray(){
         return spillerListe;
     }
-    
+
     public void leggTilParti(Parti p){
         partiListe.add(p);
     }
@@ -55,7 +51,7 @@ public class Turnering implements Serializable{
         return partiListe;
     }
     
-    public void lagMappe(){    
+    public void lagMappe() {
         new File(this.fil).mkdirs();
     }
     
