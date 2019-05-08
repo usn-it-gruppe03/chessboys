@@ -82,24 +82,24 @@ public class Controller implements Initializable {
         String tempStartDato = t_tekstfelt_startdato.getText();
         String tempSluttDato = t_tekstfelt_sluttdato.getText();
         String tempSted = t_tekstfelt_sted.getText();
-        String finalPath = "turneringer/"+tempNavn+tempStartDato+tempSluttDato+tempSted+"/";
+        String finalPath = ""+tempNavn+tempStartDato+tempSluttDato+tempSted;
 
+        boolean eksisterer = false;
 
-        if(new File(finalPath).isDirectory()){
+        for(Turnering t : turneringer){
+            if(t.toString().equals(finalPath)){
+                eksisterer = true;
+            }
+        }
+
+        if(eksisterer){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Informasjonsmelding!");
             alert.setHeaderText("Feilmelding:");
             alert.setContentText("Turneringen du forsøker å opprette eksisterer allerede!");
             alert.showAndWait();
         }else{
-            //Oppretter en resultat.txt fil i hver turneringsmappe
-            try{
-                new File(finalPath).mkdirs();
-                File resultatFil = new File(finalPath+tempNavn+"RESULTATER.txt");
-                resultatFil.createNewFile();
-            }catch(IOException e){
-                System.out.println(e.getMessage());
-            }
+
             //Tømmer feltene for informasjon
             t_tekstfelt_turneringsnavn.clear();
             t_tekstfelt_startdato.clear();
