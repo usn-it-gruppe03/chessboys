@@ -12,7 +12,6 @@ import klasser.Turnering;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 
@@ -71,7 +70,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        visTurneringer();
+       visTurneringer();
         opprettSpillere();
         setKomboSpillere();
 
@@ -132,16 +131,30 @@ public class Controller implements Initializable {
 
 
     }
+    /**
+     *
+     *  Lagrer arrayen med serialisering i en .dat fil
+     *  Bruker en ArrayList<> med turneringsobjekter
+     *
+     * */
 
+    public void lagreInformasjon() {
+        Fil.leggTilObjekt(turneringer);
+    }
 
-
-    //Populer listView t_liste_turnering
+    //* Populer listView t_liste_turnering
     private void visTurneringer() {
-        Fil turneringer = new Fil();
-        turnListe = new ArrayList<>();
-        String [] søkListe = turneringer.søkTurneringer();
-        turnListe.addAll(Arrays.asList(søkListe));
-        t_liste_turnering.getItems().addAll(turnListe);
+
+        turneringer.addAll(Fil.hentObjekt());
+        if(!turneringer.isEmpty()) {
+            for(Turnering turnObject: turneringer) {
+                String listeInfo = turnObject.getNavn() + turnObject.getFraDato() + turnObject.getTilDato() + turnObject.getSted();
+                t_liste_turnering.getItems().addAll(listeInfo);
+
+            }
+        }
+
+
     }
 
     private void opprettSpillere() {
@@ -169,9 +182,9 @@ public class Controller implements Initializable {
 
     private void setKomboSpillere() {
 
-        p_kombo_turnering.getItems().addAll(turnListe);
+        //p_kombo_turnering.getItems().addAll(turnListe);
         p_kombo_spiller_hvit.getItems().addAll(liste);
-        p_liste_parti.getItems().addAll(turnListe);
+        //p_liste_parti.getItems().addAll(turnListe);
     }
 
     private void lagreTurnering() {
