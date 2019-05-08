@@ -198,6 +198,7 @@ public class Controller implements Initializable {
      *
      * */
     private void hentTurneringern() {
+
         if(Fil.hentObjekt() != null){
             turneringer.addAll(Fil.hentObjekt());
             System.out.println("Turneringer hentet!");
@@ -232,7 +233,7 @@ public class Controller implements Initializable {
      *
      */
 
-    private void leggTilSpiller() {
+    public void leggTilSpiller() {
         String fornavn = this.rt_tekstfelt_fornavn.getText();
         String etternavn = this.rt_tekstfelt_etternavn.getText();
         int poeng = 0;
