@@ -172,6 +172,8 @@ public class Controller implements Initializable {
                 break;
             }
         }
+
+        rt_knapp_legg_til_deltaker.setDisable(false);
     }
 
     /**
