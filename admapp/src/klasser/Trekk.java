@@ -1,20 +1,37 @@
 package klasser;
 
-import java.util.ArrayList;
-
 public class Trekk {
 
-    private ArrayList<Posisjon> pos;
+    private Posisjon fraTrekk, tilTrekk;
+    private BrikkeType brikkeType;
 
-    public Trekk(ArrayList<Posisjon> pos) {
-        this.pos = pos;
+    public Trekk(Posisjon fraTrekk, Posisjon tilTrekk, BrikkeType brikkeType) {
+        this.fraTrekk = fraTrekk;
+        this.tilTrekk = tilTrekk;
+        this.brikkeType = brikkeType;
     }
 
-    public ArrayList<Posisjon> getPos() {
-        return pos;
+    public Posisjon getFraTrekk() {
+        return fraTrekk;
     }
 
-    public void setPos(ArrayList<Posisjon> pos) {
-        this.pos = pos;
+    public void setFraTrekk(Posisjon fraTrekk) {
+        this.fraTrekk = fraTrekk;
+    }
+
+    public Posisjon getTilTrekk() {
+        return tilTrekk;
+    }
+
+    public void setTilTrekk(Posisjon tilTrekk) {
+        this.tilTrekk = tilTrekk;
+    }
+
+    public BrikkeType getBrikkeType() {
+        return brikkeType;
+    }
+
+    public void setBrikkeType(BrikkeType brikkeType) {
+        this.brikkeType = brikkeType;
     }
 }

@@ -25,7 +25,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -212,11 +212,11 @@
                                                    </children>
                                                 </StackPane>
                                                 <Label text="Turnering:" />
-                                                <ChoiceBox fx:id="p_kombo_turnering" onAction="#setSpillerKomboBox" prefWidth="410.0">
+                                                <ComboBox fx:id="p_kombo_turnering" onAction="#setSpillerKomboBox" prefWidth="410.0">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
-                                                </ChoiceBox>
+                                                </ComboBox>
                                                 <Label layoutX="30.0" layoutY="115.0" text="Dato:" />
                                                 <TextField fx:id="p_tekstfelt_dato">
                                                    <VBox.margin>
@@ -230,17 +230,17 @@
                                                    </VBox.margin>
                                                 </TextField>
                                                 <Label text="Spiller hvit:" />
-                                                <ChoiceBox fx:id="p_kombo_spiller_hvit" layoutX="30.0" layoutY="137.0" prefWidth="410.0">
+                                                <ComboBox fx:id="p_kombo_spiller_hvit" layoutX="30.0" layoutY="137.0" prefWidth="410.0">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
-                                                </ChoiceBox>
+                                                </ComboBox>
                                                 <Label text="Spiller sort:" />
-                                                <ChoiceBox fx:id="p_kombo_spiller_sort" layoutX="30.0" layoutY="137.0" prefWidth="410.0">
+                                                <ComboBox fx:id="p_kombo_spiller_sort" layoutX="30.0" layoutY="137.0" prefWidth="410.0">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
-                                                </ChoiceBox>
+                                                </ComboBox>
                                                 <Button fx:id="p_knapp_lag_parti" mnemonicParsing="false" text="Lag parti" onAction="#lagParti"/>
                                              </children>
                                              <padding>
@@ -314,23 +314,23 @@
                                                             <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
                                                                   <Label text="Brikketype:" />
-                                                                  <ChoiceBox fx:id="rp_tekstfelt_brikketype" prefWidth="410.0">
+                                                                  <ComboBox fx:id="rp_tekstfelt_brikketype" prefWidth="410.0">
                                                                      <VBox.margin>
                                                                         <Insets bottom="10.0" />
                                                                      </VBox.margin>
-                                                                  </ChoiceBox>
+                                                                  </ComboBox>
                                                                   <Label text="Fra rute:" />
-                                                                  <ChoiceBox fx:id="rp_tekstfelt_fra_rute" prefWidth="410.0">
+                                                                  <ComboBox fx:id="rp_tekstfelt_fra_rute" prefWidth="410.0">
                                                                      <VBox.margin>
                                                                         <Insets bottom="10.0" />
                                                                      </VBox.margin>
-                                                                  </ChoiceBox>
+                                                                  </ComboBox>
                                                                   <Label text="Til rute:" />
-                                                                  <ChoiceBox fx:id="rp_tekstfelt_til_rute" prefWidth="410.0">
+                                                                  <ComboBox fx:id="rp_tekstfelt_til_rute" prefWidth="410.0">
                                                                      <VBox.margin>
                                                                         <Insets bottom="10.0" />
                                                                      </VBox.margin>
-                                                                  </ChoiceBox>
+                                                                  </ComboBox>
                                                                   <Button fx:id="rp_knapp_legg_til_trekk" mnemonicParsing="false" text="Legg til trekk" />
                                                                </children>
                                                             </VBox>
@@ -352,7 +352,7 @@
                                                                         <Insets />
                                                                      </VBox.margin>
                                                                   </Label>
-                                                                  <ChoiceBox fx:id="rp_kombo_utfall" prefWidth="410.0" />
+                                                                  <ComboBox fx:id="rp_kombo_utfall" prefWidth="410.0" />
                                                                </children>
                                                             </VBox>
                                                          </children>

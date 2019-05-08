@@ -4,10 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import klasser.Fil;
-import klasser.Parti;
-import klasser.Spiller;
-import klasser.Turnering;
+import klasser.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,9 +54,9 @@ public class Controller implements Initializable {
     @FXML private TextField p_tekstfelt_dato;
     @FXML private Button p_knapp_lag_parti;
     @FXML private TextField p_tekstfelt_klokkeslett;
-    @FXML private ChoiceBox<Turnering> p_kombo_turnering = new ChoiceBox<>();
-    @FXML private ChoiceBox<Spiller> p_kombo_spiller_sort = new ChoiceBox<>();
-    @FXML private ChoiceBox<Spiller> p_kombo_spiller_hvit = new ChoiceBox<>();
+    @FXML private ComboBox<Turnering> p_kombo_turnering = new ComboBox<>();
+    @FXML private ComboBox<Spiller> p_kombo_spiller_sort = new ComboBox<>();
+    @FXML private ComboBox<Spiller> p_kombo_spiller_hvit = new ComboBox<>();
     @FXML private ListView<Parti> p_liste_parti;
 
     // * TAB: Rediger parti
@@ -67,10 +64,10 @@ public class Controller implements Initializable {
     @FXML private TextField rp_tekstfelt_partinavn;
     @FXML private ListView<?> rp_liste_trekk;
     @FXML private Button rp_knapp_legg_til_trekk;
-    @FXML private ChoiceBox<?> rp_tekstfelt_brikketype;
-    @FXML private ChoiceBox<?> rp_tekstfelt_til_rute;
-    @FXML private ChoiceBox<?> rp_tekstfelt_fra_rute;
-    @FXML private ChoiceBox<?> rp_kombo_utfall;
+    @FXML private ComboBox<BrikkeType> rp_tekstfelt_brikketype;
+    @FXML private ComboBox<Posisjon> rp_tekstfelt_til_rute;
+    @FXML private ComboBox<Posisjon> rp_tekstfelt_fra_rute;
+    @FXML private ComboBox<Spiller> rp_kombo_utfall;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -359,6 +356,7 @@ public class Controller implements Initializable {
     public void velgPartiTab() {
         valgtParti();
         tab_pane.getSelectionModel().select(tab_rp);
+        populerRedigerPartiBox();
     }
 
     private void valgtParti() {
@@ -374,7 +372,11 @@ public class Controller implements Initializable {
     }
 
     private void populerRedigerPartiBox() {
-
+        rp_tekstfelt_fra_rute.setCenterShape(true);
+        rp_tekstfelt_fra_rute.getItems().addAll(Posisjon.values());
+        rp_tekstfelt_til_rute.getItems().addAll(Posisjon.values());
+        rp_tekstfelt_brikketype.getItems().addAll(BrikkeType.values());
+        rp_kombo_utfall.getItems().addAll(valgtParti.getSpillerHvit(), valgtParti.getSpillerSort());
     }
 
 
