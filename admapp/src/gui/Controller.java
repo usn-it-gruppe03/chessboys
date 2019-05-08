@@ -16,6 +16,8 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 
 /**
  * Controller: Admin App
@@ -134,6 +136,7 @@ public class Controller implements Initializable {
 
     }
 
+        //FIKS IFFEN
     public void velgTurnering(){
 
         //Henter stringen av objektet som er lagret i listview.
@@ -157,32 +160,20 @@ public class Controller implements Initializable {
         String tempTilDato = splitTab[2];
         String tempSted = splitTab[3];
 
-        System.out.println(tempNavn+"%"+tempFraDato+"%"+tempTilDato+"%"+tempSted);
+        String x = ""+tempNavn+"%"+tempFraDato+"%"+tempTilDato+"%"+tempSted;
+
+
         for(Turnering t : turneringer){
-            System.out.println(t.getNavn()+"%"+t.getFraDato()+"%"+t.getTilDato()+"%"+t.getSted());
-            if(t.getNavn() == tempNavn
-                    && t.getFraDato() == tempFraDato
-                    && t.getTilDato() == tempTilDato
-                    && t.getSted() == tempSted){
-
+            if(t.toString().equals(x)){
                 aktivTurnering = new Turnering(tempNavn, tempFraDato, tempTilDato, tempSted);
-
                 System.out.println(aktivTurnering.toString());
-            }else{
-                System.out.println("FEIL: Fant ikke valgt turnering fra ViewList i intern ArrayList.");
+                break;
             }
         }
 
 
 
 
-        //hent ut valgt element i listview
-        //deretter split stringen i de forskjellige elementene
-        //deretter søk i arraylist etter den turneringen
-        //Henter ut gitt turnering fra arraylist
-        //instansierer turneringen
-
-        //aktivTurnering = den aktive instansen av turneringen.
 
 
 
