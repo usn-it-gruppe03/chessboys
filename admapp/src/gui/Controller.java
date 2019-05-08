@@ -26,6 +26,7 @@ public class Controller implements Initializable {
     private ObservableList<Spiller> spillere;
     private ArrayList<String> liste;
     private Turnering nyTurnering;
+    private Turnering aktivTurnering;
 
 
     // * TAB: Turnering
@@ -40,7 +41,7 @@ public class Controller implements Initializable {
 
     // * TAB: Legg til spiller
     @FXML private Tab tab_rt;
-    @FXML private ListView<?> rt_liste_turnering;
+    @FXML private ListView<String> rt_liste_turnering;
     @FXML private Button rt_knapp_legg_til_deltaker;
     @FXML private TextField rt_tekstfelt_fornavn;
     @FXML private TextField rt_tekstfelt_etternavn;
@@ -71,7 +72,6 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         hentTurneringern();
        visTurneringer();
-        opprettSpillere();
         setKomboSpillere();
 
     }
@@ -158,35 +158,46 @@ public class Controller implements Initializable {
                 t_liste_turnering.getItems().addAll(listeInfo);
             }
     }
+    /**
+     *
+     * Metode for å vise spillere i ListView
+     *
+     * */
+    private void visSpillere() {
 
-    private void opprettSpillere() {
-        
-
-    }
-
-    private void setKomboSpillere() {
-
-        //p_kombo_turnering.getItems().addAll(turnListe);
-        p_kombo_spiller_hvit.getItems().addAll(liste);
-        //p_liste_parti.getItems().addAll(turnListe);
-    }
-
-    private void lagreTurnering() {
+        rt_liste_turnering.getItems().clear();
+        for(Spiller spillere: aktivTurnering.hentSpillerArray()) {
+            rt_liste_turnering.getItems().add(spillere.getFornavn() + " " + spillere.getFornavn() + " | Poeng: " + spillere.getPoeng());
+        }
 
     }
+
+    /***
+     *
+     * Metode for å legge til Spiller-objekter i valgt Turnerings-objekt
+     *
+     */
 
     private void leggTilSpiller() {
         String fornavn = this.rt_tekstfelt_fornavn.getText();
         String etternavn = this.rt_tekstfelt_etternavn.getText();
         int poeng = 0;
         Spiller spiller = new Spiller(fornavn, etternavn, poeng);
-        nyTurnering.leggTilSpiller(spiller);
+        aktivTurnering.leggTilSpiller(spiller);
+
+        visSpillere();
 
         this.rt_tekstfelt_fornavn.setText("");
         this.rt_tekstfelt_etternavn.setText("");
 
     }
 
+
+
+    private void setKomboSpillere() {
+
+    }
+    
     private void lagParti(){
         String spillerHvit = p_kombo_spiller_hvit.getValue().toLowerCase();
         String spillerSort = p_kombo_spiller_sort.getValue().toLowerCase();
