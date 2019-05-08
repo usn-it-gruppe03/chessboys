@@ -309,7 +309,7 @@ public class Sjakkbrett {
     /**
      * Valider Trekk
      * */
-    public static boolean validerTrekk(BrikkeType brikkeType, Posisjon fra, Posisjon til){
+    public static boolean validerTrekk(AnchorPane sjakkbrett, BrikkeType brikkeType, Posisjon fra, Posisjon til){
 
         char fra_bokstav = atomiserPosisjon(fra)[0].charAt(0);
         int fra_tall = Integer.parseInt(atomiserPosisjon(fra)[1]);
@@ -317,45 +317,83 @@ public class Sjakkbrett {
         char til_bokstav = atomiserPosisjon(til)[0].charAt(0);
         int til_tall = Integer.parseInt(atomiserPosisjon(til)[1]);
 
+        int diffBokstav = Math.abs(fra_bokstav - til_bokstav);
+        int diffTall = Math.abs(fra_tall - til_tall);
+
+        int maksFlytt = 0;
+
+        boolean tomDestinasjon = (Sjakkbrett.hentBrikke(sjakkbrett, til) == null);
+
 
         // ? Konge:
         if (brikkeType == BrikkeType.KONGE_HVIT || brikkeType == BrikkeType.KONGE_SORT) {
 
-            if (Math.abs(fra_tall - til_tall) <= 1)
-                return (Math.abs(fra_bokstav-til_bokstav) <= 1);
+            if (diffTall <= 1)
+                return (diffBokstav <= 1);
 
         }
 
         // ? Dronning:
         else if (brikkeType == BrikkeType.DRONNING_HVIT || brikkeType == BrikkeType.DRONNING_SORT) {
 
-            if (fra_bokstav == til_bokstav || fra_tall == til_tall)
+            if (diffBokstav == 0 || fra_tall == til_tall)
                 return true;
-            else return (Math.abs(fra_bokstav-til_bokstav) == Math.abs(fra_tall-til_tall));
+            else return (diffBokstav == diffTall);
 
         }
 
         // ? Tårn:
         else if (brikkeType == BrikkeType.TÅRN_HVIT || brikkeType == BrikkeType.TÅRN_SORT) {
 
+            return (diffBokstav == 0 || fra_tall == til_tall);
 
         }
 
         // ? Springer:
         else if (brikkeType == BrikkeType.SPRINGER_HVIT || brikkeType == BrikkeType.SPRINGER_SORT) {
 
+            if ((diffBokstav + diffTall) <= 3)
+                return (diffBokstav != 0 && diffTall != 0);
 
         }
 
         // ? Løper:
         else if (brikkeType == BrikkeType.LØPER_HVIT || brikkeType == BrikkeType.LØPER_SORT) {
 
+            return (diffBokstav == diffTall);
 
         }
 
         // ? Bonde:
         else if (brikkeType == BrikkeType.BONDE_HVIT || brikkeType == BrikkeType.BONDE_SORT) {
 
+            if (brikkeType == BrikkeType.BONDE_HVIT && fra_tall == 2 || brikkeType == BrikkeType.BONDE_SORT && fra_tall == 7)
+                maksFlytt = 2;
+            else maksFlytt = 1;
+
+
+            // ? Dersom destinasjonsfeltet er tomt.
+            if (tomDestinasjon){
+
+                return (diffBokstav == 0 && diffTall == maksFlytt);
+
+            }
+
+
+            // ? Dersom destinasjonsfeltet ikke er tomt.
+            else {
+
+                // ? Dersom brikken går ett steg på skrå.
+                if (diffBokstav == 1 && diffTall == 1){
+                    return true;
+                }
+
+                // ? Dersom brikken går på vertikal akse.
+                else if (diffBokstav == 0 && diffTall <= maksFlytt){
+                    return true;
+                }
+
+            }
 
         }
 

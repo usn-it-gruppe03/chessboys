@@ -52,9 +52,13 @@ public class Controller implements Initializable {
         Sjakkbrett.populerSjakkbrett(sp_sjakkbrett);
         Sjakkbrett.populerSjakkBrikker(sp_sjakkbrett);
 
-        boolean test = Sjakkbrett.validerTrekk(BrikkeType.KONGE_HVIT, Posisjon.E1, Posisjon.D2);
+        boolean b7 = Sjakkbrett.validerTrekk(sp_sjakkbrett, BrikkeType.KONGE_SORT, Posisjon.D5, Posisjon.B7);
+        boolean c7 = Sjakkbrett.validerTrekk(sp_sjakkbrett, BrikkeType.KONGE_SORT, Posisjon.D5, Posisjon.C7);
 
-        System.out.println(test);
+        System.out.println(
+                b7 + "\n" +
+                c7 + "\n"
+        );
 
         // ! TEST
         /*Brikke brikke = Sjakkbrett.hentBrikke(sp_sjakkbrett, Posisjon.A1);
