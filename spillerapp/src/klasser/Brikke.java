@@ -79,4 +79,8 @@ public class Brikke extends ImageView {
         this.setSenterY(felt.getSenterY());
     }
 
+    public BrikkeType getBrikkeType(){
+        return this.brikkeType;
+    }
+
 }

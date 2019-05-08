@@ -1,5 +1,6 @@
 package klasser;
 
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -277,6 +278,102 @@ public class Sjakkbrett {
         }
 
         return null;
+
+    }
+
+
+
+
+    /**
+     * Trekk
+     * */
+    public static void trekk(AnchorPane sjakkbrett, BrikkeType brikkeType, Posisjon fra, Posisjon til){
+
+        Brikke brikke = Sjakkbrett.hentBrikke(sjakkbrett,fra);
+        if (brikke != null){
+
+            if (brikke.getBrikkeType() == brikkeType){
+
+                // TODO: Legg til valdator.
+                brikke.setPosisjon(sjakkbrett, til);
+
+            }
+
+        }
+
+    }
+
+
+
+
+    /**
+     * Valider Trekk
+     * */
+    public static boolean validerTrekk(BrikkeType brikkeType, Posisjon fra, Posisjon til){
+
+        char fra_bokstav = atomiserPosisjon(fra)[0].charAt(0);
+        int fra_tall = Integer.parseInt(atomiserPosisjon(fra)[1]);
+
+        char til_bokstav = atomiserPosisjon(til)[0].charAt(0);
+        int til_tall = Integer.parseInt(atomiserPosisjon(til)[1]);
+
+
+        // ? Konge:
+        if (brikkeType == BrikkeType.KONGE_HVIT || brikkeType == BrikkeType.KONGE_SORT) {
+
+            if (Math.abs(fra_tall - til_tall) <= 1)
+                return (Math.abs(fra_bokstav-til_bokstav) <= 1);
+
+        }
+
+        // ? Dronning:
+        else if (brikkeType == BrikkeType.DRONNING_HVIT || brikkeType == BrikkeType.DRONNING_SORT) {
+
+            if (fra_bokstav == til_bokstav || fra_tall == til_tall)
+                return true;
+            else return (Math.abs(fra_bokstav-til_bokstav) == Math.abs(fra_tall-til_tall));
+
+        }
+
+        // ? Tårn:
+        else if (brikkeType == BrikkeType.TÅRN_HVIT || brikkeType == BrikkeType.TÅRN_SORT) {
+
+
+        }
+
+        // ? Springer:
+        else if (brikkeType == BrikkeType.SPRINGER_HVIT || brikkeType == BrikkeType.SPRINGER_SORT) {
+
+
+        }
+
+        // ? Løper:
+        else if (brikkeType == BrikkeType.LØPER_HVIT || brikkeType == BrikkeType.LØPER_SORT) {
+
+
+        }
+
+        // ? Bonde:
+        else if (brikkeType == BrikkeType.BONDE_HVIT || brikkeType == BrikkeType.BONDE_SORT) {
+
+
+        }
+
+        return false;
+
+    }
+
+
+
+
+    /**
+     * Atomiser posisjon
+     * */
+    public static String[] atomiserPosisjon(Posisjon posisjon){
+
+        String bokstav = posisjon.toString().substring(0,1);
+        String tall = posisjon.toString().substring(1,2);
+        return new String[]{bokstav, tall};
 
     }
 

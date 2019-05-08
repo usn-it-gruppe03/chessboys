@@ -12,10 +12,12 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import klasser.Brikke;
+import klasser.BrikkeType;
 import klasser.Posisjon;
 import klasser.Sjakkbrett;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 
@@ -49,6 +51,10 @@ public class Controller implements Initializable {
 
         Sjakkbrett.populerSjakkbrett(sp_sjakkbrett);
         Sjakkbrett.populerSjakkBrikker(sp_sjakkbrett);
+
+        boolean test = Sjakkbrett.validerTrekk(BrikkeType.KONGE_HVIT, Posisjon.E1, Posisjon.D2);
+
+        System.out.println(test);
 
         // ! TEST
         /*Brikke brikke = Sjakkbrett.hentBrikke(sp_sjakkbrett, Posisjon.A1);
