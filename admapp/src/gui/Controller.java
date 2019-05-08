@@ -128,6 +128,8 @@ public class Controller implements Initializable {
 
     }
 
+
+
     public void velgTurnKnapp() {
         velgTurnering();
         tab_pane.getSelectionModel().select(tab_rt);
@@ -298,6 +300,7 @@ public class Controller implements Initializable {
     }
 
     public void lagParti(){
+
         if(p_kombo_spiller_hvit.getValue().equals(p_kombo_spiller_sort.getValue())) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Partifeil");
