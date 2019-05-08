@@ -23,13 +23,12 @@ import java.util.regex.Pattern;
  * */
 public class Controller implements Initializable {
 
-    private ArrayList<Parti> partier;
-    private ArrayList<String> turnListe;
     private ArrayList<Turnering> turneringer = new ArrayList<>();
     private ObservableList<Spiller> spillere;
     private ArrayList<String> liste;
     private Turnering nyTurnering;
     private Turnering aktivTurnering;
+    private Parti valgtParti;
 
     // * TAB PANE:
     @FXML private TabPane tab_pane;
@@ -309,29 +308,37 @@ public class Controller implements Initializable {
             alert.setContentText("Du har satt " + p_kombo_spiller_hvit.getValue().getFornavn() + " til å spille mot seg selv!");
             alert.showAndWait();
         } else {
-            Parti p = new Parti(p_kombo_spiller_hvit.getValue(), p_kombo_spiller_sort.getValue(),p_tekstfelt_dato.getText(),p_tekstfelt_klokkeslett.getText());
-            try {
-                String filSti = aktivTurnering.getFil();
-                System.out.println(filSti + p.getFil());
-                File file = new File(filSti + p.getFil());
-                if(!file.exists()) {
-                    if(file.createNewFile()) {
-                        System.out.println("File created!");
-                        aktivTurnering.leggTilParti(p);
+            if(!p_tekstfelt_dato.getText().isEmpty() && !p_tekstfelt_klokkeslett.getText().isEmpty()) {
+                Parti p = new Parti(p_kombo_spiller_hvit.getValue(), p_kombo_spiller_sort.getValue(),p_tekstfelt_dato.getText(),p_tekstfelt_klokkeslett.getText());
+                try {
+                    String filSti = aktivTurnering.getFil();
+                    System.out.println(filSti + p.getFil());
+                    File file = new File(filSti + p.getFil());
+                    if(!file.exists()) {
+                        if(file.createNewFile()) {
+                            System.out.println("File created!");
+                            aktivTurnering.leggTilParti(p);
 
+                        }
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Parti eksisterer allerede!");
+                        alert.setHeaderText("Du prøver å lage et allerede eksisterende parti!");
+                        alert.setContentText("Partiet " + p.getFil() + " eksisterer allerede!");
+                        alert.showAndWait();
                     }
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Parti eksisterer allerede!");
-                    alert.setHeaderText("Du prøver å lage et allerede eksisterende parti!");
-                    alert.setContentText("Partiet " + p.getFil() + " eksisterer allerede!");
-                    alert.showAndWait();
+                }catch (Exception e) {
+                    System.out.println("File not created!" + e.toString());
                 }
-            }catch (Exception e) {
-                System.out.println("File not created!" + e.toString());
+                lagreInformasjon();
+                visParti();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Advarsel!");
+                alert.setHeaderText("Du har ikke fylt ut alle felt!");
+                alert.setContentText("Alle felt i skjemaet er ikke fylt ut, vennligst fyll alle felt!");
             }
-            lagreInformasjon();
-            visParti();
+
         }
 
 
@@ -347,7 +354,26 @@ public class Controller implements Initializable {
                 }
             }
         }
+    }
 
+    public void velgPartiTab() {
+        valgtParti();
+        tab_pane.getSelectionModel().select(tab_rp);
+    }
+
+    private void valgtParti() {
+
+        for(Parti p: aktivTurnering.hentParti()) {
+
+            if(p.toString().equals(p_liste_parti.getSelectionModel().getSelectedItem().toString())){
+                valgtParti = new Parti(p.getSpillerHvit(), p.getSpillerSort(), p.getDato(), p.getTid());
+                rp_tekstfelt_partinavn.setText(valgtParti.toString());
+            }
+        }
+
+    }
+
+    private void populerRedigerPartiBox() {
 
     }
 

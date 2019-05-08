@@ -1,11 +1,13 @@
 package klasser;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Parti implements Serializable {
 
     private Spiller spillerHvit, spillerSort;
     private String dato, tid, fil;
+    private ArrayList<Trekk> trekkListe;
 
     public Parti(Spiller spillerHvit, Spiller spillerSort, String dato, String tid) {
         this.spillerHvit = spillerHvit;
@@ -61,8 +63,16 @@ public class Parti implements Serializable {
         return filSti;
     }
 
+    public ArrayList<Trekk> getTrekkListe() {
+        return trekkListe;
+    }
+
+    public void setTrekkListe(ArrayList<Trekk> trekkListe) {
+        this.trekkListe = trekkListe;
+    }
+
     @Override
     public String toString() {
-        return this.getSpillerHvit().getFornavn() + " " + this.getSpillerHvit().getEtternavn() +" vs " + this.getSpillerSort().getFornavn() + " " + this.getSpillerSort().getEtternavn();
+        return this.fulltNavnHvit() +" vs " + this.fulltNavnSort() + " KL: " + this.getTid() + " Dato: " + this.getDato();
     }
 }

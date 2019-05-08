@@ -268,7 +268,7 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </ListView>
-                                                <Button fx:id="p_knapp_velg_parti" mnemonicParsing="false" text="Velg parti" />
+                                                <Button fx:id="p_knapp_velg_parti" mnemonicParsing="false" text="Velg parti" onAction="#velgPartiTab"/>
                                              </children>
                                              <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

@@ -56,7 +56,7 @@ public class Fil {
                 filInn.close();
 
             }else{
-                System.out.println(".dat er fuckings tom!");
+                System.out.println("info.dat-filen er tom!");
             }
 
 
