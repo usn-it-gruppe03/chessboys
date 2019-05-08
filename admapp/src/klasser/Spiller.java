@@ -36,5 +36,10 @@ public class Spiller implements Serializable {
     public void setPoeng(int poeng) {
         this.poeng = poeng;
     }
+
+    @Override
+    public String toString() {
+        return this.getFornavn() + " " + this.getEtternavn();
+    }
 }
 

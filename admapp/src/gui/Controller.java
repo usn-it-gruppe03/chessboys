@@ -59,8 +59,8 @@ public class Controller implements Initializable {
     @FXML private Button p_knapp_lag_parti;
     @FXML private TextField p_tekstfelt_klokkeslett;
     @FXML private ChoiceBox<Turnering> p_kombo_turnering = new ChoiceBox<>();
-    @FXML private ChoiceBox<String> p_kombo_spiller_sort = new ChoiceBox<>();
-    @FXML private ChoiceBox<String> p_kombo_spiller_hvit = new ChoiceBox<>();
+    @FXML private ChoiceBox<Spiller> p_kombo_spiller_sort = new ChoiceBox<>();
+    @FXML private ChoiceBox<Spiller> p_kombo_spiller_hvit = new ChoiceBox<>();
     @FXML private ListView<String> p_liste_parti;
 
     // * TAB: Rediger parti
@@ -127,6 +127,7 @@ public class Controller implements Initializable {
         //Tømmer lista, og oppdaterer med nye verdier
         t_liste_turnering.getItems().clear();
         lagreInformasjon();
+        setTurneringKomboBox();
         visTurneringer();
 
 
@@ -273,24 +274,22 @@ public class Controller implements Initializable {
     }
 
     public void setSpillerKomboBox() {
-
-
-
-    }
-
-    private void lagParti(){
-        String spillerHvit = p_kombo_spiller_hvit.getValue().toLowerCase();
-        String spillerSort = p_kombo_spiller_sort.getValue().toLowerCase();
-        Spiller spillerHvitObjekt;
-        for(Turnering turnering: turneringer ) {
-            for(Spiller spiller: turnering.hentSpillerArray()) {
-                if(spiller.getFornavn()+spiller.getEtternavn() == spillerHvit){
-                    spillerHvitObjekt = new Spiller(spiller.getFornavn(), spiller.getEtternavn(), spiller.getPoeng());
-                } else if(spiller.getFornavn()+spiller.getEtternavn() == spillerSort ){
-
+        aktivTurnering = new Turnering(p_kombo_turnering.getValue().getNavn(), p_kombo_turnering.getValue().getFraDato(), p_kombo_turnering.getValue().getTilDato(), p_kombo_turnering.getValue().getSted());
+        for(Turnering t: turneringer) {
+            if(t.toString().equals(aktivTurnering.toString())) {
+                for(Spiller s: t.hentSpillerArray()) {
+                    p_kombo_spiller_sort.getItems().add(s);
+                    p_kombo_spiller_hvit.getItems().add(s);
                 }
             }
         }
+    }
+
+    private void lagParti(){
+        Spiller spillerHvit = p_kombo_spiller_hvit.getValue();
+        Spiller spillerSort = p_kombo_spiller_sort.getValue();
+        Spiller spillerHvitObjekt;
+
         //Parti parti = new Parti(spillerHvitObjekt, );
     }
 

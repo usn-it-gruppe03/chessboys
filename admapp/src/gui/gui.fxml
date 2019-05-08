@@ -212,7 +212,7 @@
                                                    </children>
                                                 </StackPane>
                                                 <Label text="Turnering:" />
-                                                <ChoiceBox fx:id="p_kombo_turnering" prefWidth="410.0">
+                                                <ChoiceBox fx:id="p_kombo_turnering" prefWidth="410.0" onAction="#setSpillerKomboBox">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
