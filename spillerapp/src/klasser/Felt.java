@@ -37,7 +37,7 @@ public class Felt extends Rectangle {
      * @return double
      * */
     private double getDeltaX(){
-        return this.getBoundsInParent().getMinX() - this.getBoundsInParent().getMaxX();
+        return Math.abs(this.getBoundsInParent().getMinX() - this.getBoundsInParent().getMaxX());
     }
 
 
@@ -48,7 +48,7 @@ public class Felt extends Rectangle {
      * @return double
      * */
     private double getDeltaY(){
-        return this.getBoundsInParent().getMinY() - this.getBoundsInParent().getMaxY();
+        return Math.abs(this.getBoundsInParent().getMinY() - this.getBoundsInParent().getMaxY());
     }
 
 
@@ -59,7 +59,7 @@ public class Felt extends Rectangle {
      * @return double
      * */
     public double getSenterX(){
-        return this.getX() + (this.getDeltaX()/2);
+        return (this.getX() + (this.getDeltaX()/2.0));
     }
 
 
@@ -70,13 +70,13 @@ public class Felt extends Rectangle {
      * @param x X-koordinat for sentrum av node.
      * */
     public void setSenterX(double x){
-        this.setX( x - (this.getDeltaX()/2) );
+        this.setX( x - (this.getDeltaX()/2.0) );
     }
 
 
 
     public double getSenterY(){
-        return this.getY() + (this.getDeltaY()/2);
+        return (this.getY() + (this.getDeltaY()/2.0));
     }
 
 
@@ -87,7 +87,7 @@ public class Felt extends Rectangle {
      * @param y Y-koordinat for sentrum av node.
      * */
     public void setSenterY(double y){
-        this.setY( y - (this.getDeltaY()/2) );
+        this.setY( y - (this.getDeltaY()/2.0) );
     }
 
 

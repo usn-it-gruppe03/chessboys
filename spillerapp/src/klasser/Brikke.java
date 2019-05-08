@@ -1,19 +1,28 @@
 package klasser;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.CacheHint;
+import javafx.scene.image.*;
+import javafx.scene.layout.AnchorPane;
 
-import java.io.File;
 
+/**
+ * Klasse: Brikke
+ * */
 public class Brikke extends ImageView {
 
-    private static double BREDDE = 50.0, HØYDE = 50.0;
+
+    /**
+     * Objektattributter
+     * */
+    private Posisjon posisjon;
+    private BrikkeType brikkeType;
+    private static final double BREDDE = 50.0, HØYDE = 50.0;
 
     private Brikke(){
         super();
     }
 
-    public Brikke(Image ikon){
+    private Brikke(Image ikon){
         this();
         this.setImage(ikon);
         this.setFitWidth(BREDDE);
@@ -21,30 +30,53 @@ public class Brikke extends ImageView {
         this.setPreserveRatio(true);
     }
 
-    public Brikke(Image ikon, double senterX, double senterY){
+    private Brikke(Image ikon, double senterX, double senterY){
         this(ikon);
         this.setSenterX(senterX);
         this.setSenterY(senterY);
     }
 
-    public Brikke(String ikonFilSti, double senterX, double senterY){
+    private Brikke(String ikonFilSti, double senterX, double senterY){
         this(new Image(ikonFilSti),senterX,senterY);
     }
 
-    private double getSenterX(){
-        return this.getX() + BREDDE/2;
+    private Brikke(BrikkeType brikkeType, double senterX, double senterY){
+        this(brikkeType.getIkonURL(), senterX, senterY);
     }
 
-    private void setSenterX(double senterX){
-        this.setX(senterX - BREDDE/2);
+    public Brikke(BrikkeType brikkeType, AnchorPane sjakkbrett, Posisjon posisjon){
+        this(
+                brikkeType,
+                Sjakkbrett.hentFelt(sjakkbrett, posisjon).getSenterX(),
+                Sjakkbrett.hentFelt(sjakkbrett, posisjon).getSenterY()
+        );
+        this.posisjon = posisjon;
     }
 
-    private double getSenterY(){
-        return this.getY() + HØYDE/2;
+    public double getSenterX(){
+        return (this.getX() + (HØYDE/2.0));
     }
 
-    private void setSenterY(double senterY){
-        this.setY(senterY - HØYDE/2);
+    public void setSenterX(double senterX){
+        this.setX(senterX - (BREDDE/2.0));
+    }
+
+    public double getSenterY(){
+        return (this.getY() + (HØYDE/2.0));
+    }
+
+    public void setSenterY(double senterY){
+        this.setY(senterY - (HØYDE/2.0));
+    }
+
+    public Posisjon getPosisjon(){
+        return this.posisjon;
+    }
+
+    public void setPosisjon(AnchorPane sjakkbrett, Posisjon posisjon){
+        Felt felt = Sjakkbrett.hentFelt(sjakkbrett,posisjon);
+        this.setSenterX(felt.getSenterX());
+        this.setSenterY(felt.getSenterY());
     }
 
 }

@@ -4,10 +4,10 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
-import java.lang.reflect.Array;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -103,14 +103,95 @@ public class Sjakkbrett {
                     felt.getStyleClass().add("bg-sort");
                 }
 
-                System.out.println(felt.getPosisjon().toString());
-
                 // * Legg til node i pane.
                 pane.getChildren().add(felt);
 
             }
 
         }
+
+        System.out.println("Feltene på sjakkbrettet er distribuert på sjakkbrettet.");
+
+    }
+
+
+
+
+    /**
+     * Populer sjakkbrikker.
+     * */
+    public static void populerSjakkBrikker(AnchorPane pane){
+
+        Map<BrikkeType,ArrayList<Posisjon>> brikkePosisjon = new HashMap<BrikkeType,ArrayList<Posisjon>>(){{
+
+            // * Sorte brikker:
+            put(BrikkeType.TÅRN_SORT, new ArrayList<>(Arrays.asList(
+                    Posisjon.A8, Posisjon.H8
+            )));
+
+            put(BrikkeType.SPRINGER_SORT, new ArrayList<>(Arrays.asList(
+                    Posisjon.B8, Posisjon.G8
+            )));
+
+            put(BrikkeType.LØPER_SORT, new ArrayList<>(Arrays.asList(
+                    Posisjon.C8, Posisjon.F8
+            )));
+
+            put(BrikkeType.DRONNING_SORT, new ArrayList<>(Arrays.asList(
+                    Posisjon.D8
+            )));
+
+            put(BrikkeType.KONGE_SORT, new ArrayList<>(Arrays.asList(
+                    Posisjon.E8
+            )));
+
+            put(BrikkeType.BONDE_SORT, new ArrayList<>(Arrays.asList(
+                    Posisjon.A7,Posisjon.B7,Posisjon.C7,Posisjon.D7,Posisjon.E7,Posisjon.F7,Posisjon.G7,Posisjon.H7
+            )));
+
+            // * Hvite brikker
+            put(BrikkeType.TÅRN_HVIT, new ArrayList<>(Arrays.asList(
+                    Posisjon.A1, Posisjon.H1
+            )));
+
+            put(BrikkeType.SPRINGER_HVIT, new ArrayList<>(Arrays.asList(
+                    Posisjon.B1, Posisjon.G1
+            )));
+
+            put(BrikkeType.LØPER_HVIT, new ArrayList<>(Arrays.asList(
+                    Posisjon.C1, Posisjon.F1
+            )));
+
+            put(BrikkeType.DRONNING_HVIT, new ArrayList<>(Arrays.asList(
+                    Posisjon.D1
+            )));
+
+            put(BrikkeType.KONGE_HVIT, new ArrayList<>(Arrays.asList(
+                    Posisjon.E1
+            )));
+
+            put(BrikkeType.BONDE_HVIT, new ArrayList<>(Arrays.asList(
+                    Posisjon.A2,Posisjon.B2,Posisjon.C2,Posisjon.D2,Posisjon.E2,Posisjon.F2,Posisjon.G2,Posisjon.H2
+            )));
+
+        }};
+
+        for (Map.Entry<BrikkeType,ArrayList<Posisjon>> entry : brikkePosisjon.entrySet()){
+
+            BrikkeType brikkeType = entry.getKey();
+            ArrayList<Posisjon> posisjoner = entry.getValue();
+
+            for (int i=0; i<posisjoner.size(); i++){
+
+                Felt felt = hentFelt(pane, posisjoner.get(i));
+                Brikke brikke = new Brikke(brikkeType,pane,felt.getPosisjon());
+                pane.getChildren().add(brikke);
+
+            }
+
+        }
+
+        System.out.println("Sjakkbrikker er distribuert på sjakkbrettet.");
 
     }
 
@@ -168,6 +249,35 @@ public class Sjakkbrett {
      * */
     public static Felt hentFelt(AnchorPane sjakkbrett, String posisjon){
         return hentFelt(sjakkbrett, tilPosisjon(posisjon));
+    }
+
+
+
+
+    /**
+     * Hent brikke
+     * */
+    public static Brikke hentBrikke(AnchorPane sjakkbrett, Posisjon posisjon){
+
+        // Iterer gjennom sjakkbrettets noder.
+        for (Node node : sjakkbrett.getChildren()){
+
+            // ? Dersom noden er av typen Felt.
+            if (node instanceof Brikke){
+
+                // Typetving noden til Felt.
+                Brikke brikke = ((Brikke) node);
+
+                // ? Dersom feltets posisjon er lik den gitte posisjon.
+                if (brikke.getPosisjon() == posisjon)
+
+                    // Returner feltet.
+                    return brikke;
+            }
+        }
+
+        return null;
+
     }
 
 }

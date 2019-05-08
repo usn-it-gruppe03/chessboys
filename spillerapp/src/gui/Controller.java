@@ -1,5 +1,7 @@
 package gui;
 
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -9,7 +11,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import klasser.Brikke;
+import klasser.Posisjon;
 import klasser.Sjakkbrett;
 
 import java.net.URL;
@@ -23,8 +26,8 @@ public class Controller implements Initializable {
 
     // * TAB: Finn parti
     @FXML private Tab tab_fp;
-    @FXML private ListView<?> fp_liste_parti;
     @FXML private ComboBox<?> fp_kombo_turnering;
+    @FXML private ListView<?> fp_liste_parti;
     @FXML private TextField fp_tekstfelt_spiller2;
     @FXML private TextField fp_tekstfelt_spiller1;
     @FXML private Button fp_knapp_søk_parti;
@@ -45,6 +48,11 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         Sjakkbrett.populerSjakkbrett(sp_sjakkbrett);
+        Sjakkbrett.populerSjakkBrikker(sp_sjakkbrett);
+
+        // ! TEST
+        /*Brikke brikke = Sjakkbrett.hentBrikke(sp_sjakkbrett, Posisjon.A1);
+        brikke.setPosisjon(sp_sjakkbrett,Posisjon.C5);*/
 
     }
 
