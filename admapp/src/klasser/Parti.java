@@ -71,6 +71,10 @@ public class Parti implements Serializable {
         this.trekkListe = trekkListe;
     }
 
+    public void setTrekk(Trekk t) {
+        this.trekkListe.a;
+    }
+
     @Override
     public String toString() {
         return this.fulltNavnHvit() +" vs " + this.fulltNavnSort() + " KL: " + this.getTid() + " Dato: " + this.getDato();

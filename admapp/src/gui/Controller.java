@@ -379,5 +379,27 @@ public class Controller implements Initializable {
         rp_kombo_utfall.getItems().addAll(valgtParti.getSpillerHvit(), valgtParti.getSpillerSort());
     }
 
+    public void redigerParti() {
+        System.out.println("Legg til trekk");
+
+                for(Parti p: aktivTurnering.hentParti()) {
+                    if (p.toString().equals(valgtParti.toString())) {
+
+                        Trekk trekk = new Trekk(rp_tekstfelt_fra_rute.getValue(), rp_tekstfelt_til_rute.getValue(), rp_tekstfelt_brikketype.getValue());
+
+                        if(trekk != null) {
+
+                            p.setTrekk(trekk);
+                        } else {
+                            System.out.println("Trekk er tom");
+                        }
+
+                        for (Trekk tr : p.getTrekkListe()) {
+                            System.out.println(tr + "Yes");
+                        }
+                    }
+                }
+    }
+
 
 }

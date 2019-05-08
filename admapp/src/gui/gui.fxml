@@ -331,7 +331,7 @@
                                                                         <Insets bottom="10.0" />
                                                                      </VBox.margin>
                                                                   </ComboBox>
-                                                                  <Button fx:id="rp_knapp_legg_til_trekk" mnemonicParsing="false" text="Legg til trekk" />
+                                                                  <Button fx:id="rp_knapp_legg_til_trekk" mnemonicParsing="false" text="Legg til trekk" onAction="#redigerParti"/>
                                                                </children>
                                                             </VBox>
                                                          </children>
