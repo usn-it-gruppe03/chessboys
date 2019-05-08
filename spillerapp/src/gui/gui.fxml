@@ -33,7 +33,7 @@
                                              </children>
                                           </StackPane>
                                           <Label text="Turnering:" />
-                                          <ComboBox fx:id="fp_kombo_turnering" prefWidth="410.0">
+                                          <ComboBox fx:id="fp_kombo_turnering" prefWidth="410.0" onAction="#populerListView">
                                              <VBox.margin>
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>

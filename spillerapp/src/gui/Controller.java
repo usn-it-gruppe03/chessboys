@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -11,12 +12,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import klasser.Brikke;
-import klasser.BrikkeType;
-import klasser.Posisjon;
-import klasser.Sjakkbrett;
+import klasser.*;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
@@ -25,11 +24,11 @@ import java.util.ResourceBundle;
  * Controller: Spiller App
  * */
 public class Controller implements Initializable {
-
+    ArrayList<Turnering> turneringer = new ArrayList<>();
     // * TAB: Finn parti
     @FXML private Tab tab_fp;
-    @FXML private ComboBox<?> fp_kombo_turnering;
-    @FXML private ListView<?> fp_liste_parti;
+    @FXML private ComboBox<Turnering> fp_kombo_turnering;
+    @FXML private ListView<Parti> fp_liste_parti;
     @FXML private TextField fp_tekstfelt_spiller2;
     @FXML private TextField fp_tekstfelt_spiller1;
     @FXML private Button fp_knapp_søk_parti;
@@ -55,6 +54,9 @@ public class Controller implements Initializable {
         boolean b7 = Sjakkbrett.validerTrekk(sp_sjakkbrett, BrikkeType.KONGE_SORT, Posisjon.D5, Posisjon.B7);
         boolean c7 = Sjakkbrett.validerTrekk(sp_sjakkbrett, BrikkeType.KONGE_SORT, Posisjon.D5, Posisjon.C7);
 
+        hentTurneringern();
+        populerComboBox();
+
         System.out.println(
                 b7 + "\n" +
                 c7 + "\n"
@@ -64,6 +66,34 @@ public class Controller implements Initializable {
         /*Brikke brikke = Sjakkbrett.hentBrikke(sp_sjakkbrett, Posisjon.A1);
         brikke.setPosisjon(sp_sjakkbrett,Posisjon.C5);*/
 
+    }
+
+    @FXML
+    public void populerListView() {
+        Turnering valgtTurnering;
+        valgtTurnering = fp_kombo_turnering.getSelectionModel().getSelectedItem();
+        valgtTurnering.hentParti();
+        System.out.println(valgtTurnering.hentParti());
+        //if () {
+        for (Parti p: valgtTurnering.hentParti()) {
+            fp_liste_parti.getItems().add(p);
+        }
+        //}
+    }
+
+    private void hentTurneringern() {
+        if(Fil.hentObjekt() != null){
+            System.out.println("hent");
+            turneringer.addAll(Fil.hentObjekt());
+            System.out.println("Turneringer hentet!");
+        }
+
+    }
+
+    private void populerComboBox() {
+        for(Turnering t: turneringer) {
+            fp_kombo_turnering.getItems().addAll(t);
+        }
     }
 
 }
