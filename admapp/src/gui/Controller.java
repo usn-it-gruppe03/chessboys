@@ -423,6 +423,8 @@ public class Controller implements Initializable {
             if (p.toString().equals(valgtParti.toString())) {
                     p.setTrekk(new Trekk(rp_tekstfelt_fra_rute.getValue(), rp_tekstfelt_til_rute.getValue(), rp_tekstfelt_brikketype.getValue()));
                     visTrekk();
+                    System.out.println("Brikketype: " + rp_tekstfelt_brikketype.getValue().getClass());
+                    System.out.println("Posisjon: " + rp_tekstfelt_til_rute.getValue().getClass());
 
 
             }

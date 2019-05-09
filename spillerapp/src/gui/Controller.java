@@ -28,6 +28,7 @@ public class Controller implements Initializable {
     private ArrayList<Turnering> turneringer = new ArrayList<>();
     private Parti valgtParti;
     private Animasjon animasjon;
+    private boolean partierLastet;
 
     // * TAB: Finn parti
     @FXML private Tab tab_fp;
@@ -46,7 +47,7 @@ public class Controller implements Initializable {
     @FXML private Button sp_knapp_forrige_trekk;
     @FXML private Button sp_knapp_spill_av_pause;
     @FXML private Button sp_knapp_neste_trekk;
-    @FXML private ComboBox<?> sp_kombo_hastighet;
+    @FXML private ComboBox<Integer> sp_kombo_hastighet;
 
     // * TAB: Poengtabell
     @FXML private Tab tab_pt;
@@ -56,19 +57,16 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        this.sp_kombo_hastighet.getItems().addAll(1,2,3,4,5);
+        this.sp_kombo_hastighet.getSelectionModel().select(0);
+
         Sjakkbrett.populerSjakkbrett(sp_sjakkbrett);
         Sjakkbrett.populerSjakkBrikker(sp_sjakkbrett);
-
-        Felt felt = Sjakkbrett.hentFelt(sp_sjakkbrett, Posisjon.D6);
-        sp_sjakkbrett.getChildren().add(
-                new Brikke(BrikkeType.BONDE_HVIT, sp_sjakkbrett, Posisjon.D6)
-        );
-
 
         hentTurneringern();
         populerComboBox();
 
-        this.animasjon = new Animasjon();
+        this.animasjon = new Animasjon(this.sp_sjakkbrett, this.sp_liste_trekk, this.sp_kombo_hastighet);
 
 
         // ! TEST
@@ -77,8 +75,17 @@ public class Controller implements Initializable {
 
     }
 
-    public void startThread(){
+
+    public void initierAnimasjon(){
+        this.animasjon.initier();
+    }
+
+    public void spillAnimasjon(){
         this.animasjon.spillPause();
+    }
+
+    public void forrigeTrekk(){
+        Sjakkbrett.resettBrett(this.sp_sjakkbrett);
     }
 
 
@@ -88,15 +95,27 @@ public class Controller implements Initializable {
      * fp_knapp_velg_parti
      * */
     public void hentTrekk() {
-        //System.out.println("Knappen funker");
-        valgtParti = fp_liste_parti.getSelectionModel().getSelectedItem();
-        //System.out.println(valgtParti);
 
-        for(Trekk t: valgtParti.getTrekkListe()) {
-            sp_liste_trekk.getItems().add(t);
+        Parti parti = this.fp_liste_parti.getSelectionModel().getSelectedItem();
+
+        if (this.partierLastet && parti != null){
+            //System.out.println("Knappen funker");
+            valgtParti = fp_liste_parti.getSelectionModel().getSelectedItem();
+            //System.out.println(valgtParti);
+
+            for(Trekk t: valgtParti.getTrekkListe()) {
+                sp_liste_trekk.getItems().add(t);
+            }
+
+            tab_pane.getSelectionModel().select(tab_sp);
+
+            this.initierAnimasjon();
+
+        } else {
+
+            Sjakkbrett.visFeil("Parti ikke valgt", "Du har ikke valgt et parti", "Du må velge et jævla parti din idiot!");
+
         }
-
-        tab_pane.getSelectionModel().select(tab_sp);
 
     }
 
@@ -110,6 +129,8 @@ public class Controller implements Initializable {
         for (Parti p: valgtTurnering.hentParti()) {
             fp_liste_parti.getItems().add(p);
         }
+        this.partierLastet = true;
+        this.fp_knapp_velg_parti.setDisable(false);
     }
 
     /**

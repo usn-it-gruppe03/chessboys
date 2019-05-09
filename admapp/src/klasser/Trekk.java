@@ -30,7 +30,7 @@ public class Trekk implements Serializable{
     }
 
     public BrikkeType getBrikkeType() {
-        return brikkeType;
+        return this.brikkeType;
     }
 
     public void setBrikkeType(BrikkeType brikkeType) {

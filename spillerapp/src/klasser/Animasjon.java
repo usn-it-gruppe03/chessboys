@@ -3,49 +3,52 @@ package klasser;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 public class Animasjon {
 
     private int antallTrekk, indeks;
-    private int sekundHastighet;
+    private ComboBox<Integer> hastigheter;
+    private int hastighet;
     private AnchorPane sjakkbrett;
     private ObservableList<Trekk> trekk;
+    private ListView<Trekk> trekkListe;
     private boolean play;
     private Timeline timeline;
     private KeyFrame keyFrame;
 
-    public Animasjon(){
-        this.antallTrekk = 10;
+    public Animasjon(AnchorPane sjakkbrett, ListView<Trekk> trekkListe, ComboBox<Integer> hastighet){
+        this.trekkListe = trekkListe;
         this.indeks = 0;
-        this.sekundHastighet = 1;
-        this.config();
+        this.sjakkbrett = sjakkbrett;
+        this.hastigheter = hastighet;
     }
 
-    private void config(){
+    public void initier(){
+        this.hastigheter.getSelectionModel().select(0);
+        this.hastighet = this.hastigheter.getSelectionModel().getSelectedItem();
+        this.antallTrekk = trekkListe.getItems().size();
+        this.trekk = trekkListe.getItems();
+        this.konfigurer();
+    }
 
-        /*EventHandler<ActionEvent> handler = time -> {
-
-        };
-
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(FPS), handler));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();*/
-
-        this.keyFrame = new KeyFrame(Duration.seconds(this.sekundHastighet), this::handler);
+    private void konfigurer(){
+        this.keyFrame = new KeyFrame(Duration.seconds(this.hastighet), this::tidsløkke);
         this.timeline = new Timeline(this.keyFrame);
         this.timeline.setCycleCount(antallTrekk);
-
     }
 
-    private void handler(ActionEvent e){
+    private void tidsløkke(ActionEvent e){
         System.out.println("Trekk " + this.indeks + " av " + this.antallTrekk);
+
+        this.keyFrame.getTime().subtract(Duration.seconds(1));
+        System.out.println("Hastighet: " + this.keyFrame.getTime().toSeconds());
+        this.utførTrekk();
+
         this.indeks++;
     }
 
@@ -61,7 +64,22 @@ public class Animasjon {
         }
     }
 
+    public void utførTrekk(){
+
+        this.trekkListe.getSelectionModel().select(this.indeks);
+
+        Trekk trekk = this.trekk.get(this.indeks);
+        BrikkeType brikkeType = trekk.getBrikkeType();
+        Posisjon fra = trekk.getFraTrekk();
+        Posisjon til = trekk.getTilTrekk();
+
+        Sjakkbrett.trekk(this.sjakkbrett, brikkeType, fra, til);
+
+    }
+
     public void forrigeTrekk(){
+
+        Sjakkbrett.resettBrett(this.sjakkbrett);
 
     }
 

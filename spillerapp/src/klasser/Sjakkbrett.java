@@ -297,12 +297,23 @@ public class Sjakkbrett {
      * */
     public static void trekk(AnchorPane sjakkbrett, BrikkeType brikkeType, Posisjon fra, Posisjon til){
 
+        System.out.println("Trekkmetode invokert!");
+
+        // * Hent ut brikke fra sjakkbrett.
         Brikke brikke = Sjakkbrett.hentBrikke(sjakkbrett,fra);
+
+        // ? Dersom brikken eksisterer.
         if (brikke != null){
+            cout("Brikken eksisterer");
+            brikke.setPosisjon(sjakkbrett, til);
 
+            // ? Dersom brikketypen stemmer overens.
             if (brikke.getBrikkeType() == brikkeType){
+                cout(brikke.getBrikkeType() + " | " + brikkeType);
 
+                // ? Dersom trekket er lovlig.
                 if (validerTrekk(brikkeType,fra,til)){
+                    cout("Trekket var lovlig");
 
                     brikke.setPosisjon(sjakkbrett, til);
 
@@ -312,10 +323,14 @@ public class Sjakkbrett {
                         "Brikken " + brikkeType.toString() + " kan ikke flyttes fra " + fra.toString() + " til " + til.toString()
                 );
 
-            }
+            } else cout(brikke.getBrikkeType() + " | " + brikkeType);
 
-        }
+        } else cout("Brikken eksisterer ikke");
 
+    }
+
+    public static void cout(String msg){
+        System.out.println(msg);
     }
 
 
@@ -419,6 +434,17 @@ public class Sjakkbrett {
         advarsel.setHeaderText(uthevet);
         advarsel.showAndWait();
 
+    }
+
+
+    public static void resettBrett(AnchorPane sjakkbrett){
+        for (int i=0; i<sjakkbrett.getChildren().size(); i++){
+            Node node = sjakkbrett.getChildren().get(i);
+            if (node instanceof Brikke){
+                Brikke brikke = ((Brikke) node);
+                sjakkbrett.getChildren().remove(brikke);
+            }
+        }
     }
 
 }
