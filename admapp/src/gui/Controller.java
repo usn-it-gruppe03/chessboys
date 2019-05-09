@@ -6,8 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import klasser.*;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -310,25 +308,32 @@ public class Controller implements Initializable {
         } else {
             if(!p_tekstfelt_dato.getText().isEmpty() && !p_tekstfelt_klokkeslett.getText().isEmpty()) {
                 Parti p = new Parti(p_kombo_spiller_hvit.getValue(), p_kombo_spiller_sort.getValue(),p_tekstfelt_dato.getText(),p_tekstfelt_klokkeslett.getText());
-                try {
-                    String filSti = aktivTurnering.getFil();
-                    System.out.println(filSti + p.getFil());
-                    File file = new File(filSti + p.getFil());
-                    if(!file.exists()) {
-                        if(file.createNewFile()) {
-                            System.out.println("File created!");
-                            aktivTurnering.leggTilParti(p);
+                for(Turnering t: turneringer) {
+                    if(t.toString().equals(aktivTurnering.toString())) {
+                        if(t.hentParti().isEmpty()) {
+                            System.out.println("array tom");
+                            t.leggTilParti(p);
 
+                        }else {
+                            for (int i = 0; i<t.hentParti().size(); i++) {
+                                Parti parti = t.hentParti().get(i);
+                                if(parti.toString().equals(p.toString())) {
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setTitle("Partifeil");
+                                    alert.setHeaderText("Ops! Noe gikk galt");
+                                    alert.setContentText("Partiet eksisterer allerede!");
+                                    alert.showAndWait();
+                                    break;
+                                } else {
+                                    System.out.println("Parti lagt til!");
+                                    System.out.println(p.toString());
+                                    t.leggTilParti(p);
+                                    break;
+                                }
+                            }
                         }
-                    } else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Parti eksisterer allerede!");
-                        alert.setHeaderText("Du prøver å lage et allerede eksisterende parti!");
-                        alert.setContentText("Partiet " + p.getFil() + " eksisterer allerede!");
-                        alert.showAndWait();
                     }
-                }catch (Exception e) {
-                    System.out.println("File not created!" + e.toString());
+
                 }
                 lagreInformasjon();
                 visParti();
@@ -362,6 +367,12 @@ public class Controller implements Initializable {
         populerRedigerPartiBox();
     }
 
+    /**
+     *
+     * Metode for å velge parti, slik at det kan redigeres
+     *
+     * */
+
     private void valgtParti() {
 
         for(Parti p: aktivTurnering.hentParti()) {
@@ -374,6 +385,12 @@ public class Controller implements Initializable {
 
     }
 
+    /**
+     *
+     * Metode for å legge til riktig informasjon i legg til trekk tab
+     *
+     * */
+
     private void populerRedigerPartiBox() {
         rp_tekstfelt_fra_rute.setCenterShape(true);
         rp_tekstfelt_fra_rute.getItems().addAll(Posisjon.values());
@@ -383,23 +400,31 @@ public class Controller implements Initializable {
         visTrekk();
     }
 
+    /**
+     *
+     * Metoode for å legge til trekk i et parti
+     *
+     */
+
+
     public void redigerParti() {
         System.out.println("Legg til trekk");
         rp_liste_trekk.getItems().clear();
-                for(Parti p: aktivTurnering.hentParti()) {
-                    if (p.toString().equals(valgtParti.toString())) {
+        for(Parti p: aktivTurnering.hentParti()) {
+            if (p.toString().equals(valgtParti.toString())) {
+                    p.setTrekk(new Trekk(rp_tekstfelt_fra_rute.getValue(), rp_tekstfelt_til_rute.getValue(), rp_tekstfelt_brikketype.getValue()));
+                    visTrekk();
 
-                            p.setTrekk(new Trekk(rp_tekstfelt_fra_rute.getValue(), rp_tekstfelt_til_rute.getValue(), rp_tekstfelt_brikketype.getValue()));
-                            visTrekk();
 
-                            Fil.leggTilTrekk(p.getTrekkListe(), aktivTurnering.getFil()+p.getFil());
-
-                            for(Trekk t: p.getTrekkListe()) {
-                                System.out.println(t.toString());
-                            }
-                    }
-                }
+            }
+        }
     }
+
+    /**
+     *
+     * Metode for å vise filer i ListView
+     *
+     * */
 
     private void visTrekk() {
         for(Parti p: aktivTurnering.hentParti()) {
