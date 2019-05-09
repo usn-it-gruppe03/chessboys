@@ -91,45 +91,56 @@ public class Controller implements Initializable {
         String tempSted = t_tekstfelt_sted.getText();
         String finalPath = ""+tempNavn+tempStartDato+tempSluttDato+tempSted;
 
-        boolean eksisterer = false;
+        if(finalPath.length() > 3){
+            boolean eksisterer = false;
 
-        for(Turnering t : turneringer){
-            if(t.toString().equals(finalPath)){
-                eksisterer = true;
+            for(Turnering t : turneringer){
+                if(t.toString().equals(finalPath)){
+                    eksisterer = true;
+                }
             }
-        }
 
-        if(eksisterer){
+            if(eksisterer){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Informasjonsmelding!");
+                alert.setHeaderText("Feilmelding:");
+                alert.setContentText("Turneringen du forsøker å opprette eksisterer allerede!");
+                alert.showAndWait();
+            }else{
+
+                //Tømmer feltene for informasjon
+                t_tekstfelt_turneringsnavn.clear();
+                t_tekstfelt_startdato.clear();
+                t_tekstfelt_sluttdato.clear();
+                t_tekstfelt_sted.clear();
+
+                nyTurnering = new Turnering(
+                        tempNavn,
+                        tempStartDato,
+                        tempSluttDato,
+                        tempSted);
+                nyTurnering.setFil(finalPath);
+
+                turneringer.add(nyTurnering);
+            }
+
+
+
+            //Tømmer lista, og oppdaterer med nye verdier
+            t_liste_turnering.getItems().clear();
+            lagreInformasjon();
+            setTurneringKomboBox();
+            visTurneringer();
+
+        }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Informasjonsmelding!");
             alert.setHeaderText("Feilmelding:");
             alert.setContentText("Turneringen du forsøker å opprette eksisterer allerede!");
             alert.showAndWait();
-        }else{
 
-            //Tømmer feltene for informasjon
-            t_tekstfelt_turneringsnavn.clear();
-            t_tekstfelt_startdato.clear();
-            t_tekstfelt_sluttdato.clear();
-            t_tekstfelt_sted.clear();
-
-            nyTurnering = new Turnering(
-                    tempNavn,
-                    tempStartDato,
-                    tempSluttDato,
-                    tempSted);
-            nyTurnering.setFil(finalPath);
-
-            turneringer.add(nyTurnering);
         }
 
-
-
-        //Tømmer lista, og oppdaterer med nye verdier
-        t_liste_turnering.getItems().clear();
-        lagreInformasjon();
-        setTurneringKomboBox();
-        visTurneringer();
 
 
 
