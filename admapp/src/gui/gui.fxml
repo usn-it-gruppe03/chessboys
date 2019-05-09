@@ -241,7 +241,7 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </ComboBox>
-                                                <Button fx:id="p_knapp_lag_parti" mnemonicParsing="false" text="Lag parti" onAction="#lagParti"/>
+                                                <Button fx:id="p_knapp_lag_parti" mnemonicParsing="false" onAction="#lagParti" text="Lag parti" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -268,7 +268,7 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </ListView>
-                                                <Button fx:id="p_knapp_velg_parti" mnemonicParsing="false" text="Velg parti" onAction="#velgPartiTab"/>
+                                                <Button fx:id="p_knapp_velg_parti" mnemonicParsing="false" onAction="#velgPartiTab" text="Velg parti" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -331,7 +331,7 @@
                                                                         <Insets bottom="10.0" />
                                                                      </VBox.margin>
                                                                   </ComboBox>
-                                                                  <Button fx:id="rp_knapp_legg_til_trekk" mnemonicParsing="false" text="Legg til trekk" onAction="#redigerParti"/>
+                                                                  <Button fx:id="rp_knapp_legg_til_trekk" mnemonicParsing="false" onAction="#redigerParti" text="Legg til trekk" />
                                                                </children>
                                                             </VBox>
                                                          </children>
@@ -408,6 +408,7 @@
                 <Menu mnemonicParsing="false" text="Fil">
                   <items>
                     <MenuItem fx:id="meny_lagre" mnemonicParsing="false" onAction="#lagreInformasjon" text="Lagre" />
+                        <MenuItem fx:id="meny_slett" mnemonicParsing="false" text="Slett data" />
                   </items>
                 </Menu>
               </menus>
