@@ -78,11 +78,8 @@ public class Controller implements Initializable {
         visTurneringer();
         setTurneringKomboBox();
 
-        if((t_liste_turnering.getSelectionModel().getSelectedItem() != null)) {
-            t_knapp_velg_turnering.setDisable(false);
-        } else {
-            t_knapp_velg_turnering.setDisable(true);
-        }
+        t_knapp_velg_turnering.disableProperty()
+                .bind(t_liste_turnering.getSelectionModel().selectedItemProperty().isNull());
     }
 
 
