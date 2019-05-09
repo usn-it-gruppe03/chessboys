@@ -268,7 +268,7 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </ListView>
-                                                <Button fx:id="p_knapp_velg_parti" mnemonicParsing="false" onAction="#velgPartiTab" text="Velg parti" />
+                                                <Button fx:id="p_knapp_velg_parti" disable="true" mnemonicParsing="false" onAction="#velgPartiTab" text="Velg parti" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -292,13 +292,22 @@
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
+                                                <StackPane prefHeight="30.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til trekk" StackPane.alignment="CENTER">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </StackPane>
                                                 <Label text="Valgt parti:" />
                                                 <TextField fx:id="rp_tekstfelt_partinavn" disable="true" editable="false" text="Partinavn">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </TextField>
-                                                <TitledPane animated="false" collapsible="false" prefHeight="286.0" prefWidth="431.0" text="Legg til trekk" VBox.vgrow="ALWAYS">
+                                                <TitledPane animated="false" collapsible="false" prefHeight="274.0" text="Legg til trekk" VBox.vgrow="ALWAYS">
                                                   <content>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                          <children>
@@ -307,45 +316,32 @@
                                                                   <Label text="Brikketype:" />
                                                                   <ComboBox fx:id="rp_tekstfelt_brikketype" prefWidth="410.0">
                                                                      <VBox.margin>
-                                                                        <Insets bottom="5.0" />
+                                                                        <Insets bottom="10.0" />
                                                                      </VBox.margin>
                                                                   </ComboBox>
                                                                   <Label text="Fra rute:" />
                                                                   <ComboBox fx:id="rp_tekstfelt_fra_rute" prefWidth="410.0">
                                                                      <VBox.margin>
-                                                                        <Insets bottom="5.0" />
+                                                                        <Insets bottom="10.0" />
                                                                      </VBox.margin>
                                                                   </ComboBox>
                                                                   <Label text="Til rute:" />
                                                                   <ComboBox fx:id="rp_tekstfelt_til_rute" prefWidth="410.0">
                                                                      <VBox.margin>
-                                                                        <Insets bottom="5.0" />
+                                                                        <Insets bottom="10.0" />
                                                                      </VBox.margin>
                                                                   </ComboBox>
-                                                                  <Label text="Kvalitetdskode:" />
-                                                                  <HBox prefHeight="100.0" prefWidth="200.0">
-                                                                     <children>
-                                                                        <ComboBox fx:id="rp_kombo_kvalitetskode" prefWidth="150.0">
-                                                                           <opaqueInsets>
-                                                                              <Insets />
-                                                                           </opaqueInsets>
-                                                                           <HBox.margin>
-                                                                              <Insets right="10.0" />
-                                                                           </HBox.margin>
-                                                                        </ComboBox>
-                                                                        <Button fx:id="rp_knapp_legg_til_trekk" mnemonicParsing="false" onAction="#redigerParti" text="Legg til trekk" />
-                                                                     </children>
-                                                                  </HBox>
+                                                                  <Button fx:id="rp_knapp_legg_til_trekk" mnemonicParsing="false" onAction="#redigerParti" text="Legg til trekk" />
                                                                </children>
                                                             </VBox>
                                                          </children>
                                                       </AnchorPane>
                                                   </content>
                                                    <VBox.margin>
-                                                      <Insets bottom="5.0" />
+                                                      <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </TitledPane>
-                                                <TitledPane animated="false" collapsible="false" prefHeight="147.0" prefWidth="431.0" text="Registrer resultat">
+                                                <TitledPane animated="false" collapsible="false" prefHeight="102.0" text="Registrer resultat">
                                                   <content>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                          <children>
@@ -356,11 +352,7 @@
                                                                         <Insets />
                                                                      </VBox.margin>
                                                                   </Label>
-                                                                  <ComboBox fx:id="rp_kombo_utfall" prefWidth="410.0">
-                                                                     <VBox.margin>
-                                                                        <Insets bottom="5.0" />
-                                                                     </VBox.margin></ComboBox>
-                                                                  <Button fx:id="rp_button_lagre_endringer" mnemonicParsing="false" onAction="#lagrePoengHandler" text="Lagre endringer" />
+                                                                  <ComboBox fx:id="rp_kombo_utfall" prefWidth="410.0" />
                                                                </children>
                                                             </VBox>
                                                          </children>
@@ -393,6 +385,7 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </ListView>
+                                                <Button mnemonicParsing="false" onAction="#lagrePoengHandler" text="Lagre endringer" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
