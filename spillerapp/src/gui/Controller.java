@@ -5,12 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import klasser.*;
 
@@ -24,6 +19,9 @@ import java.util.ResourceBundle;
  * Controller: Spiller App
  * */
 public class Controller implements Initializable {
+
+    // * Tab pane
+    @FXML private TabPane tab_pane;
 
     // * Generelle attributter:
     private ArrayList<Turnering> turneringer = new ArrayList<>();
@@ -40,7 +38,7 @@ public class Controller implements Initializable {
 
     // * TAB: Se parti
     @FXML private Tab tab_sp;
-    @FXML private ListView<?> sp_liste_trekk;
+    @FXML private ListView<Trekk> sp_liste_trekk;
     @FXML private AnchorPane sp_sjakkbrett;
     @FXML private Button sp_knapp_velg_trekk;
     @FXML private Button sp_knapp_forrige_trekk;
@@ -73,6 +71,22 @@ public class Controller implements Initializable {
         // ! TEST
         /*Brikke brikke = Sjakkbrett.hentBrikke(sp_sjakkbrett, Posisjon.A1);
         brikke.setPosisjon(sp_sjakkbrett,Posisjon.C5);*/
+
+    }
+
+    /**
+     * fp_knapp_velg_parti
+     * */
+    public void hentTrekk() {
+        //System.out.println("Knappen funker");
+        valgtParti = fp_liste_parti.getSelectionModel().getSelectedItem();
+        //System.out.println(valgtParti);
+
+        for(Trekk t: valgtParti.getTrekkListe()) {
+            sp_liste_trekk.getItems().add(t);
+        }
+
+        tab_pane.getSelectionModel().select(tab_sp);
 
     }
 

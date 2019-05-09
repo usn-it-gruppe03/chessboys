@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
    <children>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane fx:id="tab_pane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab fx:id="tab_fp" text="Finn parti">
             <content>
@@ -50,7 +50,7 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </TextField>
-                                          <Button fx:id="fp_knapp_søk_parti" mnemonicParsing="false" text="Søk" onAction="#søkSpiller" />
+                                          <Button fx:id="fp_knapp_søk_parti" mnemonicParsing="false" onAction="#søkSpiller" text="Søk" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -77,7 +77,7 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </ListView>
-                                          <Button fx:id="fp_knapp_velg_parti" mnemonicParsing="false" text="Velg parti" />
+                                          <Button fx:id="fp_knapp_velg_parti" mnemonicParsing="false" onAction="#hentTrekk" text="Velg parti" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
