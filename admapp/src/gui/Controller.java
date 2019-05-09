@@ -77,6 +77,12 @@ public class Controller implements Initializable {
         hentTurneringern();
         visTurneringer();
         setTurneringKomboBox();
+
+        if((t_liste_turnering.getSelectionModel().getSelectedItem() != null)) {
+            t_knapp_velg_turnering.setDisable(false);
+        } else {
+            t_knapp_velg_turnering.setDisable(true);
+        }
     }
 
 
@@ -310,53 +316,64 @@ public class Controller implements Initializable {
     }
 
     public void lagParti(){
+        try {
+            if(p_kombo_spiller_hvit.getValue().equals(p_kombo_spiller_sort.getValue())) {
+                // p_kombo_spiller_hvit.getValue().equals(p_kombo_spiller_sort.getValue())
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Partifeil");
+                alert.setHeaderText("Ops! Noe gikk galt");
+                alert.setContentText("Du har satt " + p_kombo_spiller_hvit.getValue().getFornavn() + " til å spille mot seg selv!");
+                alert.showAndWait();
+            } else {
+                if(!(p_tekstfelt_dato.getText()+p_tekstfelt_klokkeslett.getText()).isEmpty()) {
+                    Parti p = new Parti(p_kombo_spiller_hvit.getValue(), p_kombo_spiller_sort.getValue(),p_tekstfelt_dato.getText(),p_tekstfelt_klokkeslett.getText());
+                    for(Turnering t: turneringer) {
+                        if(t.toString().equals(aktivTurnering.toString())) {
+                            if(t.hentParti().isEmpty()) {
+                                System.out.println("array tom");
+                                t.leggTilParti(p);
 
-        if(p_kombo_spiller_hvit.getValue().equals(p_kombo_spiller_sort.getValue())) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Partifeil");
-            alert.setHeaderText("Ops! Noe gikk galt");
-            alert.setContentText("Du har satt " + p_kombo_spiller_hvit.getValue().getFornavn() + " til å spille mot seg selv!");
-            alert.showAndWait();
-        } else {
-            if(!p_tekstfelt_dato.getText().isEmpty() && !p_tekstfelt_klokkeslett.getText().isEmpty()) {
-                Parti p = new Parti(p_kombo_spiller_hvit.getValue(), p_kombo_spiller_sort.getValue(),p_tekstfelt_dato.getText(),p_tekstfelt_klokkeslett.getText());
-                for(Turnering t: turneringer) {
-                    if(t.toString().equals(aktivTurnering.toString())) {
-                        if(t.hentParti().isEmpty()) {
-                            System.out.println("array tom");
-                            t.leggTilParti(p);
-
-                        }else {
-                            for (int i = 0; i<t.hentParti().size(); i++) {
-                                Parti parti = t.hentParti().get(i);
-                                if(parti.toString().equals(p.toString())) {
-                                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                                    alert.setTitle("Partifeil");
-                                    alert.setHeaderText("Ops! Noe gikk galt");
-                                    alert.setContentText("Partiet eksisterer allerede!");
-                                    alert.showAndWait();
-                                    break;
-                                } else {
-                                    System.out.println("Parti lagt til!");
-                                    System.out.println(p.toString());
-                                    t.leggTilParti(p);
-                                    break;
+                            }else {
+                                for (int i = 0; i<t.hentParti().size(); i++) {
+                                    Parti parti = t.hentParti().get(i);
+                                    if(parti.toString().equals(p.toString())) {
+                                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                                        alert.setTitle("Partifeil");
+                                        alert.setHeaderText("Ops! Noe gikk galt");
+                                        alert.setContentText("Partiet eksisterer allerede!");
+                                        alert.showAndWait();
+                                        break;
+                                    } else {
+                                        System.out.println("Parti lagt til!");
+                                        System.out.println(p.toString());
+                                        t.leggTilParti(p);
+                                        break;
+                                    }
                                 }
                             }
                         }
-                    }
 
+                    }
+                    lagreInformasjon();
+                    visParti();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Advarsel!");
+                    alert.setHeaderText("Du har ikke fylt ut alle felt!");
+                    alert.setContentText("Alle felt i skjemaet er ikke fylt ut, vennligst fyll alle felt!");
+                    alert.showAndWait();
                 }
-                lagreInformasjon();
-                visParti();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Advarsel!");
-                alert.setHeaderText("Du har ikke fylt ut alle felt!");
-                alert.setContentText("Alle felt i skjemaet er ikke fylt ut, vennligst fyll alle felt!");
+
             }
 
+        }catch (NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advarsel!");
+            alert.setHeaderText("Du har ikke fylt ut alle felt!");
+            alert.setContentText("Alle felt i skjemaet er ikke fylt ut, vennligst fyll alle felt!");
+            alert.showAndWait();
         }
+
 
 
     }
