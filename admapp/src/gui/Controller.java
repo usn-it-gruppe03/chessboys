@@ -1,6 +1,5 @@
 package gui;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -222,6 +221,7 @@ public class Controller implements Initializable {
                 }
             }
         }
+        Fil.lagBackup(turneringer);
         Fil.leggTilObjekt(turneringer);
         System.out.println("LAGRET TIL .dat");
     }

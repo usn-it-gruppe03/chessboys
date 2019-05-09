@@ -80,12 +80,18 @@ public class Fil {
                 bw.newLine();
                 bw.write("    -Partier: ");
                 bw.newLine();
+
                 for(Parti p: t.hentParti()) {
                     bw.write("      -" + p.toString());
                     bw.newLine();
+                    for(Trekk trekk: p.getTrekkListe()) {
+                        bw.write("                    -Trekk");
+                        bw.newLine();
+                        bw.write("                                    -" + trekk.toString());
+                        bw.newLine();
+                    }
                 }
-                bw.write("                    -Trekk");
-                bw.newLine();
+
                 bw.write("   -Spillere: ");
                 bw.newLine();
                 for(Spiller s: t.hentSpillerArray()) {
