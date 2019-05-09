@@ -76,7 +76,7 @@
                                                                 </TextField>
                                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                                     <children>
-                                                                        <Button fx:id="t_knapp_lag_turnering" mnemonicParsing="false" onAction="#lagMappe" text="Lag turnering" />
+                                                                        <Button fx:id="t_knapp_lag_turnering" mnemonicParsing="false" onAction="#lagTurnering" text="Lag turnering" />
                                                                     </children>
                                                                 </HBox>
                                                             </children>

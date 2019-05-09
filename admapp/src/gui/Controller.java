@@ -86,7 +86,7 @@ public class Controller implements Initializable {
     }
 
 
-    public void lagMappe() {
+    public void lagTurnering() {
         String tempNavn = t_tekstfelt_turneringsnavn.getText();
         String tempStartDato = t_tekstfelt_startdato.getText();
         String tempSluttDato = t_tekstfelt_sluttdato.getText();
@@ -149,7 +149,11 @@ public class Controller implements Initializable {
     }
 
 
-
+    /***
+     *
+     * Når du har valgt turnering, populer data på riktig plass
+     *
+     * */
     public void velgTurnKnapp() {
         velgTurnering();
         tab_pane.getSelectionModel().select(tab_rt);
@@ -157,7 +161,11 @@ public class Controller implements Initializable {
         visSpillere();
     }
 
-        //FIKS IFFEN
+    /**
+     *
+     * Metode for å velge turnering
+     *
+     * */
     public void velgTurnering(){
 
         //Henter stringen av objektet som er lagret i listview.
@@ -336,6 +344,13 @@ public class Controller implements Initializable {
         this.p_knapp_velg_parti.setDisable(false);
     }
 
+
+    /**
+     *
+     * Metode for å lagePartier med tilhørende feilmeldinger
+     *
+     */
+
     public void lagParti(){
         try {
             if(p_kombo_spiller_hvit.getValue().equals(p_kombo_spiller_sort.getValue())) {
@@ -396,6 +411,12 @@ public class Controller implements Initializable {
 
     }
 
+    /**
+     *
+     * Metode for å vise partier i ListView'en
+     *
+     * */
+
     private void visParti() {
         p_liste_parti.getItems().clear();
 
@@ -407,6 +428,12 @@ public class Controller implements Initializable {
             }
         }
     }
+
+    /**
+     *
+     * Metode for å velge partier
+     *
+     * */
 
     public void velgPartiTab() {
         Parti partiSjekk = this.p_liste_parti.getSelectionModel().getSelectedItem();
@@ -487,6 +514,16 @@ public class Controller implements Initializable {
         }
 
     }
+
+    /**
+     *
+     * Metode for å sjekke lovlighet på flyttende som blir gjennomført når du legger til trekk
+     *
+     * @param brikkeType - Parameter brikktype
+     * @param fra - Paramter fra posisjon
+     * @param til - Paramter til posisjon
+     *
+     * */
     public static boolean sjekkLovlighet(BrikkeType brikkeType, Posisjon fra, Posisjon til){
 
         char fra_bokstav = atomiserPosisjon(fra)[0].charAt(0);
@@ -610,6 +647,12 @@ public class Controller implements Initializable {
             }
         }
     }
+
+    /**
+     *
+     * Metode for å tømme dataene i .dat filen
+     *
+     * */
 
     public void tomData(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

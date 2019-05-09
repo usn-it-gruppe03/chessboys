@@ -84,6 +84,8 @@ public class Fil {
                     bw.write("      -" + p.toString());
                     bw.newLine();
                 }
+                bw.write("                    -Trekk");
+                bw.newLine();
                 bw.write("   -Spillere: ");
                 bw.newLine();
                 for(Spiller s: t.hentSpillerArray()) {
