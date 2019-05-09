@@ -136,7 +136,7 @@ public class Controller implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Informasjonsmelding!");
             alert.setHeaderText("Feilmelding:");
-            alert.setContentText("Turneringen du forsøker å opprette eksisterer allerede!");
+            alert.setContentText("Fyll ut informasjon!");
             alert.showAndWait();
 
         }
