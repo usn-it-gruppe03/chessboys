@@ -88,16 +88,14 @@ public class Controller implements Initializable {
 
 
     /**
-     * fp_knapp_velg_parti
+     *
      * */
     public void hentTrekk() {
 
         Parti parti = this.fp_liste_parti.getSelectionModel().getSelectedItem();
 
         if (this.partierLastet && parti != null){
-            //System.out.println("Knappen funker");
             valgtParti = fp_liste_parti.getSelectionModel().getSelectedItem();
-            //System.out.println(valgtParti);
 
             for(Trekk t: valgtParti.getTrekkListe()) {
                 sp_liste_trekk.getItems().add(t);
@@ -109,10 +107,9 @@ public class Controller implements Initializable {
 
         } else {
 
-            Sjakkbrett.visFeil("Parti ikke valgt", "Du har ikke valgt et parti", "Du må velge et jævla parti din idiot!");
+            Sjakkbrett.visFeil("Parti ikke valgt", "Du har ikke valgt et parti", "Vennligst velg et parti!");
 
         }
-
     }
 
     /**
