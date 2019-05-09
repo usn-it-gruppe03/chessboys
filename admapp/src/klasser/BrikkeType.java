@@ -2,7 +2,7 @@ package klasser;
 
 import java.util.ArrayList;
 
-public enum BrikkeType {
+public enum BrikkeType{
 
     KONGE_HVIT      ("bilde/ikon/sjakkbrikke/konge_hvit.png", 1),
     KONGE_SORT      ("bilde/ikon/sjakkbrikke/konge_sort.png", 1),

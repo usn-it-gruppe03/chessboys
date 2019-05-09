@@ -209,6 +209,7 @@ public class Controller implements Initializable {
             }
         }
         Fil.leggTilObjekt(turneringer);
+        Fil.lagBackup(turneringer);
         System.out.println("LAGRET TIL .dat");
     }
 

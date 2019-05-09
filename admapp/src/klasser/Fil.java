@@ -10,6 +10,7 @@ public class Fil {
     private static ObjectOutputStream ut;
     private static ObjectInputStream inn;
     private final static String FILE_PATH_TO_INFO = "turneringer/info.dat";
+    private final static String FILE_PATH_TO_BACKUP = "turneringer/backup.txt";
     private final static String FILE_PATH_TO_FOLDER = "turneringer";
 
     /** TODO
@@ -69,6 +70,35 @@ public class Fil {
         return null;
     }
 
+    /**/
+
+    public static void lagBackup(ArrayList<Turnering> turnListe) {
+        try{
+            BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH_TO_BACKUP));
+            for(Turnering t: turnListe) {
+                bw.write(t.toString());
+                bw.newLine();
+                bw.write("    -Partier: ");
+                bw.newLine();
+                for(Parti p: t.hentParti()) {
+                    bw.write("      -" + p.toString());
+                    bw.newLine();
+                }
+                bw.write("   -Spillere: ");
+                bw.newLine();
+                for(Spiller s: t.hentSpillerArray()) {
+                    bw.write("      -" + s.getFornavn() + " "+  s.getEtternavn() + " | Poeng: " + s.getPoeng());
+                    bw.newLine();
+                }
+                bw.write("________________________________________________________________________________");
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+        }catch (IOException e) {
+            System.out.println(e.toString());
+        }
+    }
 
 
 }//SLUTT PÅ KLASSE
