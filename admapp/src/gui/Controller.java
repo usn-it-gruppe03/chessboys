@@ -381,7 +381,7 @@ public class Controller implements Initializable {
             tab_pane.getSelectionModel().select(tab_rp);
             populerRedigerPartiBox();
         }else {
-            Sjakkbrett.visFeil("Parti ikke valgt", "Du har ikke valgt et parti", "Vennligst velg et parti!");
+            Sjakkbrett.visFeil("Parti ikke valgt", "Du har ikke valgt et parti", "Vennligst velg et parti");
         }
     }
 
