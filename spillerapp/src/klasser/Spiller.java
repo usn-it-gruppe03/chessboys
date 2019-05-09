@@ -2,7 +2,7 @@ package klasser;
 
 import java.io.Serializable;
 
-public class Spiller implements Serializable {
+public class Spiller implements Serializable, Comparable<Spiller> {
 
     private String fornavn, etternavn;
     private double poeng;
@@ -40,6 +40,18 @@ public class Spiller implements Serializable {
     @Override
     public String toString() {
         return this.getFornavn() + " " + this.getEtternavn();
+    }
+
+
+    @Override
+    public int compareTo(Spiller s) {
+        if(this.poeng == s.poeng) {
+            return 0;
+        } else if(this.poeng>s.poeng) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 }
 

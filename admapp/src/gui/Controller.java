@@ -501,6 +501,7 @@ public class Controller implements Initializable {
                 System.out.println(e.toString());
             }
             alert.close();
+            t_liste_turnering.getItems().clear();
             visTurneringer();
         } else {
            alert.close();

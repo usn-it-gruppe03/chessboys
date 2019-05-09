@@ -1,9 +1,5 @@
 package gui;
 
-import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -12,7 +8,7 @@ import klasser.*;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 
@@ -51,8 +47,8 @@ public class Controller implements Initializable {
 
     // * TAB: Poengtabell
     @FXML private Tab tab_pt;
-    @FXML private ListView<?> pt_poengtabell;
-    @FXML private ChoiceBox<?> pt_kombo_turnering;
+    @FXML private ListView<String> pt_poengtabell;
+    @FXML private ChoiceBox<Turnering> pt_kombo_turnering;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -168,6 +164,19 @@ public class Controller implements Initializable {
     private void populerComboBox() {
         for(Turnering t: turneringer) {
             fp_kombo_turnering.getItems().addAll(t);
+            pt_kombo_turnering.getItems().addAll(t);
+        }
+    }
+
+    public void visResultat() {
+        for (Turnering t: turneringer) {
+            if(t.toString().equals(pt_kombo_turnering.getValue().toString())) {
+                Collections.sort(t.hentSpillerArray());
+                int index = 1;
+                for (Spiller s: t.hentSpillerArray()) {
+                    pt_poengtabell.getItems().add((index++) + ". "+ s.getFornavn() + " " + s.getEtternavn() + " | Poeng: " + s.getPoeng());
+                }
+            }
         }
     }
 
