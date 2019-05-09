@@ -452,13 +452,15 @@ public class Controller implements Initializable {
                 if(t.toString().equals(aktivTurnering.toString())) {
                     for(Parti p: t.hentParti()) {
                         if(p.toString().equals(valgtParti.toString())) {
-                            if (p.getSpillerHvit().getFornavn().equals(rp_kombo_utfall)) {
+                            if (p.getSpillerHvit().getFornavn().equals(rp_kombo_utfall.getValue())) {
                                 p.getSpillerHvit().setPoeng(1);
-                            } else if(rp_kombo_utfall.equals("Remi")){
+                            } else if(rp_kombo_utfall.getValue().equals("Remi")){
                                 p.getSpillerHvit().setPoeng(0.5);
                                 p.getSpillerSort().setPoeng(0.5);
-                            } else if(p.getSpillerSort().getFornavn().equals(rp_kombo_utfall)) {
+                            } else if(p.getSpillerSort().getFornavn().equals(rp_kombo_utfall.getValue())) {
                                 p.getSpillerSort().setPoeng(1);
+                            } else {
+                                System.out.println("Ingen match funnet!");
                             }
                         }
                     }
