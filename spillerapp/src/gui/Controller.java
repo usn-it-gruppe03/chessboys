@@ -24,7 +24,7 @@ public class Controller implements Initializable {
     private ArrayList<Turnering> turneringer = new ArrayList<>();
     private Parti valgtParti;
     private Animasjon animasjon;
-    private boolean partierLastet;
+    private boolean partierLastet, turneringValgt;
 
     // * TAB: Finn parti
     @FXML private Tab tab_fp;
@@ -134,6 +134,7 @@ public class Controller implements Initializable {
         }
         this.partierLastet = true;
         this.fp_knapp_velg_parti.setDisable(false);
+        this.fp_knapp_søk_parti.setDisable(false);
     }
 
     /**
@@ -142,13 +143,13 @@ public class Controller implements Initializable {
     public void søkSpiller() {
         Turnering valgtTurnering;
         valgtTurnering = fp_kombo_turnering.getSelectionModel().getSelectedItem();
-        String spiller1 = fp_tekstfelt_spiller1.getText();
-        String spiller2 = fp_tekstfelt_spiller2.getText();
+        String spiller1 = fp_tekstfelt_spiller1.getText().toLowerCase();
+        String spiller2 = fp_tekstfelt_spiller2.getText().toLowerCase();
         fp_liste_parti.getItems().clear();
         System.out.println();
 
         for (Parti p: valgtTurnering.hentParti()) {
-            if (p.toString().contains(spiller1) && p.toString().contains(spiller2)) {
+            if (p.toString().toLowerCase().contains(spiller1) && p.toString().toLowerCase().contains(spiller2)) {
                 fp_liste_parti.getItems().add(p);
             }
         }

@@ -50,7 +50,7 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </TextField>
-                                          <Button fx:id="fp_knapp_søk_parti" mnemonicParsing="false" onAction="#søkSpiller" text="Søk" />
+                                          <Button fx:id="fp_knapp_søk_parti" disable="true" mnemonicParsing="false" onAction="#søkSpiller" text="Søk" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -174,7 +174,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label text="Velg turnering:" />
-                              <ChoiceBox fx:id="pt_kombo_turnering" prefWidth="300.0" onAction="#visResultat">
+                              <ChoiceBox fx:id="pt_kombo_turnering" onAction="#visResultat" prefWidth="300.0">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
