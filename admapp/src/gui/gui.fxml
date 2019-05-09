@@ -26,394 +26,401 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
-   <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <TabPane fx:id="tab_pane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-              <tabs>
-                <Tab fx:id="tab_t" text="Turnering">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <StackPane prefHeight="30.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lag ny turnering" StackPane.alignment="CENTER">
-                                                         <font>
-                                                            <Font size="18.0" />
-                                                         </font>
-                                                      </Text>
-                                                   </children>
-                                                </StackPane>
-                                                <Label text="Navn:" />
-                                                <TextField fx:id="t_tekstfelt_turneringsnavn">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Startdato (YYYY-MM-DD):" />
-                                                <TextField fx:id="t_tekstfelt_startdato">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Sluttdato (YYYY-MM-DD):" />
-                                                <TextField fx:id="t_tekstfelt_sluttdato">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Sted:" />
-                                                <TextField fx:id="t_tekstfelt_sted">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Button fx:id="t_knapp_lag_turnering" mnemonicParsing="false" onAction="#lagMappe" text="Lag turnering" />
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <StackPane prefHeight="30.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Velg en turnering" StackPane.alignment="CENTER">
-                                                         <font>
-                                                            <Font size="18.0" />
-                                                         </font>
-                                                      </Text>
-                                                   </children>
-                                                </StackPane>
-                                                <Label text="Tilgjengelige turneringer:" />
-                                                <ListView fx:id="t_liste_turnering" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </ListView>
-                                                <Button fx:id="t_knapp_velg_turnering" mnemonicParsing="false" onAction="#velgTurnKnapp" text="Velg turnering" />
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </Tab>
-                <Tab fx:id="tab_rt" text="Legg til deltakere i turnering">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <StackPane prefHeight="30.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltakere" StackPane.alignment="CENTER">
-                                                         <font>
-                                                            <Font size="18.0" />
-                                                         </font>
-                                                      </Text>
-                                                   </children>
-                                                </StackPane>
-                                                <Label layoutX="30.0" layoutY="157.0" text="Valgt turnering:" />
-                                                <TextField fx:id="rt_tekstfelt_turneringsnavn" disable="true" editable="false" text="Turneringsnavn">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Fornavn:" />
-                                                <TextField fx:id="rt_tekstfelt_fornavn">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Etternavn:" />
-                                                <TextField fx:id="rt_tekstfelt_etternavn">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Button fx:id="rt_knapp_legg_til_deltaker" disable="true" mnemonicParsing="false" onAction="#leggTilSpiller" text="Legg til deltaker" />
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <StackPane prefHeight="30.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deltakere" StackPane.alignment="CENTER">
-                                                         <font>
-                                                            <Font size="18.0" />
-                                                         </font>
-                                                      </Text>
-                                                   </children>
-                                                </StackPane>
-                                                <Label text="Liste over deltakere i turneringen:" />
-                                                <ListView fx:id="rt_liste_turnering" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </Tab>
-                  <Tab fx:id="tab_p" text="Legg til parti i turnering">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <StackPane prefHeight="30.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lag parti" StackPane.alignment="CENTER">
-                                                         <font>
-                                                            <Font size="18.0" />
-                                                         </font>
-                                                      </Text>
-                                                   </children>
-                                                </StackPane>
-                                                <Label text="Turnering:" />
-                                                <ComboBox fx:id="p_kombo_turnering" onAction="#setSpillerKomboBox" prefWidth="410.0">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </ComboBox>
-                                                <Label layoutX="30.0" layoutY="115.0" text="Dato:" />
-                                                <TextField fx:id="p_tekstfelt_dato">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label layoutX="30.0" layoutY="179.0" text="Klokkeslett:" />
-                                                <TextField fx:id="p_tekstfelt_klokkeslett" layoutX="30.0" layoutY="201.0">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Spiller hvit:" />
-                                                <ComboBox fx:id="p_kombo_spiller_hvit" layoutX="30.0" layoutY="137.0" prefWidth="410.0">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </ComboBox>
-                                                <Label text="Spiller sort:" />
-                                                <ComboBox fx:id="p_kombo_spiller_sort" layoutX="30.0" layoutY="137.0" prefWidth="410.0">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </ComboBox>
-                                                <Button fx:id="p_knapp_lag_parti" mnemonicParsing="false" onAction="#lagParti" text="Lag parti" />
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <StackPane prefHeight="30.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Liste over partier" StackPane.alignment="CENTER">
-                                                         <font>
-                                                            <Font size="18.0" />
-                                                         </font>
-                                                      </Text>
-                                                   </children>
-                                                </StackPane>
-                                                <Label text="Partier:" />
-                                                <ListView fx:id="p_liste_parti" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </ListView>
-                                                <Button fx:id="p_knapp_velg_parti" disable="true" mnemonicParsing="false" onAction="#velgPartiTab" text="Velg parti" />
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-                  <Tab fx:id="tab_rp" text="Legg til trekk i parti">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <StackPane prefHeight="30.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til trekk" StackPane.alignment="CENTER">
-                                                         <font>
-                                                            <Font size="18.0" />
-                                                         </font>
-                                                      </Text>
-                                                   </children>
-                                                </StackPane>
-                                                <Label text="Valgt parti:" />
-                                                <TextField fx:id="rp_tekstfelt_partinavn" disable="true" editable="false" text="Partinavn">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <TitledPane animated="false" collapsible="false" prefHeight="274.0" text="Legg til trekk" VBox.vgrow="ALWAYS">
-                                                  <content>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                         <children>
-                                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                               <children>
-                                                                  <Label text="Brikketype:" />
-                                                                  <ComboBox fx:id="rp_tekstfelt_brikketype" prefWidth="410.0">
-                                                                     <VBox.margin>
+    <children>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <TabPane fx:id="tab_pane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                    <tabs>
+                        <Tab fx:id="tab_t" text="Turnering">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <children>
+                                                                <StackPane prefHeight="30.0" prefWidth="200.0">
+                                                                    <children>
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lag ny turnering" StackPane.alignment="CENTER">
+                                                                            <font>
+                                                                                <Font size="18.0" />
+                                                                            </font>
+                                                                        </Text>
+                                                                    </children>
+                                                                </StackPane>
+                                                                <Label text="Navn:" />
+                                                                <TextField fx:id="t_tekstfelt_turneringsnavn">
+                                                                    <VBox.margin>
                                                                         <Insets bottom="10.0" />
-                                                                     </VBox.margin>
-                                                                  </ComboBox>
-                                                                  <Label text="Fra rute:" />
-                                                                  <ComboBox fx:id="rp_tekstfelt_fra_rute" prefWidth="410.0">
-                                                                     <VBox.margin>
+                                                                    </VBox.margin>
+                                                                </TextField>
+                                                                <Label text="Startdato (YYYY-MM-DD):" />
+                                                                <TextField fx:id="t_tekstfelt_startdato">
+                                                                    <VBox.margin>
                                                                         <Insets bottom="10.0" />
-                                                                     </VBox.margin>
-                                                                  </ComboBox>
-                                                                  <Label text="Til rute:" />
-                                                                  <ComboBox fx:id="rp_tekstfelt_til_rute" prefWidth="410.0">
-                                                                     <VBox.margin>
+                                                                    </VBox.margin>
+                                                                </TextField>
+                                                                <Label text="Sluttdato (YYYY-MM-DD):" />
+                                                                <TextField fx:id="t_tekstfelt_sluttdato">
+                                                                    <VBox.margin>
                                                                         <Insets bottom="10.0" />
-                                                                     </VBox.margin>
-                                                                  </ComboBox>
-                                                                  <Button fx:id="rp_knapp_legg_til_trekk" mnemonicParsing="false" onAction="#redigerParti" text="Legg til trekk" />
-                                                               </children>
-                                                            </VBox>
-                                                         </children>
-                                                      </AnchorPane>
-                                                  </content>
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </TitledPane>
-                                                <TitledPane animated="false" collapsible="false" prefHeight="102.0" text="Registrer resultat">
-                                                  <content>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                         <children>
-                                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                               <children>
-                                                                  <Label text="Utfall:">
-                                                                     <VBox.margin>
-                                                                        <Insets />
-                                                                     </VBox.margin>
-                                                                  </Label>
-                                                                  <ComboBox fx:id="rp_kombo_utfall" prefWidth="410.0" />
-                                                               </children>
-                                                            </VBox>
-                                                         </children>
-                                                      </AnchorPane>
-                                                  </content>
-                                                </TitledPane>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <StackPane prefHeight="30.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Registrerte trekk" StackPane.alignment="CENTER">
-                                                         <font>
-                                                            <Font size="18.0" />
-                                                         </font>
-                                                      </Text>
-                                                   </children>
-                                                </StackPane>
-                                                <Label text="Liste over registrerte trekk:" />
-                                                <ListView fx:id="rp_liste_trekk" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </ListView>
-                                                <Button mnemonicParsing="false" onAction="#lagrePoengHandler" text="Lagre endringer" />
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-              </tabs>
-            </TabPane>
-         </center>
-         <top>
-            <MenuBar BorderPane.alignment="CENTER">
-              <menus>
-                <Menu mnemonicParsing="false" text="Fil">
-                  <items>
-                    <MenuItem fx:id="meny_lagre" mnemonicParsing="false" onAction="#lagreInformasjon" text="Lagre" />
-                        <MenuItem fx:id="meny_slett" mnemonicParsing="false" onAction="#tomData" text="Slett data" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-         </top>
-      </BorderPane>
-   </children>
+                                                                    </VBox.margin>
+                                                                </TextField>
+                                                                <Label text="Sted:" />
+                                                                <TextField fx:id="t_tekstfelt_sted">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                    </VBox.margin>
+                                                                </TextField>
+                                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                    <children>
+                                                                        <Button fx:id="t_knapp_lag_turnering" mnemonicParsing="false" onAction="#lagMappe" text="Lag turnering" />
+                                                                    </children>
+                                                                </HBox>
+                                                            </children>
+                                                            <padding>
+                                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                            </padding>
+                                                        </VBox>
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <children>
+                                                                <StackPane prefHeight="30.0" prefWidth="200.0">
+                                                                    <children>
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Velg en turnering" StackPane.alignment="CENTER">
+                                                                            <font>
+                                                                                <Font size="18.0" />
+                                                                            </font>
+                                                                        </Text>
+                                                                    </children>
+                                                                </StackPane>
+                                                                <Label text="Tilgjengelige turneringer:" />
+                                                                <ListView fx:id="t_liste_turnering" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                    </VBox.margin>
+                                                                </ListView>
+                                                                <Button fx:id="t_knapp_velg_turnering" mnemonicParsing="false" onAction="#velgTurnKnapp" text="Velg turnering" />
+                                                            </children>
+                                                            <padding>
+                                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                            </padding>
+                                                        </VBox>
+                                                    </children>
+                                                </AnchorPane>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="tab_rt" text="Legg til deltakere i turnering">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <children>
+                                                                <StackPane prefHeight="30.0" prefWidth="200.0">
+                                                                    <children>
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltakere" StackPane.alignment="CENTER">
+                                                                            <font>
+                                                                                <Font size="18.0" />
+                                                                            </font>
+                                                                        </Text>
+                                                                    </children>
+                                                                </StackPane>
+                                                                <Label layoutX="30.0" layoutY="157.0" text="Valgt turnering:" />
+                                                                <TextField fx:id="rt_tekstfelt_turneringsnavn" disable="true" editable="false" text="Turneringsnavn">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                    </VBox.margin>
+                                                                </TextField>
+                                                                <Label text="Fornavn:" />
+                                                                <TextField fx:id="rt_tekstfelt_fornavn">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                    </VBox.margin>
+                                                                </TextField>
+                                                                <Label text="Etternavn:" />
+                                                                <TextField fx:id="rt_tekstfelt_etternavn">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                    </VBox.margin>
+                                                                </TextField>
+                                                                <Button fx:id="rt_knapp_legg_til_deltaker" disable="true" mnemonicParsing="false" onAction="#leggTilSpiller" text="Legg til deltaker" />
+                                                            </children>
+                                                            <padding>
+                                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                            </padding>
+                                                        </VBox>
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <children>
+                                                                <StackPane prefHeight="30.0" prefWidth="200.0">
+                                                                    <children>
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deltakere" StackPane.alignment="CENTER">
+                                                                            <font>
+                                                                                <Font size="18.0" />
+                                                                            </font>
+                                                                        </Text>
+                                                                    </children>
+                                                                </StackPane>
+                                                                <Label text="Liste over deltakere i turneringen:" />
+                                                                <ListView fx:id="rt_liste_turnering" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                                            </children>
+                                                            <padding>
+                                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                            </padding>
+                                                        </VBox>
+                                                    </children>
+                                                </AnchorPane>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="tab_p" text="Legg til parti i turnering">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <children>
+                                                                <StackPane prefHeight="30.0" prefWidth="200.0">
+                                                                    <children>
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lag parti" StackPane.alignment="CENTER">
+                                                                            <font>
+                                                                                <Font size="18.0" />
+                                                                            </font>
+                                                                        </Text>
+                                                                    </children>
+                                                                </StackPane>
+                                                                <Label text="Turnering:" />
+                                                                <ComboBox fx:id="p_kombo_turnering" onAction="#setSpillerKomboBox" prefWidth="410.0">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                    </VBox.margin>
+                                                                </ComboBox>
+                                                                <Label layoutX="30.0" layoutY="115.0" text="Dato:" />
+                                                                <TextField fx:id="p_tekstfelt_dato">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                    </VBox.margin>
+                                                                </TextField>
+                                                                <Label layoutX="30.0" layoutY="179.0" text="Klokkeslett:" />
+                                                                <TextField fx:id="p_tekstfelt_klokkeslett" layoutX="30.0" layoutY="201.0">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                    </VBox.margin>
+                                                                </TextField>
+                                                                <Label text="Spiller hvit:" />
+                                                                <ComboBox fx:id="p_kombo_spiller_hvit" layoutX="30.0" layoutY="137.0" prefWidth="410.0">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                    </VBox.margin>
+                                                                </ComboBox>
+                                                                <Label text="Spiller sort:" />
+                                                                <ComboBox fx:id="p_kombo_spiller_sort" layoutX="30.0" layoutY="137.0" prefWidth="410.0">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                    </VBox.margin>
+                                                                </ComboBox>
+                                                                <Button fx:id="p_knapp_lag_parti" mnemonicParsing="false" onAction="#lagParti" text="Lag parti" />
+                                                            </children>
+                                                            <padding>
+                                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                            </padding>
+                                                        </VBox>
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <children>
+                                                                <StackPane prefHeight="30.0" prefWidth="200.0">
+                                                                    <children>
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Liste over partier" StackPane.alignment="CENTER">
+                                                                            <font>
+                                                                                <Font size="18.0" />
+                                                                            </font>
+                                                                        </Text>
+                                                                    </children>
+                                                                </StackPane>
+                                                                <Label text="Partier:" />
+                                                                <ListView fx:id="p_liste_parti" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                    </VBox.margin>
+                                                                </ListView>
+                                                                <Button fx:id="p_knapp_velg_parti" mnemonicParsing="false" onAction="#velgPartiTab" text="Velg parti" />
+                                                            </children>
+                                                            <padding>
+                                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                            </padding>
+                                                        </VBox>
+                                                    </children>
+                                                </AnchorPane>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="tab_rp" text="Legg til trekk i parti">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <children>
+                                                                <Label text="Valgt parti:" />
+                                                                <TextField fx:id="rp_tekstfelt_partinavn" disable="true" editable="false" text="Partinavn">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                    </VBox.margin>
+                                                                </TextField>
+                                                                <TitledPane animated="false" collapsible="false" prefHeight="286.0" prefWidth="431.0" text="Legg til trekk" VBox.vgrow="ALWAYS">
+                                                                    <content>
+                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                            <children>
+                                                                                <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                    <children>
+                                                                                        <Label text="Brikketype:" />
+                                                                                        <ComboBox fx:id="rp_tekstfelt_brikketype" prefWidth="410.0">
+                                                                                            <VBox.margin>
+                                                                                                <Insets bottom="5.0" />
+                                                                                            </VBox.margin>
+                                                                                        </ComboBox>
+                                                                                        <Label text="Fra rute:" />
+                                                                                        <ComboBox fx:id="rp_tekstfelt_fra_rute" prefWidth="410.0">
+                                                                                            <VBox.margin>
+                                                                                                <Insets bottom="5.0" />
+                                                                                            </VBox.margin>
+                                                                                        </ComboBox>
+                                                                                        <Label text="Til rute:" />
+                                                                                        <ComboBox fx:id="rp_tekstfelt_til_rute" prefWidth="410.0">
+                                                                                            <VBox.margin>
+                                                                                                <Insets bottom="5.0" />
+                                                                                            </VBox.margin>
+                                                                                        </ComboBox>
+                                                                                        <Label text="Kvalitetdskode:" />
+                                                                                        <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                                            <children>
+                                                                                                <ComboBox fx:id="rp_kombo_kvalitetskode" prefWidth="150.0">
+                                                                                                    <opaqueInsets>
+                                                                                                        <Insets />
+                                                                                                    </opaqueInsets>
+                                                                                                    <HBox.margin>
+                                                                                                        <Insets right="10.0" />
+                                                                                                    </HBox.margin>
+                                                                                                </ComboBox>
+                                                                                                <Button fx:id="rp_knapp_legg_til_trekk" mnemonicParsing="false" onAction="#redigerParti" text="Legg til trekk" />
+                                                                                            </children>
+                                                                                        </HBox>
+                                                                                    </children>
+                                                                                </VBox>
+                                                                            </children>
+                                                                        </AnchorPane>
+                                                                    </content>
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="5.0" />
+                                                                    </VBox.margin>
+                                                                </TitledPane>
+                                                                <TitledPane animated="false" collapsible="false" prefHeight="147.0" prefWidth="431.0" text="Registrer resultat">
+                                                                    <content>
+                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                            <children>
+                                                                                <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                    <children>
+                                                                                        <Label text="Utfall:">
+                                                                                            <VBox.margin>
+                                                                                                <Insets />
+                                                                                            </VBox.margin>
+                                                                                        </Label>
+                                                                                        <ComboBox fx:id="rp_kombo_utfall" prefWidth="410.0">
+                                                                                            <VBox.margin>
+                                                                                                <Insets bottom="5.0" />
+                                                                                            </VBox.margin></ComboBox>
+                                                                                        <Button fx:id="rp_button_lagre_endringer" mnemonicParsing="false" onAction="#lagrePoengHandler" text="Lagre endringer" />
+                                                                                    </children>
+                                                                                </VBox>
+                                                                            </children>
+                                                                        </AnchorPane>
+                                                                    </content>
+                                                                </TitledPane>
+                                                            </children>
+                                                            <padding>
+                                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                            </padding>
+                                                        </VBox>
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <children>
+                                                                <StackPane prefHeight="30.0" prefWidth="200.0">
+                                                                    <children>
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Registrerte trekk" StackPane.alignment="CENTER">
+                                                                            <font>
+                                                                                <Font size="18.0" />
+                                                                            </font>
+                                                                        </Text>
+                                                                    </children>
+                                                                </StackPane>
+                                                                <Label text="Liste over registrerte trekk:" />
+                                                                <ListView fx:id="rp_liste_trekk" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="10.0" />
+                                                                    </VBox.margin>
+                                                                </ListView>
+                                                            </children>
+                                                            <padding>
+                                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                            </padding>
+                                                        </VBox>
+                                                    </children>
+                                                </AnchorPane>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </center>
+            <top>
+                <MenuBar BorderPane.alignment="CENTER">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Fil">
+                            <items>
+                                <MenuItem fx:id="meny_lagre" mnemonicParsing="false" onAction="#lagreInformasjon" text="Lagre" />
+                                <MenuItem fx:id="meny_slett" mnemonicParsing="false" onAction="#tomData" text="Slett data" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </top>
+        </BorderPane>
+    </children>
 </AnchorPane>
