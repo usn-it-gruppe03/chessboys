@@ -189,7 +189,6 @@ public class Controller implements Initializable {
                 aktivTurnering.setSpillerArray(t.hentSpillerArray());
                 aktivTurnering.setPartiArray(t.hentParti());
                 aktivTurnering.setFil("turnering/" + x);
-                System.out.println(aktivTurnering.toString());
                 break;
             }
         }
@@ -267,7 +266,7 @@ public class Controller implements Initializable {
 
     public void leggTilSpiller() {
         boolean bool = (rt_tekstfelt_fornavn.getText()+rt_tekstfelt_etternavn.getText()).isEmpty();
-        System.out.println(bool);
+
         if(!bool) {
             String fornavn = this.rt_tekstfelt_fornavn.getText();
             String etternavn = this.rt_tekstfelt_etternavn.getText();
@@ -280,7 +279,6 @@ public class Controller implements Initializable {
                     t.leggTilSpiller(spiller);
                 }
             }
-            System.out.println(aktivTurnering.hentSpillerArray());
             lagreInformasjon();
 
             visSpillere();
@@ -352,7 +350,6 @@ public class Controller implements Initializable {
                     for(Turnering t: turneringer) {
                         if(t.toString().equals(aktivTurnering.toString())) {
                             if(t.hentParti().isEmpty()) {
-                                System.out.println("array tom");
                                 t.leggTilParti(p);
 
                             }else {
@@ -367,7 +364,6 @@ public class Controller implements Initializable {
                                         break;
                                     } else {
                                         System.out.println("Parti lagt til!");
-                                        System.out.println(p.toString());
                                         t.leggTilParti(p);
                                         break;
                                     }
@@ -468,7 +464,7 @@ public class Controller implements Initializable {
 
     public void redigerParti() {
 
-        System.out.println("Legg til trekk");
+
         rp_liste_trekk.getItems().clear();
         for(Parti p: aktivTurnering.hentParti()) {
             if (p.toString().equals(valgtParti.toString())) {
