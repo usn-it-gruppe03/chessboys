@@ -88,7 +88,8 @@ public class Controller implements Initializable {
 
 
     /**
-     *
+     *  hentTrekk metoden sjekker om bruker henter parti fra ListView.
+     *  Populerer sp_liste_trekk med Trekk objekter
      * */
     public void hentTrekk() {
 
@@ -113,7 +114,7 @@ public class Controller implements Initializable {
     }
 
     /**
-     *
+     *  Populerer ListView med Parti objekter.
      * */
     public void populerListView() {
         Turnering valgtTurnering;
