@@ -69,7 +69,7 @@ public class Controller implements Initializable {
     @FXML private ComboBox<BrikkeType> rp_tekstfelt_brikketype;
     @FXML private ComboBox<Posisjon> rp_tekstfelt_til_rute;
     @FXML private ComboBox<Posisjon> rp_tekstfelt_fra_rute;
-    @FXML private ComboBox<Spiller> rp_kombo_utfall;
+    @FXML private ComboBox<String> rp_kombo_utfall;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -404,7 +404,7 @@ public class Controller implements Initializable {
         rp_tekstfelt_fra_rute.getItems().addAll(Posisjon.values());
         rp_tekstfelt_til_rute.getItems().addAll(Posisjon.values());
         rp_tekstfelt_brikketype.getItems().addAll(BrikkeType.values());
-        rp_kombo_utfall.getItems().addAll(valgtParti.getSpillerHvit(), valgtParti.getSpillerSort());
+        rp_kombo_utfall.getItems().addAll(valgtParti.getSpillerHvit().getFornavn(), valgtParti.getSpillerSort().getEtternavn(), "Remi");
         visTrekk();
     }
 
@@ -422,10 +422,47 @@ public class Controller implements Initializable {
         for(Parti p: aktivTurnering.hentParti()) {
             if (p.toString().equals(valgtParti.toString())) {
                     p.setTrekk(new Trekk(rp_tekstfelt_fra_rute.getValue(), rp_tekstfelt_til_rute.getValue(), rp_tekstfelt_brikketype.getValue()));
-                    visTrekk();
-                    System.out.println("Brikketype: " + rp_tekstfelt_brikketype.getValue().getClass());
-                    System.out.println("Posisjon: " + rp_tekstfelt_til_rute.getValue().getClass());
+                visTrekk();
 
+            }
+        }
+
+    }
+
+    public void lagrePoengHandler() {
+        lagrePartiTrekk();
+        lagreInformasjon();
+    }
+
+    /**
+     *
+     *
+     * Metode for å lagre partier, og da gi poeng i forhold til hvem som vant
+     *
+     * */
+    private void lagrePartiTrekk() {
+        if(rp_kombo_utfall.getValue() == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advarsel!");
+            alert.setHeaderText("Tomme felt");
+            alert.setContentText("Du har ikke valgt resultat!");
+            alert.showAndWait();
+        } else {
+            for(Turnering t: turneringer) {
+                if(t.toString().equals(aktivTurnering.toString())) {
+                    for(Parti p: t.hentParti()) {
+                        if(p.toString().equals(valgtParti.toString())) {
+                            if (p.getSpillerHvit().getFornavn().equals(rp_kombo_utfall)) {
+                                p.getSpillerHvit().setPoeng(1);
+                            } else if(rp_kombo_utfall.equals("Remi")){
+                                p.getSpillerHvit().setPoeng(0.5);
+                                p.getSpillerSort().setPoeng(0.5);
+                            } else if(p.getSpillerSort().getFornavn().equals(rp_kombo_utfall)) {
+                                p.getSpillerSort().setPoeng(1);
+                            }
+                        }
+                    }
+                }
 
             }
         }
@@ -447,7 +484,7 @@ public class Controller implements Initializable {
 
     public void tomData(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
+        alert.setTitle("Er du sikker?");
         alert.setHeaderText("Du er i ferd med å slette all data!");
         alert.setContentText("Du har valgt å slette all data, for å bekrefte trykk \"OK\" ");
 

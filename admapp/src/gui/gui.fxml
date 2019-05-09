@@ -385,7 +385,7 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </ListView>
-                                                <Button mnemonicParsing="false" text="Lagre endringer" onAction="#lagreInformasjon"/>
+                                                <Button mnemonicParsing="false" text="Lagre endringer" onAction="#lagrePoengHandler"/>
                                              </children>
                                              <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
