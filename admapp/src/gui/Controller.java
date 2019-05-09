@@ -11,10 +11,13 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static klasser.Sjakkbrett.atomiserPosisjon;
 
 
 /**
@@ -28,6 +31,9 @@ public class Controller implements Initializable {
     private Turnering nyTurnering;
     private Turnering aktivTurnering;
     private Parti valgtParti;
+    private ArrayList<String> kvalitetsKode= new ArrayList<>();
+
+
 
     // * TAB PANE:
     @FXML private TabPane tab_pane;
@@ -70,6 +76,7 @@ public class Controller implements Initializable {
     @FXML private ComboBox<Posisjon> rp_tekstfelt_til_rute;
     @FXML private ComboBox<Posisjon> rp_tekstfelt_fra_rute;
     @FXML private ComboBox<String> rp_kombo_utfall;
+    @FXML private ComboBox<String> rp_kombo_kvalitetskode;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -419,6 +426,10 @@ public class Controller implements Initializable {
         rp_tekstfelt_brikketype.getItems().addAll(BrikkeType.values());
         rp_kombo_utfall.getItems().addAll(valgtParti.getSpillerHvit().getFornavn(), valgtParti.getSpillerSort().getEtternavn(), "Remi");
         visTrekk();
+
+        kvalitetsKode.clear();
+        kvalitetsKode.addAll(Arrays.asList("??","?","?!","!?","!","!!"));
+        rp_kombo_kvalitetskode.getItems().addAll(kvalitetsKode);
     }
 
     /**
@@ -434,13 +445,94 @@ public class Controller implements Initializable {
         rp_liste_trekk.getItems().clear();
         for(Parti p: aktivTurnering.hentParti()) {
             if (p.toString().equals(valgtParti.toString())) {
-                    p.setTrekk(new Trekk(rp_tekstfelt_fra_rute.getValue(), rp_tekstfelt_til_rute.getValue(), rp_tekstfelt_brikketype.getValue()));
-                visTrekk();
+                if(sjekkLovlighet(rp_tekstfelt_brikketype.getValue() ,rp_tekstfelt_fra_rute.getValue(), rp_tekstfelt_til_rute.getValue())){
+                    p.setTrekk(new Trekk(rp_tekstfelt_fra_rute.getValue(), rp_tekstfelt_til_rute.getValue(), rp_tekstfelt_brikketype.getValue(), rp_kombo_kvalitetskode.getValue()));
+                    visTrekk();
+
+                }else{
+                    visTrekk();
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Partifeil");
+                    alert.setHeaderText("Ops! Noe gikk galt");
+                    alert.setContentText("Ulovlig trekk!");
+                    alert.showAndWait();
+
+
+                }
 
             }
         }
 
     }
+
+    public static boolean sjekkLovlighet(BrikkeType brikkeType, Posisjon fra, Posisjon til){
+
+        char fra_bokstav = atomiserPosisjon(fra)[0].charAt(0);
+        int fra_tall = Integer.parseInt(atomiserPosisjon(fra)[1]);
+
+        char til_bokstav = atomiserPosisjon(til)[0].charAt(0);
+        int til_tall = Integer.parseInt(atomiserPosisjon(til)[1]);
+
+        int diffBokstav = Math.abs(fra_bokstav - til_bokstav);
+        int diffTall = Math.abs(fra_tall - til_tall);
+
+        int maksFlytt = 0;
+
+
+        // ? Konge:
+        if (brikkeType == BrikkeType.KONGE_HVIT || brikkeType == BrikkeType.KONGE_SORT) {
+
+            if (diffTall <= 1)
+                return (diffBokstav <= 1);
+
+        }
+
+        // ? Dronning:
+        else if (brikkeType == BrikkeType.DRONNING_HVIT || brikkeType == BrikkeType.DRONNING_SORT) {
+
+            if (diffBokstav == 0 || fra_tall == til_tall)
+                return true;
+            else return (diffBokstav == diffTall);
+
+        }
+
+        // ? Tårn:
+        else if (brikkeType == BrikkeType.TÅRN_HVIT || brikkeType == BrikkeType.TÅRN_SORT) {
+
+            return (diffBokstav == 0 || fra_tall == til_tall);
+
+        }
+
+        // ? Springer:
+        else if (brikkeType == BrikkeType.SPRINGER_HVIT || brikkeType == BrikkeType.SPRINGER_SORT) {
+
+            if ((diffBokstav + diffTall) <= 3)
+                return (diffBokstav == 2 && diffTall == 1 || diffBokstav == 1 && diffTall == 2);
+
+        }
+
+        // ? Løper:
+        else if (brikkeType == BrikkeType.LØPER_HVIT || brikkeType == BrikkeType.LØPER_SORT) {
+
+            return (diffBokstav == diffTall);
+
+        }
+
+        // ? Bonde:
+        else if (brikkeType == BrikkeType.BONDE_HVIT || brikkeType == BrikkeType.BONDE_SORT) {
+
+            if (brikkeType == BrikkeType.BONDE_HVIT && fra_tall == 2 || brikkeType == BrikkeType.BONDE_SORT && fra_tall == 7)
+                maksFlytt = 2;
+            else maksFlytt = 1;
+
+            return (diffBokstav == 0 && diffTall <= maksFlytt);
+
+        }
+
+        return false;
+
+    }
+
 
     public void lagrePoengHandler() {
         lagrePartiTrekk();

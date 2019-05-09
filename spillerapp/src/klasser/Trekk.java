@@ -6,11 +6,23 @@ public class Trekk implements Serializable{
 
     private Posisjon fraTrekk, tilTrekk;
     private BrikkeType brikkeType;
+    private String kvalitetsKode;
 
-    public Trekk(Posisjon fraTrekk, Posisjon tilTrekk, BrikkeType brikkeType) {
+
+
+    public Trekk(Posisjon fraTrekk, Posisjon tilTrekk, BrikkeType brikkeType, String kvalitetsKode) {
         this.fraTrekk = fraTrekk;
         this.tilTrekk = tilTrekk;
         this.brikkeType = brikkeType;
+        this.kvalitetsKode = kvalitetsKode;
+    }
+
+    public String getKvalitetsKode() {
+        return kvalitetsKode;
+    }
+
+    public void setKvalitetsKode(String kvalitetsKode) {
+        this.kvalitetsKode = kvalitetsKode;
     }
 
     public Posisjon getFraTrekk() {
@@ -30,7 +42,7 @@ public class Trekk implements Serializable{
     }
 
     public BrikkeType getBrikkeType() {
-        return brikkeType;
+        return this.brikkeType;
     }
 
     public void setBrikkeType(BrikkeType brikkeType) {
@@ -39,6 +51,6 @@ public class Trekk implements Serializable{
 
     @Override
     public String toString() {
-        return "" + this.getFraTrekk() + " - " + this.getTilTrekk();
+        return "" + this.getFraTrekk() + " - " + this.getTilTrekk() + " - " + this.getKvalitetsKode();
     }
 }
