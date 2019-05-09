@@ -360,7 +360,7 @@
                                                                                             <VBox.margin>
                                                                                                 <Insets bottom="5.0" />
                                                                                             </VBox.margin></ComboBox>
-                                                                                        <Button fx:id="rp_button_lagre_endringer" mnemonicParsing="false" onAction="#lagrePoengHandler" text="Lagre endringer" />
+                                                                                        <Button fx:id="rp_button_lagre_endringer" mnemonicParsing="false" onAction="#lagrePoengHandler" text="Lagre parti og legg inn resultat" />
                                                                                     </children>
                                                                                 </VBox>
                                                                             </children>
