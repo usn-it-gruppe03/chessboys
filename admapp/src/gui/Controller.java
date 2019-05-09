@@ -264,24 +264,36 @@ public class Controller implements Initializable {
      */
 
     public void leggTilSpiller() {
-        String fornavn = this.rt_tekstfelt_fornavn.getText();
-        String etternavn = this.rt_tekstfelt_etternavn.getText();
-        int poeng = 0;
+        boolean bool = (rt_tekstfelt_fornavn.getText()+rt_tekstfelt_etternavn).isEmpty();
+        System.out.println(bool);
+        if(bool) {
+            String fornavn = this.rt_tekstfelt_fornavn.getText();
+            String etternavn = this.rt_tekstfelt_etternavn.getText();
+            int poeng = 0;
 
-        Spiller spiller = new Spiller(fornavn, etternavn, poeng);
+            Spiller spiller = new Spiller(fornavn, etternavn, poeng);
 
-        for(Turnering t: turneringer) {
-            if(aktivTurnering.toString().equals(t.toString())){
-                t.leggTilSpiller(spiller);
+            for(Turnering t: turneringer) {
+                if(aktivTurnering.toString().equals(t.toString())){
+                    t.leggTilSpiller(spiller);
+                }
             }
+            System.out.println(aktivTurnering.hentSpillerArray());
+            lagreInformasjon();
+
+            visSpillere();
+
+            this.rt_tekstfelt_fornavn.setText("");
+            this.rt_tekstfelt_etternavn.setText("");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Partifeil");
+            alert.setHeaderText("Ops! Noe gikk galt");
+            alert.setContentText("Du må fylle ut alle elementer!");
+            alert.showAndWait();
+
         }
-        System.out.println(aktivTurnering.hentSpillerArray());
-        lagreInformasjon();
 
-        visSpillere();
-
-        this.rt_tekstfelt_fornavn.setText("");
-        this.rt_tekstfelt_etternavn.setText("");
 
     }
 
@@ -327,7 +339,6 @@ public class Controller implements Initializable {
     public void lagParti(){
         try {
             if(p_kombo_spiller_hvit.getValue().equals(p_kombo_spiller_sort.getValue())) {
-                // p_kombo_spiller_hvit.getValue().equals(p_kombo_spiller_sort.getValue())
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Partifeil");
                 alert.setHeaderText("Ops! Noe gikk galt");
