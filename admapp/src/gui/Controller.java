@@ -507,6 +507,9 @@ public class Controller implements Initializable {
            alert.close();
         }
 
+    }
+
+    private void skrivTilBackuo() {
 
     }
 

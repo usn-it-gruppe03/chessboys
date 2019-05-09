@@ -69,40 +69,6 @@ public class Fil {
         return null;
     }
 
-    /*METODE deSerialization er for EKSEMEPEL*/
-    /*public static Object deSerialization(String file) throws IOException, ClassNotFoundException {
-        FileInputStream fileInputStream = new FileInputStream(file);
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-        ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
-        Object object = objectInputStream.readObject();
-        objectInputStream.close();
-        return object;
-    }*/
 
-    public Object søk(String spesifikkTurnering, String filNavn) {
-        try {
-            filInn = new FileInputStream(FILE_PATH_TO_FOLDER + "/" + spesifikkTurnering + "/" + filNavn);
-            BufferedInputStream bis = new BufferedInputStream(filInn);
-            inn = new ObjectInputStream(bis);
-            Object object = inn.readObject();
-            return object;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public String[] søkTurneringer() {
-        File fil = new File(FILE_PATH_TO_FOLDER);
-        String[] mapper = fil.list(new FilenameFilter() {
-            @Override
-            public boolean accept(File current, String name) {
-                return new File(current, name).isDirectory();
-            }
-        });
-        return mapper;
-    }//FERDIG ?
 
 }//SLUTT PÅ KLASSE
