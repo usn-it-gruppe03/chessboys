@@ -476,7 +476,7 @@ public class Controller implements Initializable {
         rp_tekstfelt_fra_rute.getItems().addAll(Posisjon.values());
         rp_tekstfelt_til_rute.getItems().addAll(Posisjon.values());
         rp_tekstfelt_brikketype.getItems().addAll(BrikkeType.values());
-        rp_kombo_utfall.getItems().addAll(valgtParti.getSpillerHvit().getFornavn(), valgtParti.getSpillerSort().getEtternavn(), "Remi");
+        rp_kombo_utfall.getItems().addAll(valgtParti.getSpillerHvit().getFornavn(), valgtParti.getSpillerSort().getFornavn(), "Remi");
         visTrekk();
         kvalitetsKode.clear();
         kvalitetsKode.addAll(Arrays.asList("??","?","?!","!?","!","!!"));
