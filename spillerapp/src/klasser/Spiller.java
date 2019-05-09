@@ -7,7 +7,7 @@ public class Spiller implements Serializable {
     private String fornavn, etternavn;
     private double poeng;
 
-    public Spiller(String fornavn, String etternavn, int poeng) {
+    public Spiller(String fornavn, String etternavn, double poeng) {
         this.fornavn = fornavn;
         this.etternavn = etternavn;
         this.poeng = poeng;
@@ -33,8 +33,8 @@ public class Spiller implements Serializable {
         return poeng;
     }
 
-    public void setPoeng(int poeng) {
-        this.poeng = poeng;
+    public void setPoeng(double poeng) {
+        this.poeng += poeng;
     }
 
     @Override
