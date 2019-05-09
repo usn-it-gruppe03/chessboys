@@ -107,7 +107,7 @@ public class Controller implements Initializable {
 
         } else {
 
-            Sjakkbrett.visFeil("Parti ikke valgt", "Du har ikke valgt et parti", "Vennligst velg et parti");
+            Sjakkbrett.visFeil("Parti ikke valgt", "Du har ikke valgt et parti", "Vennligst velg et parti!");
 
         }
     }
