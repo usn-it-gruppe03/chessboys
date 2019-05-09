@@ -408,7 +408,7 @@
                 <Menu mnemonicParsing="false" text="Fil">
                   <items>
                     <MenuItem fx:id="meny_lagre" mnemonicParsing="false" onAction="#lagreInformasjon" text="Lagre" />
-                        <MenuItem fx:id="meny_slett" mnemonicParsing="false" text="Slett data" />
+                        <MenuItem fx:id="meny_slett" mnemonicParsing="false" text="Slett data" onAction="#tomData"/>
                   </items>
                 </Menu>
               </menus>
