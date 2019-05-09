@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Spiller implements Serializable {
 
     private String fornavn, etternavn;
-    private int poeng;
+    private double poeng;
 
     public Spiller(String fornavn, String etternavn, int poeng) {
         this.fornavn = fornavn;
@@ -29,7 +29,7 @@ public class Spiller implements Serializable {
         this.etternavn = etternavn;
     }
 
-    public int getPoeng() {
+    public double getPoeng() {
         return poeng;
     }
 

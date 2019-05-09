@@ -250,7 +250,11 @@ public class Controller implements Initializable {
 
         Spiller spiller = new Spiller(fornavn, etternavn, poeng);
 
-        aktivTurnering.leggTilSpiller(spiller);
+        for(Turnering t: turneringer) {
+            if(aktivTurnering.toString().equals(t.toString())){
+                t.leggTilSpiller(spiller);
+            }
+        }
         System.out.println(aktivTurnering.hentSpillerArray());
         lagreInformasjon();
 
