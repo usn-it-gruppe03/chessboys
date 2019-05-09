@@ -152,7 +152,6 @@ public class Controller implements Initializable {
      * */
     private void hentTurneringern() {
         if(Fil.hentObjekt() != null){
-            System.out.println("hent");
             turneringer.addAll(Fil.hentObjekt());
             System.out.println("Turneringer hentet!");
         }
