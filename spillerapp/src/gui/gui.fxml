@@ -124,7 +124,7 @@
                                                       <Insets right="10.0" />
                                                    </HBox.margin>
                                                 </Button>
-                                                <Button fx:id="sp_knapp_neste_trekk" mnemonicParsing="false" text="Neste trekk">
+                                                <Button fx:id="sp_knapp_neste_trekk" mnemonicParsing="false" onAction="#nesteTrekk" text="Neste trekk">
                                                    <HBox.margin>
                                                       <Insets right="10.0" />
                                                    </HBox.margin>
@@ -157,7 +157,7 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </ListView>
-                                          <Button fx:id="sp_knapp_velg_trekk" mnemonicParsing="false" text="Velg trekk" />
+                                          <Button fx:id="sp_knapp_velg_trekk" mnemonicParsing="false" onAction="#velgTrekk" text="Velg trekk" />
                                        </children>
                                     </VBox>
                                  </children>

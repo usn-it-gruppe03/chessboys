@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -677,9 +678,6 @@ public class Controller implements Initializable {
            alert.close();
         }
 
-    }
-
-    private void skrivTilBackuo() {
 
     }
 

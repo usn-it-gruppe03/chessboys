@@ -81,7 +81,15 @@ public class Controller implements Initializable {
     }
 
     public void forrigeTrekk(){
-        Sjakkbrett.resettBrett(this.sp_sjakkbrett);
+        this.animasjon.forrigeTrekk();
+    }
+
+    public void nesteTrekk(){
+        this.animasjon.nesteTrekk();
+    }
+
+    public void velgTrekk(){
+        this.animasjon.velgTrekk();
     }
 
 
@@ -96,6 +104,7 @@ public class Controller implements Initializable {
         Parti parti = this.fp_liste_parti.getSelectionModel().getSelectedItem();
 
         if (this.partierLastet && parti != null){
+
             valgtParti = fp_liste_parti.getSelectionModel().getSelectedItem();
 
             for(Trekk t: valgtParti.getTrekkListe()) {

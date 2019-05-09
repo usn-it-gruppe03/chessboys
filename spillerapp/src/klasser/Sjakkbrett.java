@@ -6,10 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -218,6 +215,23 @@ public class Sjakkbrett {
 
 
     /**
+     * Fra String til BrikkeType
+     * */
+    public static BrikkeType tilBrikkeType(String brikkeType){
+
+        for (BrikkeType bt : BrikkeType.values()){
+            if (bt.toString().equals(brikkeType.toUpperCase()))
+                return bt;
+        }
+
+        return null;
+
+    }
+
+
+
+
+    /**
      * Hent Felt
      * */
     public static Felt hentFelt(AnchorPane sjakkbrett, Posisjon posisjon){
@@ -264,18 +278,23 @@ public class Sjakkbrett {
         // Iterer gjennom sjakkbrettets noder.
         for (Node node : sjakkbrett.getChildren()){
 
-            // ? Dersom noden er av typen Felt.
-            if (node instanceof Brikke){
+            if (node != null){
 
-                // Typetving noden til Felt.
-                Brikke brikke = ((Brikke) node);
+                // ? Dersom noden er av typen Felt.
+                if (node instanceof Brikke){
 
-                // ? Dersom feltets posisjon er lik den gitte posisjon.
-                if (brikke.getPosisjon() == posisjon)
+                    // Typetving noden til Felt.
+                    Brikke brikke = ((Brikke) node);
 
-                    // Returner feltet.
-                    return brikke;
+                    // ? Dersom feltets posisjon er lik den gitte posisjon.
+                    if (brikke.getPosisjon() == posisjon)
+
+                        // Returner feltet.
+                        return brikke;
+                }
+
             }
+
         }
 
         return null;
@@ -297,33 +316,20 @@ public class Sjakkbrett {
      * */
     public static void trekk(AnchorPane sjakkbrett, BrikkeType brikkeType, Posisjon fra, Posisjon til){
 
-        System.out.println("Trekkmetode invokert!");
         // * Hent ut brikke fra sjakkbrett.
         Brikke brikke = Sjakkbrett.hentBrikke(sjakkbrett,fra);
+
         // ? Dersom brikken eksisterer.
         if (brikke != null){
-            cout("Brikken eksisterer");
-            brikke.setPosisjon(sjakkbrett, til);
 
             // ? Dersom brikketypen stemmer overens.
             if (brikke.getBrikkeType() == brikkeType){
-                cout(brikke.getBrikkeType() + " | ai ai ai" + brikkeType);
 
-                // ? Dersom trekket er lovlig.
-                if (validerTrekk(brikkeType,fra,til)){
-                    cout("Trekket var lovlig");
+                brikke.setPosisjon(sjakkbrett, til);
 
-                    brikke.setPosisjon(sjakkbrett, til);
+            } else cout("Brikketypen er feil.");
 
-                } else visFeil(
-                        "Ulovlig trekk",
-                        "Du har utført et ulovlig trekk",
-                        "Brikken " + brikkeType.toString() + " kan ikke flyttes fra " + fra.toString() + " til " + til.toString()
-                );
-
-            } else cout(brikke.getBrikkeType() + " | her? " + brikkeType);
-
-        } else cout("Brikken eksisterer ikke");
+        } else cout("Brikken eksisterer ikke.");
 
     }
 
@@ -436,12 +442,11 @@ public class Sjakkbrett {
 
 
     public static void resettBrett(AnchorPane sjakkbrett){
-        for (int i=0; i<sjakkbrett.getChildren().size(); i++){
-            Node node = sjakkbrett.getChildren().get(i);
-            if (node instanceof Brikke){
-                Brikke brikke = ((Brikke) node);
-                sjakkbrett.getChildren().remove(brikke);
-            }
+        Iterator<Node> i = sjakkbrett.getChildren().iterator();
+        while (i.hasNext()){
+            Node node = i.next();
+            if (node instanceof Brikke)
+                i.remove();
         }
     }
 

@@ -41,6 +41,7 @@ public class Brikke extends ImageView {
 
     private Brikke(BrikkeType brikkeType, double senterX, double senterY){
         this(brikkeType.getIkonURL(), senterX, senterY);
+        this.brikkeType = brikkeType;
     }
 
     public Brikke(BrikkeType brikkeType, AnchorPane sjakkbrett, Posisjon posisjon){
@@ -80,6 +81,10 @@ public class Brikke extends ImageView {
 
     public BrikkeType getBrikkeType(){
         return this.brikkeType;
+    }
+
+    public boolean hasBrikkeType(){
+        return this.brikkeType != null;
     }
 
 }
