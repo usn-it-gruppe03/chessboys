@@ -80,6 +80,7 @@ public class Controller implements Initializable {
 
         t_knapp_velg_turnering.disableProperty()
                 .bind(t_liste_turnering.getSelectionModel().selectedItemProperty().isNull());
+
     }
 
 
