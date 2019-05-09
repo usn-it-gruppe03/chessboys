@@ -385,7 +385,7 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </ListView>
-                                                <Button mnemonicParsing="false" text="Lagre endringer" />
+                                                <Button mnemonicParsing="false" text="Lagre endringer" onAction="#lagreInformasjon"/>
                                              </children>
                                              <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -408,7 +408,7 @@
                 <Menu mnemonicParsing="false" text="Fil">
                   <items>
                     <MenuItem fx:id="meny_lagre" mnemonicParsing="false" onAction="#lagreInformasjon" text="Lagre" />
-                        <MenuItem fx:id="meny_slett" mnemonicParsing="false" text="Slett data" />
+                        <MenuItem fx:id="meny_slett" mnemonicParsing="false" text="Slett data" onAction="#tomData"/>
                   </items>
                 </Menu>
               </menus>

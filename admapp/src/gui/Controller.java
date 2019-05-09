@@ -6,8 +6,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import klasser.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -412,6 +416,7 @@ public class Controller implements Initializable {
 
 
     public void redigerParti() {
+
         System.out.println("Legg til trekk");
         rp_liste_trekk.getItems().clear();
         for(Parti p: aktivTurnering.hentParti()) {
@@ -436,6 +441,31 @@ public class Controller implements Initializable {
                 rp_liste_trekk.getItems().addAll(p.getTrekkListe());
             }
         }
+    }
+
+    public void tomData(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Du er i ferd med å slette all data!");
+        alert.setContentText("Du har valgt å slette all data, for å bekrefte trykk \"OK\" ");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            File file = new File("turneringer/info.dat");
+            try  {
+                PrintWriter writer = new PrintWriter(file);
+                writer.print("");
+                writer.close();
+            } catch (FileNotFoundException e) {
+                System.out.println(e.toString());
+            }
+            alert.close();
+            visTurneringer();
+        } else {
+           alert.close();
+        }
+
+
     }
 
 
