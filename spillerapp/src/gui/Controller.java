@@ -92,6 +92,10 @@ public class Controller implements Initializable {
         this.animasjon.velgTrekk();
     }
 
+    public void setHastighet(){
+        this.animasjon.setHastighet();
+    }
+
 
 
 
@@ -120,6 +124,13 @@ public class Controller implements Initializable {
             Sjakkbrett.visFeil("Parti ikke valgt", "Du har ikke valgt et parti", "Vennligst velg et parti!");
 
         }
+
+        this.sp_knapp_forrige_trekk.setDisable(false);
+        this.sp_knapp_spill_av_pause.setDisable(false);
+        this.sp_knapp_neste_trekk.setDisable(false);
+        this.sp_kombo_hastighet.setDisable(false);
+        this.sp_knapp_velg_trekk.setDisable(false);
+
     }
 
     /**

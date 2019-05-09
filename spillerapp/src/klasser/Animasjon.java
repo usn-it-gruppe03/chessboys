@@ -163,6 +163,24 @@ public class Animasjon {
 
         resetTilIndeks(this.indeks);
 
+        this.timeline.stop();
+        this.play = false;
+
+    }
+
+
+    /**
+     * Set hastighet
+     * */
+    public void setHastighet(){
+        this.timeline.stop();
+        this.play = false;
+        int hastighet = this.hastigheter.getSelectionModel().getSelectedItem();
+        this.keyFrame = new KeyFrame(Duration.seconds(hastighet), this::tidsløkke);
+        this.timeline = new Timeline(this.keyFrame);
+        this.timeline.setCycleCount(antallTrekk);
+        this.timeline.play();
+        this.play = true;
     }
 
 
