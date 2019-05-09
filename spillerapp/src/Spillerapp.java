@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,6 +29,24 @@ public class Spillerapp extends Application {
 
         stage.setScene(this.scene);
         stage.show();
+
+        Task<Integer> task = new Task<Integer>() {
+            @Override protected Integer call() throws Exception {
+                int iterations;
+                for (iterations = 0; iterations < 100000; iterations++) {
+                    if (isCancelled()) {
+                        break;
+                    }
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("Iteration " + iterations);
+                }
+                return iterations;
+            }
+        };
 
     }
 

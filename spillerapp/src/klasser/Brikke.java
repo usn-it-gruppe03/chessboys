@@ -1,6 +1,5 @@
 package klasser;
 
-import javafx.scene.CacheHint;
 import javafx.scene.image.*;
 import javafx.scene.layout.AnchorPane;
 

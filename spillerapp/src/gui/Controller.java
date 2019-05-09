@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -26,6 +27,7 @@ public class Controller implements Initializable {
     // * Generelle attributter:
     private ArrayList<Turnering> turneringer = new ArrayList<>();
     private Parti valgtParti;
+    private Animasjon animasjon;
 
     // * TAB: Finn parti
     @FXML private Tab tab_fp;
@@ -66,6 +68,7 @@ public class Controller implements Initializable {
         hentTurneringern();
         populerComboBox();
 
+        this.animasjon = new Animasjon();
 
 
         // ! TEST
@@ -73,6 +76,13 @@ public class Controller implements Initializable {
         brikke.setPosisjon(sp_sjakkbrett,Posisjon.C5);*/
 
     }
+
+    public void startThread(){
+        this.animasjon.spillPause();
+    }
+
+
+
 
     /**
      * fp_knapp_velg_parti

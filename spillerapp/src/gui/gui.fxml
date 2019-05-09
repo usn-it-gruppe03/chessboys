@@ -119,7 +119,7 @@
                                                       <Insets right="10.0" />
                                                    </HBox.margin>
                                                 </Button>
-                                                <Button fx:id="sp_knapp_spill_av_pause" mnemonicParsing="false" text="Spill av / Pause">
+                                                <Button fx:id="sp_knapp_spill_av_pause" mnemonicParsing="false" onAction="#startThread" text="Spill av / Pause">
                                                    <HBox.margin>
                                                       <Insets right="10.0" />
                                                    </HBox.margin>
